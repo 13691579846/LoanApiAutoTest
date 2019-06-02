@@ -21,7 +21,6 @@ class Base(unittest.TestCase):
     def setUpClass(cls):
         cls.mysql = HandleMysql()
 
-
     def register(self, request_method='post',
                  url=r'http://test.lemonban.com:8080/futureloan/mvc/api//member/register',
                  request_value='{"mobilephone": "${MobilePhone}", "pwd": "123456", "regname": "${RegName}"}',
@@ -37,8 +36,7 @@ class Base(unittest.TestCase):
         phone_dic = {regname: None}
         expression_phone = do_conf('Expression', 'phone_number')
         expression_name = r'\$\{RegName\}'
-        phone = self.mysql.phone_num()
-        self.mysql.get_phone()
+        phone = self.mysql.get_phone()
         request_value = do_replace(expression_phone, phone, request_value)
         request_value = do_replace(expression_name, regname, request_value)
         request(request_method, url=url, data=request_value)
