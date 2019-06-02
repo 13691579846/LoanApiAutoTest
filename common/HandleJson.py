@@ -1,16 +1,22 @@
 import json
 import os
 
+from common.RecordLog import log
+
 
 class HandleJson(object):
     """序列化与反序列化"""
+    log.info("开始解析JSON数据")
+
     @staticmethod
     def json_to_python(json_data):
         """json格式数据转换为python数据"""
         if isinstance(json_data, str):
             python_data = json.loads(json_data)
+            log.info("获取Python数据{}".format(python_data))
             return python_data
         else:
+            log.error("解析JSON数据失败:parameter:'{}' must be json formatter value".format(json_data))
             raise ValueError('parameter:"{}" must be json formatter value'.format(json_data))
 
     @staticmethod

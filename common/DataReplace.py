@@ -9,10 +9,12 @@
 """
 import re
 
+from common.RecordLog import log
+
 
 class DataReplace(object):
     def __init__(self):
-        pass
+        log.info("开始替换测试数据")
 
     @staticmethod
     def re_replace(re_expression, data, source):
@@ -27,8 +29,10 @@ class DataReplace(object):
             pattern = re.compile(re_expression)
             if re.search(pattern, source):
                 source = re.sub(pattern, data, source)
+            log.info("替换后的测试数据为:{}".format(source))
             return source
         else:
+            log.error("替换数据失败:data '{}' must be string".format(data))
             raise TypeError("data '{}' must be string".format(data))
 
     def __call__(self, re_expression, data, source):

@@ -8,6 +8,7 @@
 ------------------------------------
 """
 import unittest
+import inspect
 from openpyxl.styles.colors import RED, GREEN
 
 from config.config import BASE_URL
@@ -18,12 +19,16 @@ from common.SendRequests import request
 from common.DataReplace import do_replace
 from common.HandleJson import HandleJson
 from common.ParseConfig import do_conf
+from common.RecordLog import log
 
 
 @ddt
 class TestLoginApi(Base):
-
+    """登录接口"""
     test_data = do_excel.get_name_tuple_all_value(do_conf('SheetName', 'sheet_login'))
+
+    def setUp(self):
+        log.info("开始执行测试用例")
 
     @data(*test_data)
     def test_register(self, value):
@@ -33,7 +38,7 @@ class TestLoginApi(Base):
         url = BASE_URL + value.URL  # 用例url
         request_value = value.Data  # 请求参数
         request_method = value.Method  # 请求方法
-        sql = value.Sql
+        # sql = value.Sql
         # 转json的目的是防止期望结果和实际结果的字符串形式匹配不上(excel 存储的期望结果有空格)
         expected = HandleJson.json_to_python(value.Expected)  # 期望结果
         expression_phone = do_conf('Expression', 'phone_number')  # 正则表达式
@@ -41,8 +46,8 @@ class TestLoginApi(Base):
             phone = self.mysql.get_phone()
             request_value = do_replace(expression_phone, phone, request_value)
         else:
-            phone = self.mysql(sql=sql, args=(1,))["MobilePhone"]  # 取数据表中第一行数据的MobilePhone
-            request_value = do_replace(expression_phone, phone, request_value)
+            # phone = self.mysql(sql=sql, args=(1,))["MobilePhone"]  # 取数据表中第一行数据的MobilePhone
+            request_value = do_replace(expression_phone, self.phone_admin, request_value)
         response = request(request_method, url=url, data=request_value)
         actual_result = response.json()
         do_excel.write_cell(
@@ -59,6 +64,7 @@ class TestLoginApi(Base):
                 do_conf('ExcelNum', 'Result_Column_Num'),
                 do_conf('Result', 'result_fail'),
                 color=RED)
+            log.error('{}-[{}] :Failed\nDetails:\n{}'.format(inspect.stack()[0][3], title, e))
             raise e
         else:
             do_excel.write_cell(
@@ -67,6 +73,10 @@ class TestLoginApi(Base):
                 do_conf('ExcelNum', 'Result_Column_Num'),
                 do_conf('Result', 'result_pass'),
                 color=GREEN)
+            log.info('[{}] :Passed'.format(title))
+
+    def tearDown(self):
+        log.info("测试用例执行结束")
 
 
 if __name__ == '__main__':

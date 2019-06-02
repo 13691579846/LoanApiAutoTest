@@ -23,6 +23,7 @@ def tc_suite():
 if __name__ == '__main__':
     report_dir = ModelsClass.create_dir(do_conf('FilePath', 'HtmlPathName'))
     report_file_name = ModelsClass.file_name('html')
+    log_file_dir = ModelsClass.create_dir(do_conf('FilePath', 'LogPathName'))
     with open(report_dir + '/' + report_file_name, 'wb') as f:
         runner = HTMLTestRunnerNew.HTMLTestRunner(stream=f,
                                                   description=ENVIRONMENT,

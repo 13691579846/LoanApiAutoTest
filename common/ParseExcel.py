@@ -13,6 +13,7 @@ from openpyxl.styles.colors import BLACK
 from collections import namedtuple
 
 from config.config import DATA_PATH
+from common.RecordLog import log
 
 
 class ParseExcel(object):
@@ -21,8 +22,9 @@ class ParseExcel(object):
         try:
             self.filename = filename
             self.__wb = load_workbook(self.filename)
+            log.info("开始解析excel文件")
         except FileNotFoundError as e:
-            raise e
+            log.error("解析excel文件失败\n{}".format(e))
 
     def get_max_row_num(self, sheet_name):
         """获取最大行号"""
@@ -82,11 +84,13 @@ class ParseExcel(object):
             for value in row_tuple:
                 value_list.append(value)
             values.append(value_list)
+        log.info("获取excel文件，表单{}的所有数据\n{}".format(sheet_name, values))
         return values
 
     def get_excel_title(self, sheet_name):
         """获取sheet表头"""
         title_key = tuple(self.__wb[sheet_name].iter_rows(max_row=1, values_only=True))[0]
+        log.info("读取excel文件，表单{}的标题:{}".format(sheet_name, title_key))
         return title_key
 
     def get_list_dict_all_value(self, sheet_name):
@@ -112,13 +116,17 @@ class ParseExcel(object):
     def write_cell(self, sheet_name, row, column, value=None, bold=True, color=BLACK):
         if isinstance(row, int) and isinstance(column, int):
             try:
+                log.info("{}文件，表单{},第{}行第{}列写入数据{}".format(self.filename, sheet_name, row, column, value))
                 cell_obj = self.__wb[sheet_name].cell(row, column)
                 cell_obj.font = Font(color=color, bold=bold)
                 cell_obj.value = value
                 self.__wb.save(self.filename)
             except Exception as e:
+                log.error("{}文件，表单{},第{}行第{}列写入数据{}失败\n{}".
+                          format(self.filename, sheet_name, row, column, value, e))
                 raise e
         else:
+            log.error("{}文件写数据失败：row and column must be type int".format(self.filename))
             raise TypeError('row and column must be type int')
 
 

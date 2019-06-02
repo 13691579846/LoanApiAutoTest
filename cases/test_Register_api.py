@@ -8,6 +8,7 @@
 ------------------------------------
 """
 import unittest
+import inspect
 from openpyxl.styles.colors import RED, GREEN
 
 from config.config import BASE_URL
@@ -18,12 +19,16 @@ from common.SendRequests import request
 from common.DataReplace import do_replace
 from common.HandleJson import HandleJson
 from common.ParseConfig import do_conf
+from common.RecordLog import log
 
 
 @ddt
 class TestRegisterApi(Base):
-
+    """注册接口"""
     test_data = do_excel.get_name_tuple_all_value(do_conf('SheetName', 'sheet_register'))
+
+    def setUp(self):
+        log.info("开始执行测试用例")
 
     @data(*test_data)
     def test_register(self, value):
@@ -59,6 +64,7 @@ class TestRegisterApi(Base):
                 do_conf('ExcelNum', 'Result_Column_Num'),
                 do_conf('Result', 'result_fail'),
                 color=RED)
+            log.error('{}-[{}] :Failed\nDetails:\n{}'.format(inspect.stack()[0][3], title, e))
             raise e
         else:
             do_excel.write_cell(
@@ -67,6 +73,10 @@ class TestRegisterApi(Base):
                 do_conf('ExcelNum', 'Result_Column_Num'),
                 do_conf('Result', 'result_pass'),
                 color=GREEN)
+            log.info('[{}] :Passed'.format(title))
+
+    def tearDown(self):
+        log.info("测试用例执行结束")
 
 
 if __name__ == '__main__':

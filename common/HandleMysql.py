@@ -10,23 +10,15 @@
 import random
 import string
 import pymysql
-from collections import Iterable
+from collections.abc import Iterable
 
 from common.ParseConfig import do_conf
-# from common.RecordLog import log
+from common.RecordLog import log
 
 
 class HandleMysql(object):
     def __init__(self):
-        self._conn = self.__connect_mysql()
-        self._cursor = None
-        if self._conn:
-            self._cursor = self._conn.cursor()
-        else:
-            raise ConnectionError('连接数据库失败!')
-
-    def __connect_mysql(self):
-        """连接数据库"""
+        log.info('初始化数据库...')
         try:
             # log.info('start connecting MySQL...')
             self._conn = pymysql.connect(host=do_conf('MySQL', 'host'),
@@ -38,34 +30,33 @@ class HandleMysql(object):
                                          cursorclass=pymysql.cursors.DictCursor
                                          )
         except Exception as e:
-            # log.error('connect MySQL failed\nDetails:{}'.format(e))
-            self._conn = None
-            return self._conn
+            log.error('连接数据库失败\n错误信息如下\n'.format(e))
         else:
-            # log.info('connect MySQL success!')
-            return self._conn
+            log.info('连接数据库成功')
+            self._cursor = self._conn.cursor()
 
     def get_values(self, sql, args=None, is_all=False):
         if isinstance(args, Iterable) or args is None:
-            if self._conn and self._cursor:
+            if self._conn:
                 self._cursor.execute(sql, args=args)
-                # log.info('executing sql:{}'.format(sql))
+                log.info('执行SQL语句:{}'.format(sql))
                 self._conn.commit()
                 if isinstance(is_all, bool):
                     if is_all:
                         values = self._cursor.fetchall()
+                        log.info("获取数据库数据：{}".format(values))
                     else:
                         values = self._cursor.fetchone()
-                    # log.info('got values:{}'.format(values))
+                        log.info("获取数据库数据：{}".format(values))
                     return values
                 else:
-                    # log.error('got values error: default parameter "{}" must be bool'.format(is_all))
+                    log.error('got values error: default parameter "{}" must be bool'.format(is_all))
                     raise TypeError('default parameter "{}" must be bool'.format(is_all))
             else:
-                # log.error('due to the db connect failed, so get values error!')
-                raise ConnectionError('due to the db connect failed, so get values error!')
+                log.error('due to the db connect failed, so get values error!')
+                raise ConnectionError('db connect failed get values error!')
         else:
-            # log.error('got values error: default parameter args "{}" must be Iterable'.format(args))
+            log.error('got values error: default parameter args "{}" must be Iterable'.format(args))
             raise TypeError('default parameter args "{}" must be Iterable'.format(args))
 
     def __call__(self, sql, args=None, is_all=False):
@@ -96,16 +87,16 @@ class HandleMysql(object):
         while 1:
             phone = HandleMysql.phone_num()
             if phone not in phone_list:
+                log.info("获取到未注册的手机号为:{}".format(phone))
                 return phone
 
     def close(self):
         """自动关闭, 避免忘记关闭"""
         if self._cursor:
             self._cursor.close()
-            # log.info('closing MySQL cursor...')
         if self._conn:
             self._conn.close()
-            # log.info('closing MySQL connection...')
+            log.info('关闭数据库...')
 
 
 if __name__ == '__main__':

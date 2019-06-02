@@ -10,6 +10,8 @@
 import json
 import requests
 
+from common.RecordLog import log
+
 
 class HttpRequests(object):
     def __init__(self):
@@ -32,14 +34,17 @@ class HttpRequests(object):
             response = self.session.request(method=method, url=url, params=data, headers=headers, **kwargs)
         elif 'POST' == method:
             if params_type == 'FORM':
+                log.info("开始发送{}请求，URL为：{}，请求数据为:{}".format(method, url, data))
                 response = self.session.request(method=method, url=url, data=data, headers=headers,
                                                 files=files, **kwargs)
             elif params_type == 'JSON':
                 response = self.session.request(method=method, url=url, json=data, headers=headers,
                                                 files=files, **kwargs)
             else:
+                log.error("请求数据格式错误：request params type '{}' error ! please check".format(params_type))
                 raise ValueError('request params type "{}" error ! please check'.format(params_type))
         else:
+            log.error("请求方法错误：request method '{}' error ! please check".format(method))
             raise ValueError('request method "{}" error ! please check'.format(method))
         return response
 

@@ -9,17 +9,26 @@ PRO_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CONFIG_DIR = os.path.dirname(os.path.abspath(__file__))
 CASE_DIR = os.path.join(PRO_DIR, 'cases')
 DATA_DIR = os.path.join(PRO_DIR, 'data')
+LOG_DIR = os.path.join(PRO_DIR, 'log')
 CONFIG_PATH = os.path.join(CONFIG_DIR, 'config.ini')
-LOG_PATH = os.path.join(CONFIG_DIR, 'logger.ini')
 DATA_PATH = os.path.join(DATA_DIR, 'testcases.xlsx')
+LOG_PATH = os.path.join(LOG_DIR, 'test_log.log')
+USER_PATH = os.path.join(CONFIG_DIR, 'userinfo.txt')
 """
 Test environment info
 """
-ENVIRONMENT = "Windows Version:"+platform.system()+platform.version()+platform.release()+"Python Version"+platform.python_build()[0]
+ENVIRONMENT = \
+    "Windows Version:" + \
+    platform.system() + \
+    platform.version() + \
+    platform.release() + \
+    "Python Version" + \
+    platform.python_build()[0]
 """
 request base url
 """
 BASE_URL = r'http://test.lemonban.com:8080/futureloan/mvc/api'
+
 
 if __name__ == '__main__':
     print('项目目录', PRO_DIR)
@@ -29,3 +38,4 @@ if __name__ == '__main__':
     print('配置文件路径', CONFIG_PATH)
     print('日志配置文件路径', LOG_PATH)
     print('测试数据文件路径', DATA_PATH)
+    print('账户信息文件路径', USER_PATH)
