@@ -9,7 +9,6 @@
 """
 import unittest
 import inspect
-import sys
 from openpyxl.styles.colors import RED, GREEN
 
 from config.config import BASE_URL
@@ -27,9 +26,6 @@ from common.RecordLog import log
 class TestRegisterApi(Base):
     """注册接口"""
     test_data = do_excel.get_name_tuple_all_value(do_conf('SheetName', 'sheet_register'))
-
-    def setUp(self):
-        pass
 
     @data(*test_data)
     def test_register(self, value):
@@ -77,8 +73,6 @@ class TestRegisterApi(Base):
                 color=GREEN)
             log.info('{}-测试[{}] :Passed'.format(inspect.stack()[0][3], title))
             log.info('执行注册-测试用例"{}"结束'.format(title))
-    def tearDown(self):
-        pass
 
 
 if __name__ == '__main__':

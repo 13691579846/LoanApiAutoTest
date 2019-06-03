@@ -16,7 +16,6 @@ from config.config import USER_PATH
 
 class CreateUser(object):
     def __init__(self):
-        # self.do_mysql = HandleMysql()
         pass
 
     @staticmethod
@@ -54,9 +53,8 @@ register = CreateUser()
 
 if __name__ == '__main__':
     user = CreateUser()
-    # phone_invest = user.register(reg_name='投资人')['投资人']
-    # phone_loan = user.register(reg_name='借款人')['借款人']
-    # phone_admin = user.register(reg_name='管理员')['管理员']
-    # print(phone_invest, phone_loan, phone_admin)
+    invest = user.register(reg_name='投资人')['投资人']
+    loan = user.register(reg_name='借款人')['借款人']
+    admin = user.register(reg_name='管理员')['管理员']
+    print(invest, loan, admin)
     print(user.uer_info(USER_PATH))
-

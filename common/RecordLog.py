@@ -24,8 +24,7 @@ class Log(object):
     def __ini_handler(self):
         """初始化handler"""
         stream_handler = logging.StreamHandler()
-        # file_handler = logging.FileHandler(self.__path, encoding='utf-8')
-        file_handler = RotatingFileHandler(self.__path, maxBytes=10*1024*1024, backupCount=3, encoding = 'utf-8')
+        file_handler = RotatingFileHandler(self.__path, maxBytes=10*1024*1024, backupCount=3, encoding='utf-8')
         return stream_handler, file_handler
 
     def __set_handler(self, stream_handler, file_handler, level='DEBUG'):
@@ -49,7 +48,7 @@ class Log(object):
         file_handler.close()
 
     @property
-    def Logger(self):
+    def logger(self):
         """构造收集器，返回looger"""
         stream_handler, file_handler = self.__ini_handler()
         self.__set_handler(stream_handler, file_handler)
@@ -58,12 +57,12 @@ class Log(object):
         return self.__logger
 
 
-log = Log(__name__, LOG_PATH).Logger
+log = Log(__name__, LOG_PATH).logger
 
 
 if __name__ == '__main__':
     log = Log(__name__, 'file.log')
-    logger = log.Logger
+    logger = log.logger
     logger.debug('I am a debug message')
     logger.info('I am a info message')
     logger.warning('I am a warning message')

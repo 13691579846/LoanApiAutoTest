@@ -9,7 +9,6 @@
 """
 import unittest
 import inspect
-import sys
 from openpyxl.styles.colors import RED, GREEN
 
 from config.config import BASE_URL

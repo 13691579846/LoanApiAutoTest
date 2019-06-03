@@ -8,12 +8,10 @@
 ------------------------------------
 """
 import unittest
-import os
 
 from common.HandleMysql import HandleMysql
 from business.CreateUser import register
 from common.RecordLog import log
-from common.DataReplace import DataReplace
 from config.config import USER_PATH
 
 

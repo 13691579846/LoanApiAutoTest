@@ -8,21 +8,15 @@
 ------------------------------------
 """
 import unittest
-from openpyxl.styles.colors import RED, GREEN
 
-from config.config import BASE_URL
-from libs.ddt import (data, ddt)
+from libs.ddt import (ddt)
 from base.base import Base
-from common.ParseExcel import do_excel
-from common.SendRequests import request
-from common.DataReplace import do_replace
-from common.HandleJson import HandleJson
-from common.ParseConfig import do_conf
 
 
 @ddt
 class TestRechargeApi(Base):
     pass
+
 
 if __name__ == '__main__':
     unittest.main()
