@@ -799,3 +799,14 @@ Mon, 03 Jun 2019 13:31:17-common.RecordLog-test_Register_api.py-[line:75]-INFO-[
 Mon, 03 Jun 2019 13:31:17-common.RecordLog-HandleMysql.py-[line:99]-INFO-[日志信息]: 关闭数据库...
 Mon, 03 Jun 2019 13:31:17-common.RecordLog-base.py-[line:31]-INFO-[日志信息]: ------注册接口测试用例执行结束------
 Mon, 03 Jun 2019 13:34:30-common.RecordLog-DataReplace.py-[line:32]-INFO-[日志信息]: 测试数据{"mobilephone": [13691579846], "pwd": "123456"}通过正则匹配为: {"mobilephone": [13691579846], "pwd": "123456"}
+Mon, 03 Jun 2019 16:59:29-common.RecordLog-HandleMysql.py-[line:21]-INFO-[日志信息]: 初始化数据库...
+Mon, 03 Jun 2019 16:59:29-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析host信息为test.lemonban.com
+Mon, 03 Jun 2019 16:59:29-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析user信息为test
+Mon, 03 Jun 2019 16:59:29-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析password信息为test
+Mon, 03 Jun 2019 16:59:29-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析db信息为future
+Mon, 03 Jun 2019 16:59:29-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析port信息为3306
+Mon, 03 Jun 2019 16:59:29-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析charset信息为utf8
+Mon, 03 Jun 2019 16:59:39-common.RecordLog-HandleMysql.py-[line:33]-ERROR-[日志信息]: 连接数据库失败
+错误信息如下
+
+Mon, 03 Jun 2019 16:59:39-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析phone_number信息为\$\{MobilePhone\}

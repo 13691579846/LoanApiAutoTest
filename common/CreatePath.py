@@ -7,21 +7,27 @@ class ModelsClass(object):
         pass
 
     @staticmethod
+    def get_current_time():
+        """获取当前日期"""
+        current_time = datetime.now().strftime(str(date.today()) + '-' + '%H-%M-%S')
+        return current_time
+
+    @staticmethod
     def get_current_date():
         """获取当前日期"""
-        current_time = datetime.now().strftime(str(date.today()))
-        return current_time
+        current_date = datetime.now().strftime(str(date.today()))
+        return current_date
 
     @staticmethod
     def file_name(file_type):
         """日志与HTML报告文件名"""
-        current_time = datetime.now().strftime(str(date.today()) + '-' + '%H-%M-%S')
+        current_time = ModelsClass.get_current_time()
         if 'HTML' == file_type.upper():
-            current_time = datetime.now().strftime(str(date.today()) + '-' + '%H-%M-%S')
+            current_time = ModelsClass.get_current_time()
             file_name = current_time + '.' + file_type
             return file_name
         elif 'LOG' == file_type.upper():
-            current_time = datetime.now().strftime(str(date.today()))
+            current_time = ModelsClass.get_current_date()
             file_name = current_time + 'testing' + '.' + file_type
             return file_name
         else:
@@ -40,4 +46,4 @@ if __name__ == '__main__':
     print(ModelsClass.create_dir('log'))
     print(ModelsClass.create_dir('report'))
     print(ModelsClass.file_name('html'))
-    print(ModelsClass.get_current_date())
+    print(ModelsClass.get_current_time())
