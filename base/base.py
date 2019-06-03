@@ -13,6 +13,7 @@ from common.HandleMysql import HandleMysql
 from business.CreateUser import register
 from common.RecordLog import log
 from config.config import USER_PATH
+from common.SendRequests import HttpRequests
 
 
 class Base(unittest.TestCase):
@@ -23,11 +24,13 @@ class Base(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.mysql = HandleMysql()
+        cls.request = HttpRequests()
         log.info('------开始执行{}测试用例------'.format(cls.__doc__))
 
     @classmethod
     def tearDownClass(cls):
         cls.mysql.close()
+        cls.request.close_session()
         log.info('------{}测试用例执行结束------'.format(cls.__doc__))
 
 

@@ -15,7 +15,7 @@ from config.config import BASE_URL
 from libs.ddt import (data, ddt)
 from base.base import Base
 from common.ParseExcel import do_excel
-from common.SendRequests import request
+# from common.SendRequests import request
 from common.DataReplace import do_replace
 from common.HandleJson import HandleJson
 from common.ParseConfig import do_conf
@@ -46,7 +46,7 @@ class TestRegisterApi(Base):
         else:
             phone = self.mysql(sql=sql, args=(1,))["MobilePhone"]  # 取数据表中第一行数据的MobilePhone
             request_value = do_replace(expression_phone, phone, request_value)
-        response = request(request_method, url=url, data=request_value)
+        response = self.request(request_method, url=url, data=request_value)
         actual_result = response.json()
         do_excel.write_cell(
             do_conf('SheetName', 'sheet_register'),

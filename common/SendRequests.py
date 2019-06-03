@@ -62,9 +62,6 @@ class HttpRequests(object):
             pass
 
 
-request = HttpRequests()
-
-
 if __name__ == '__main__':
     request = HttpRequests()
     request2 = HttpRequests()

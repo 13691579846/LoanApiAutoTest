@@ -63,8 +63,8 @@ class HandleMysql(object):
         return self.get_values(sql, args=args, is_all=is_all)
 
     @staticmethod
-    def phone_num():
-        """随机生成3个角色的电话号码"""
+    def random_phone_num():
+        """随机生成电话号码"""
         num_start = ['134', '135', '136', '137', '138',
                      '139', '150', '151', '152', '158',
                      '159', '157', '182', '187', '188',
@@ -76,17 +76,17 @@ class HandleMysql(object):
         phone_number = start + end
         return phone_number
 
+    def is_phone_exist(self, phone):
+        sql = "select MobilePhone from member where MobilePhone=%s;"
+        if self.get_values(sql, args=(phone, )):
+            return True
+        else:
+            return False
+
     def get_phone(self):
-        """判断生成的电话号码是否存在数据库中"""
-        # db = HandleMysql()
-        select_phone_sql = "select MobilePhone from member;"
-        phone_number = self.get_values(sql=select_phone_sql, is_all=True)
-        phone_list = []
-        for phone_dic in phone_number:  # [{'MobilePhone': '18825046772'}, {'MobilePhone': '18825046772'}]
-            phone_list.append(list(phone_dic.values())[0])
         while 1:
-            phone = HandleMysql.phone_num()
-            if phone not in phone_list:
+            phone = HandleMysql.random_phone_num()
+            if not self.is_phone_exist(phone):
                 log.info("获取到未注册的手机号为:{}".format(phone))
                 return phone
 
@@ -102,5 +102,5 @@ class HandleMysql(object):
 if __name__ == '__main__':
     sql_ = "SELECT MobilePhone FROM member limit %s;"
     mysql = HandleMysql()
-    print(mysql.get_values(sql_, args=(1,), is_all=False))
+    print(mysql.get_phone())
     mysql.close()

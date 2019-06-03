@@ -15,7 +15,7 @@ from config.config import BASE_URL
 from libs.ddt import (data, ddt)
 from base.base import Base
 from common.ParseExcel import do_excel
-from common.SendRequests import request
+# from common.SendRequests import request
 from common.DataReplace import do_replace
 from common.HandleJson import HandleJson
 from common.ParseConfig import do_conf
@@ -43,7 +43,7 @@ class TestLoginApi(Base):
             request_value = do_replace(expression_phone, phone, request_value)
         else:
             request_value = do_replace(expression_phone, self.uer_info['管理人'], request_value)
-        response = request(request_method, url=url, data=request_value)
+        response = self.request(request_method, url=url, data=request_value)
         actual_result = response.json()
         do_excel.write_cell(
             'login',
