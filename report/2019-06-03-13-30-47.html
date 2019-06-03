@@ -116,19 +116,19 @@ function html_escape(s) {
 <div class='heading'>
 <h1 style="font-family: Microsoft YaHei">前程贷项目接口自动化测试报告</h1>
 <p class='attribute'><strong>测试人员 : </strong> linux超</p>
-<p class='attribute'><strong>开始时间 : </strong> 2019-06-03 13:25:26</p>
-<p class='attribute'><strong>合计耗时 : </strong> 0:00:25.345885</p>
-<p class='attribute'><strong>测试结果 : </strong> 共 17，通过 14，失败 3，通过率= 82.35%</p>
+<p class='attribute'><strong>开始时间 : </strong> 2019-06-03 13:30:47</p>
+<p class='attribute'><strong>合计耗时 : </strong> 0:00:29.486113</p>
+<p class='attribute'><strong>测试结果 : </strong> 共 27，通过 22，失败 5，通过率= 81.48%</p>
 
 <p class='description'>Windows Version:Windows10.0.1713410Python Versionv3.6.4:d48eceb</p>
 </div>
 
 
 <p id='show_detail_line'>
-<a class="btn btn-primary" href='javascript:showCase(0)'>概要{ 82.35% }</a>
-<a class="btn btn-danger" href='javascript:showCase(1)'>失败{ 3 }</a>
-<a class="btn btn-success" href='javascript:showCase(2)'>通过{ 14 }</a>
-<a class="btn btn-info" href='javascript:showCase(3)'>所有{ 17 }</a>
+<a class="btn btn-primary" href='javascript:showCase(0)'>概要{ 81.48% }</a>
+<a class="btn btn-danger" href='javascript:showCase(1)'>失败{ 5 }</a>
+<a class="btn btn-success" href='javascript:showCase(2)'>通过{ 22 }</a>
+<a class="btn btn-info" href='javascript:showCase(3)'>所有{ 27 }</a>
 </p>
 <table id='result_table' class="table table-condensed table-bordered table-hover">
 <colgroup>
@@ -149,61 +149,174 @@ function html_escape(s) {
 </tr>
 
 <tr class='failClass warning'>
+    <td>cases.test_Login_api.TestLoginApi: 登录接口</td>
+    <td class="text-center">10</td>
+    <td class="text-center">8</td>
+    <td class="text-center">2</td>
+    <td class="text-center">0</td>
+    <td class="text-center"><a href="javascript:showClassDetail('c1',10)" class="detail" id='c1'>详细</a></td>
+</tr>
+
+<tr id='pt1_1' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_login_01_登录成功_手机号密码正确</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+
+<tr id='pt1_2' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_login_02_登录失败_手机号缺失</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+
+<tr id='pt1_3' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_login_03_登录失败_密码缺失</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+
+<tr id='ft1_4' class='none'>
+    <td class='failCase'><div class='testcase'>test_login_04_登录失败_手机号类型非string</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_4' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_4'>失败</button>
+    <div id='div_ft1_4' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_4' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_4'>失败</button>
+    <div id='div_ft1_4' class="collapse in" align="left">
+    <pre>
+    
+ft1_4: Traceback (most recent call last):
+  File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
+    return func(self, *args, **kwargs)
+  File "D:\LeMonApiAutoTest\cases\test_Login_api.py", line 63, in test_login
+    raise e
+  File "D:\LeMonApiAutoTest\cases\test_Login_api.py", line 54, in test_login
+    self.assertEqual(expected, actual_result, msg='期望结果与实际结果不相等')
+AssertionError: {'status': 0, 'code': '20103', 'data': None, 'msg': '参数类型错误'} != {'status': 1, 'code': '10001', 'data': None, 'msg': '登录成功'}
+- {'code': '20103', 'data': None, 'msg': '参数类型错误', 'status': 0}
+?           ^  --                         ^^^^^^             ^
+
++ {'code': '10001', 'data': None, 'msg': '登录成功', 'status': 1}
+?           ^^^                           ^^^^             ^
+ : 期望结果与实际结果不相等
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_5' class='none'>
+    <td class='failCase'><div class='testcase'>test_login_05_登录失败_密码类型非string</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_5' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_5'>失败</button>
+    <div id='div_ft1_5' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_5' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_5'>失败</button>
+    <div id='div_ft1_5' class="collapse in" align="left">
+    <pre>
+    
+ft1_5: Traceback (most recent call last):
+  File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
+    return func(self, *args, **kwargs)
+  File "D:\LeMonApiAutoTest\cases\test_Login_api.py", line 63, in test_login
+    raise e
+  File "D:\LeMonApiAutoTest\cases\test_Login_api.py", line 54, in test_login
+    self.assertEqual(expected, actual_result, msg='期望结果与实际结果不相等')
+AssertionError: {'status': 0, 'code': '20103', 'data': None, 'msg': '参数类型错误'} != {'status': 1, 'code': '10001', 'data': None, 'msg': '登录成功'}
+- {'code': '20103', 'data': None, 'msg': '参数类型错误', 'status': 0}
+?           ^  --                         ^^^^^^             ^
+
++ {'code': '10001', 'data': None, 'msg': '登录成功', 'status': 1}
+?           ^^^                           ^^^^             ^
+ : 期望结果与实际结果不相等
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_6' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_login_06_登录失败_手机号错误</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+
+<tr id='pt1_7' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_login_07_登录失败_密码错误</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+
+<tr id='pt1_8' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_login_08_登录失败_手机号为空</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+
+<tr id='pt1_9' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_login_09_登录失败_密码为空</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+
+<tr id='pt1_10' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_login_10_登录失败_手机号未注册</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+
+<tr class='failClass warning'>
     <td>cases.test_Register_api.TestRegisterApi: 注册接口</td>
     <td class="text-center">17</td>
     <td class="text-center">14</td>
     <td class="text-center">3</td>
     <td class="text-center">0</td>
-    <td class="text-center"><a href="javascript:showClassDetail('c1',17)" class="detail" id='c1'>详细</a></td>
+    <td class="text-center"><a href="javascript:showClassDetail('c2',17)" class="detail" id='c2'>详细</a></td>
 </tr>
 
-<tr id='pt1_1' class='hiddenRow'>
+<tr id='pt2_1' class='hiddenRow'>
     <td class='passCase'><div class='testcase'>test_register_01_注册成功_密码长度等于6位</div></td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
 </tr>
 
-<tr id='pt1_2' class='hiddenRow'>
+<tr id='pt2_2' class='hiddenRow'>
     <td class='passCase'><div class='testcase'>test_register_02_注册成功_密码长度大于6位</div></td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
 </tr>
 
-<tr id='pt1_3' class='hiddenRow'>
+<tr id='pt2_3' class='hiddenRow'>
     <td class='passCase'><div class='testcase'>test_register_03_注册成功_密码长度等于18位</div></td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
 </tr>
 
-<tr id='pt1_4' class='hiddenRow'>
+<tr id='pt2_4' class='hiddenRow'>
     <td class='passCase'><div class='testcase'>test_register_04_注册成功_昵称缺失</div></td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
 </tr>
 
-<tr id='pt1_5' class='hiddenRow'>
+<tr id='pt2_5' class='hiddenRow'>
     <td class='passCase'><div class='testcase'>test_register_05_注册成功_昵称为空</div></td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
 </tr>
 
-<tr id='pt1_6' class='hiddenRow'>
+<tr id='pt2_6' class='hiddenRow'>
     <td class='passCase'><div class='testcase'>test_register_06_注册失败_手机号缺失</div></td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
 </tr>
 
-<tr id='pt1_7' class='hiddenRow'>
+<tr id='pt2_7' class='hiddenRow'>
     <td class='passCase'><div class='testcase'>test_register_07_注册失败_密码缺失</div></td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
 </tr>
 
-<tr id='ft1_8' class='none'>
+<tr id='ft2_8' class='none'>
     <td class='failCase'><div class='testcase'>test_register_08_注册失败_手机号类型非string</div></td>
     <td colspan='5' align='center'>
     <!--默认收起错误信息 -Findyou
-    <button id='btn_ft1_8' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_8'>失败</button>
-    <div id='div_ft1_8' class="collapse">  -->
+    <button id='btn_ft2_8' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft2_8'>失败</button>
+    <div id='div_ft2_8' class="collapse">  -->
     <!-- 默认展开错误信息 -Findyou -->
-    <button id='btn_ft1_8' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_8'>失败</button>
-    <div id='div_ft1_8' class="collapse in" align="left">
+    <button id='btn_ft2_8' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft2_8'>失败</button>
+    <div id='div_ft2_8' class="collapse in" align="left">
     <pre>
     
-ft1_8: Traceback (most recent call last):
+ft2_8: Traceback (most recent call last):
   File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
     return func(self, *args, **kwargs)
   File "D:\LeMonApiAutoTest\cases\test_Register_api.py", line 66, in test_register
@@ -224,18 +337,18 @@ AssertionError: {'status': 0, 'code': '20103', 'data': None, 'msg': '手机号�
     </td>
 </tr>
 
-<tr id='ft1_9' class='none'>
+<tr id='ft2_9' class='none'>
     <td class='failCase'><div class='testcase'>test_register_09_注册失败_密码类型非string</div></td>
     <td colspan='5' align='center'>
     <!--默认收起错误信息 -Findyou
-    <button id='btn_ft1_9' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_9'>失败</button>
-    <div id='div_ft1_9' class="collapse">  -->
+    <button id='btn_ft2_9' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft2_9'>失败</button>
+    <div id='div_ft2_9' class="collapse">  -->
     <!-- 默认展开错误信息 -Findyou -->
-    <button id='btn_ft1_9' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_9'>失败</button>
-    <div id='div_ft1_9' class="collapse in" align="left">
+    <button id='btn_ft2_9' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft2_9'>失败</button>
+    <div id='div_ft2_9' class="collapse in" align="left">
     <pre>
     
-ft1_9: Traceback (most recent call last):
+ft2_9: Traceback (most recent call last):
   File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
     return func(self, *args, **kwargs)
   File "D:\LeMonApiAutoTest\cases\test_Register_api.py", line 66, in test_register
@@ -256,18 +369,18 @@ AssertionError: {'status': 0, 'code': '20103', 'data': None, 'msg': '密码类�
     </td>
 </tr>
 
-<tr id='ft1_10' class='none'>
+<tr id='ft2_10' class='none'>
     <td class='failCase'><div class='testcase'>test_register_10_注册失败_昵称类型非string</div></td>
     <td colspan='5' align='center'>
     <!--默认收起错误信息 -Findyou
-    <button id='btn_ft1_10' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_10'>失败</button>
-    <div id='div_ft1_10' class="collapse">  -->
+    <button id='btn_ft2_10' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft2_10'>失败</button>
+    <div id='div_ft2_10' class="collapse">  -->
     <!-- 默认展开错误信息 -Findyou -->
-    <button id='btn_ft1_10' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_10'>失败</button>
-    <div id='div_ft1_10' class="collapse in" align="left">
+    <button id='btn_ft2_10' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft2_10'>失败</button>
+    <div id='div_ft2_10' class="collapse in" align="left">
     <pre>
     
-ft1_10: Traceback (most recent call last):
+ft2_10: Traceback (most recent call last):
   File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
     return func(self, *args, **kwargs)
   File "D:\LeMonApiAutoTest\cases\test_Register_api.py", line 66, in test_register
@@ -288,48 +401,48 @@ AssertionError: {'status': 0, 'code': '20103', 'data': None, 'msg': '用户名�
     </td>
 </tr>
 
-<tr id='pt1_11' class='hiddenRow'>
+<tr id='pt2_11' class='hiddenRow'>
     <td class='passCase'><div class='testcase'>test_register_11_注册失败_手机号长度小于11位</div></td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
 </tr>
 
-<tr id='pt1_12' class='hiddenRow'>
+<tr id='pt2_12' class='hiddenRow'>
     <td class='passCase'><div class='testcase'>test_register_12_注册失败_手机号长度大于11位</div></td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
 </tr>
 
-<tr id='pt1_13' class='hiddenRow'>
+<tr id='pt2_13' class='hiddenRow'>
     <td class='passCase'><div class='testcase'>test_register_13_注册失败_密码长度小于6位</div></td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
 </tr>
 
-<tr id='pt1_14' class='hiddenRow'>
+<tr id='pt2_14' class='hiddenRow'>
     <td class='passCase'><div class='testcase'>test_register_14_注册失败_密码长度大于18位</div></td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
 </tr>
 
-<tr id='pt1_15' class='hiddenRow'>
+<tr id='pt2_15' class='hiddenRow'>
     <td class='passCase'><div class='testcase'>test_register_15_注册失败_手机号为空</div></td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
 </tr>
 
-<tr id='pt1_16' class='hiddenRow'>
+<tr id='pt2_16' class='hiddenRow'>
     <td class='passCase'><div class='testcase'>test_register_16_注册失败_密码为空</div></td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
 </tr>
 
-<tr id='pt1_17' class='hiddenRow'>
+<tr id='pt2_17' class='hiddenRow'>
     <td class='passCase'><div class='testcase'>test_register_17_注册失败_手机号已被注册</div></td>
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
 </tr>
 
 <tr id='total_row' class="text-center active">
     <td>总计</td>
-    <td>17</td>
-    <td>14</td>
-    <td>3</td>
+    <td>27</td>
+    <td>22</td>
+    <td>5</td>
     <td>0</td>
-    <td>通过率：82.35%</td>
+    <td>通过率：81.48%</td>
 </tr>
 </table>
 

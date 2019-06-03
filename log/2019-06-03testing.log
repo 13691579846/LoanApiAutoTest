@@ -325,3 +325,476 @@ Mon, 03 Jun 2019 13:25:52-common.RecordLog-test_Register_api.py-[line:74]-INFO-[
 Mon, 03 Jun 2019 13:25:52-common.RecordLog-test_Register_api.py-[line:75]-INFO-[日志信息]: 执行注册-测试用例"注册失败-手机号已被注册"结束
 Mon, 03 Jun 2019 13:25:52-common.RecordLog-HandleMysql.py-[line:99]-INFO-[日志信息]: 关闭数据库...
 Mon, 03 Jun 2019 13:25:52-common.RecordLog-base.py-[line:31]-INFO-[日志信息]: ------注册接口测试用例执行结束------
+Mon, 03 Jun 2019 13:30:47-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析HtmlPathName信息为report
+Mon, 03 Jun 2019 13:30:47-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析testcase信息为test_*.py
+Mon, 03 Jun 2019 13:30:54-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析sheet_login信息为login
+Mon, 03 Jun 2019 13:30:54-common.RecordLog-ParseExcel.py-[line:92]-INFO-[日志信息]: 解析D:\LeMonApiAutoTest\data\testcases.xlsx文件表单login的标题:
+('CaseId', 'Precondition', 'Title', 'URL', 'Data', 'Method', 'Expected', 'Actual', 'Result', 'Sql')
+Mon, 03 Jun 2019 13:30:54-common.RecordLog-ParseExcel.py-[line:86]-INFO-[日志信息]: 读取D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单login的所有数据
+[[1, '手机号已注册', '登录成功-手机号密码正确', '/member/login', '{"mobilephone": "${MobilePhone}", "pwd": "123456"}', 'post', '{"status": 1, "code": "10001", "data": null, "msg": "登录成功"}', '{"status":1,"code":"10001","data":null,"msg":"登录成功"}', 'PASS', 'SELECT MobilePhone FROM member limit %s;'], [2, '手机号已注册', '登录失败-手机号缺失', '/member/login', '{"pwd": "12345678"}', 'post', '{"status": 0, "code": "20103", "data": null, "msg": "手机号不能为空"}', '{"status":0,"code":"20103","data":null,"msg":"手机号不能为空"}', 'PASS', 'SELECT MobilePhone FROM member limit %s;'], [3, '手机号已注册', '登录失败-密码缺失', '/member/login', '{"mobilephone": "${MobilePhone}"}', 'post', '{"status": 0, "code": "20103", "data": null, "msg": "密码不能为空"}', '{"status":0,"code":"20103","data":null,"msg":"密码不能为空"}', 'PASS', 'SELECT MobilePhone FROM member limit %s;'], [4, '手机号已注册', '登录失败-手机号类型非string', '/member/login', '{"mobilephone": ${MobilePhone}, "pwd": "123456"}', 'post', '{"status": 0, "code": "20103", "data": null, "msg": "参数类型错误"}', '{"status":1,"code":"10001","data":null,"msg":"登录成功"}', 'FAIL', 'SELECT MobilePhone FROM member limit %s;'], [5, '手机号已注册', '登录失败-密码类型非string', '/member/login', '{"mobilephone": "${MobilePhone}", "pwd": 123456}', 'post', '{"status": 0, "code": "20103", "data": null, "msg": "参数类型错误"}', '{"status":1,"code":"10001","data":null,"msg":"登录成功"}', 'FAIL', 'SELECT MobilePhone FROM member limit %s;'], [6, '手机号已注册', '登录失败-手机号错误', '/member/login', '{"mobilephone": "1369157983", "pwd": "123456"}', 'post', '{"status": 0, "code": "20111", "data": null, "msg": "用户名或密码错误"}', '{"status":0,"code":"20111","data":null,"msg":"用户名或密码错误"}', 'PASS', 'SELECT MobilePhone FROM member limit %s;'], [7, '手机号已注册', '登录失败-密码错误', '/member/login', '{"mobilephone": "${MobilePhone}", "pwd": "12345"}', 'post', '{"status": 0, "code": "20111", "data": null, "msg": "用户名或密码错误"}', '{"status":0,"code":"20111","data":null,"msg":"用户名或密码错误"}', 'PASS', 'SELECT MobilePhone FROM member limit %s;'], [8, '手机号已注册', '登录失败-手机号为空', '/member/login', '{"mobilephone": null,  "pwd": "123456"}', 'post', '{"status": 0, "code": "20103", "data": null, "msg": "手机号不能为空"}', '{"status":0,"code":"20103","data":null,"msg":"手机号不能为空"}', 'PASS', 'SELECT MobilePhone FROM member limit %s;'], [9, '手机号已注册', '登录失败-密码为空', '/member/login', '{"mobilephone": "${MobilePhone}", "pwd": null}', 'post', '{"status": 0, "code": "20103", "data": null, "msg": "密码不能为空"}', '{"status":0,"code":"20103","data":null,"msg":"密码不能为空"}', 'PASS', 'SELECT MobilePhone FROM member limit %s;'], [10, '手机号未注册', '登录失败-手机号未注册', '/member/login', '{"mobilephone": "${MobilePhone}", "pwd": "123456"}', 'post', '{"status": 0, "code": "20111", "data": null, "msg": "用户名或密码错误"}', '{"status":0,"code":"20111","data":null,"msg":"用户名或密码错误"}', 'PASS', None]]
+Mon, 03 Jun 2019 13:30:54-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析sheet_register信息为register
+Mon, 03 Jun 2019 13:30:54-common.RecordLog-ParseExcel.py-[line:92]-INFO-[日志信息]: 解析D:\LeMonApiAutoTest\data\testcases.xlsx文件表单register的标题:
+('CaseId', 'Precondition', 'Title', 'URL', 'Data', 'Method', 'Expected', 'Actual', 'Result', 'Sql')
+Mon, 03 Jun 2019 13:30:54-common.RecordLog-ParseExcel.py-[line:86]-INFO-[日志信息]: 读取D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单register的所有数据
+[[1, '手机号未被注册', '注册成功-密码长度等于6位', '/member/register', '{"mobilephone": "${MobilePhone}", "pwd": "123456", "regname": "投资者"}', 'post', '{"status":1,"code":"10001","data":null,"msg":"注册成功"}', '{"status":1,"code":"10001","data":null,"msg":"注册成功"}', 'PASS', None], [2, '手机号未被注册', '注册成功-密码长度大于6位', '/member/register', '{"mobilephone": "${MobilePhone}", "pwd": "12345678", "regname": "借款人"}', 'post', '{"status":1,"code":"10001","data":null,"msg":"注册成功"}', '{"status":1,"code":"10001","data":null,"msg":"注册成功"}', 'PASS', None], [3, '手机号未被注册', '注册成功-密码长度等于18位', '/member/register', '{"mobilephone": "${MobilePhone}", "pwd": "123456789012345678", "regname": "管理员"}', 'post', '{"status":1,"code":"10001","data":null,"msg":"注册成功"}', '{"status":1,"code":"10001","data":null,"msg":"注册成功"}', 'PASS', None], [4, '手机号未被注册', '注册成功-昵称缺失', '/member/register', '{"mobilephone": "${MobilePhone}", "pwd": "123456"}', 'post', '{"status":1,"code":"10001","data":null,"msg":"注册成功"}', '{"status":1,"code":"10001","data":null,"msg":"注册成功"}', 'PASS', None], [5, '手机号未被注册', '注册成功-昵称为空', '/member/register', '{"mobilephone": "${MobilePhone}", "pwd": "123456", "regname": null}', 'post', '{"status":1,"code":"10001","data":null,"msg":"注册成功"}', '{"status":1,"code":"10001","data":null,"msg":"注册成功"}', 'PASS', None], [6, '手机号未被注册', '注册失败-手机号缺失', '/member/register', '{"pwd": "123456", "regname": "linux6"}', 'post', '{"status":0,"code":"20103","data":null,"msg":"手机号不能为空"}', '{"status":0,"code":"20103","data":null,"msg":"手机号不能为空"}', 'PASS', None], [7, '手机号未被注册', '注册失败-密码缺失', '/member/register', '{"mobilephone": "${MobilePhone}", "regname": "linux7"}', 'post', '{"status":0,"code":"20103","data":null,"msg":"密码不能为空"}', '{"status":0,"code":"20103","data":null,"msg":"密码不能为空"}', 'PASS', None], [8, '手机号未被注册', '注册失败-手机号类型非string', '/member/register', '{"mobilephone": [${MobilePhone}], "pwd": "123456", "regname": "linux8"}', 'post', '{"status": 0, "code": "20103", "data": null, "msg": "手机号类型错误"}', '{"status":1,"code":"10001","data":null,"msg":"注册成功"}', 'FAIL', None], [9, '手机号未被注册', '注册失败-密码类型非string', '/member/register', '{"mobilephone": "${MobilePhone}", "pwd": 123456, "regname": "linux9"}', 'post', '{"status": 0, "code": "20103", "data": null, "msg": "密码类型错误"}', '{"status":1,"code":"10001","data":null,"msg":"注册成功"}', 'FAIL', None], [10, '手机号未被注册', '注册失败-昵称类型非string', '/member/register', '{"mobilephone": "${MobilePhone}", "pwd": "123456", "regname": 10}', 'post', '{"status": 0, "code": "20103", "data": null, "msg": "用户名类型错误"}', '{"status":1,"code":"10001","data":null,"msg":"注册成功"}', 'FAIL', None], [11, '手机号未被注册', '注册失败-手机号长度小于11位', '/member/register', '{"mobilephone": "1369157982", "pwd": "123456", "regname": "linux11"}', 'post', '{"status": 0, "code": "20109", "data": null, "msg": "手机号码格式不正确"}', '{"status":0,"code":"20109","data":null,"msg":"手机号码格式不正确"}', 'PASS', None], [12, '手机号未被注册', '注册失败-手机号长度大于11位', '/member/register', '{"mobilephone": "136915798211", "pwd": "123456", "regname": "linux12"}', 'post', '{"status": 0, "code": "20109", "data": null, "msg": "手机号码格式不正确"}', '{"status":0,"code":"20109","data":null,"msg":"手机号码格式不正确"}', 'PASS', None], [13, '手机号未被注册', '注册失败-密码长度小于6位', '/member/register', '{"mobilephone": "${MobilePhone}", "pwd": "12345", "regname": "linux13"}', 'post', '{"status": 0, "code": "20108", "data": null, "msg": "密码长度必须为6~18"}', '{"status":0,"code":"20108","data":null,"msg":"密码长度必须为6~18"}', 'PASS', None], [14, '手机号未被注册', '注册失败-密码长度大于18位', '/member/register', '{"mobilephone": "${MobilePhone}", "pwd": "1234567890123456789", "regname": "linux14"}', 'post', '{"status": 0, "code": "20108", "data": null, "msg": "密码长度必须为6~18"}', '{"status":0,"code":"20108","data":null,"msg":"密码长度必须为6~18"}', 'PASS', None], [15, '手机号未被注册', '注册失败-手机号为空', '/member/register', '{"mobilephone": null, "pwd": "123456", "regname": "linux15"}', 'post', '{"status": 0, "code": "20103", "data": null, "msg": "手机号不能为空"}', '{"status":0,"code":"20103","data":null,"msg":"手机号不能为空"}', 'PASS', None], [16, '手机号未被注册', '注册失败-密码为空', '/member/register', '{"mobilephone": "${MobilePhone}", "pwd": null, "regname": "linux16"}', 'post', '{"status": 0, "code": "20103", "data": null, "msg": "密码不能为空"}', '{"status":0,"code":"20103","data":null,"msg":"密码不能为空"}', 'PASS', None], [17, '手机号已被注册', '注册失败-手机号已被注册', '/member/register', '{"mobilephone": "${MobilePhone}", "pwd": "123456", "regname": "linux17"}', 'post', '{"status": 0, "code": "20110", "data": null, "msg": "手机号码已被注册"}', '{"status":0,"code":"20110","data":null,"msg":"手机号码已被注册"}', 'PASS', 'SELECT MobilePhone FROM member limit %s;']]
+Mon, 03 Jun 2019 13:30:54-common.RecordLog-HandleMysql.py-[line:21]-INFO-[日志信息]: 初始化数据库...
+Mon, 03 Jun 2019 13:30:54-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析host信息为test.lemonban.com
+Mon, 03 Jun 2019 13:30:54-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析user信息为test
+Mon, 03 Jun 2019 13:30:54-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析password信息为test
+Mon, 03 Jun 2019 13:30:54-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析db信息为future
+Mon, 03 Jun 2019 13:30:54-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析port信息为3306
+Mon, 03 Jun 2019 13:30:54-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析charset信息为utf8
+Mon, 03 Jun 2019 13:30:54-common.RecordLog-HandleMysql.py-[line:35]-INFO-[日志信息]: 连接数据库成功
+Mon, 03 Jun 2019 13:30:54-common.RecordLog-base.py-[line:26]-INFO-[日志信息]: ------开始执行登录接口测试用例------
+Mon, 03 Jun 2019 13:30:54-common.RecordLog-test_Login_api.py-[line:38]-INFO-[日志信息]: 开始执行登录-"登录成功-手机号密码正确"测试用例
+Mon, 03 Jun 2019 13:30:54-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析phone_number信息为\$\{MobilePhone\}
+Mon, 03 Jun 2019 13:30:54-common.RecordLog-DataReplace.py-[line:32]-INFO-[日志信息]: 测试数据{"mobilephone": "13017804632", "pwd": "123456"}通过正则匹配为: {"mobilephone": "13017804632", "pwd": "123456"}
+Mon, 03 Jun 2019 13:30:54-common.RecordLog-SendRequests.py-[line:37]-INFO-[日志信息]: 开始发送POST请求，URL为：http://test.lemonban.com:8080/futureloan/mvc/api/member/login，请求数据为:{'mobilephone': '13017804632', 'pwd': '123456'}
+Mon, 03 Jun 2019 13:30:54-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Actual_Column_Num信息为8
+Mon, 03 Jun 2019 13:30:54-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单login,第2行第8列写入数据{"status":1,"code":"10001","data":null,"msg":"登录成功"}
+Mon, 03 Jun 2019 13:30:54-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Result_Column_Num信息为9
+Mon, 03 Jun 2019 13:30:54-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析result_pass信息为PASS
+Mon, 03 Jun 2019 13:30:54-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单login,第2行第9列写入数据PASS
+Mon, 03 Jun 2019 13:30:55-common.RecordLog-test_Login_api.py-[line:71]-INFO-[日志信息]: test_login-测试[登录成功-手机号密码正确] :Passed
+Mon, 03 Jun 2019 13:30:55-common.RecordLog-test_Login_api.py-[line:72]-INFO-[日志信息]: 执行登录-测试用例"登录成功-手机号密码正确"结束
+Mon, 03 Jun 2019 13:30:55-common.RecordLog-test_Login_api.py-[line:38]-INFO-[日志信息]: 开始执行登录-"登录失败-手机号缺失"测试用例
+Mon, 03 Jun 2019 13:30:55-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析phone_number信息为\$\{MobilePhone\}
+Mon, 03 Jun 2019 13:30:55-common.RecordLog-DataReplace.py-[line:32]-INFO-[日志信息]: 测试数据{"pwd": "12345678"}通过正则匹配为: {"pwd": "12345678"}
+Mon, 03 Jun 2019 13:30:55-common.RecordLog-SendRequests.py-[line:37]-INFO-[日志信息]: 开始发送POST请求，URL为：http://test.lemonban.com:8080/futureloan/mvc/api/member/login，请求数据为:{'pwd': '12345678'}
+Mon, 03 Jun 2019 13:30:55-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Actual_Column_Num信息为8
+Mon, 03 Jun 2019 13:30:55-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单login,第3行第8列写入数据{"status":0,"code":"20103","data":null,"msg":"手机号不能为空"}
+Mon, 03 Jun 2019 13:30:55-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Result_Column_Num信息为9
+Mon, 03 Jun 2019 13:30:55-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析result_pass信息为PASS
+Mon, 03 Jun 2019 13:30:55-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单login,第3行第9列写入数据PASS
+Mon, 03 Jun 2019 13:30:55-common.RecordLog-test_Login_api.py-[line:71]-INFO-[日志信息]: test_login-测试[登录失败-手机号缺失] :Passed
+Mon, 03 Jun 2019 13:30:55-common.RecordLog-test_Login_api.py-[line:72]-INFO-[日志信息]: 执行登录-测试用例"登录失败-手机号缺失"结束
+Mon, 03 Jun 2019 13:30:55-common.RecordLog-test_Login_api.py-[line:38]-INFO-[日志信息]: 开始执行登录-"登录失败-密码缺失"测试用例
+Mon, 03 Jun 2019 13:30:55-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析phone_number信息为\$\{MobilePhone\}
+Mon, 03 Jun 2019 13:30:55-common.RecordLog-DataReplace.py-[line:32]-INFO-[日志信息]: 测试数据{"mobilephone": "13017804632"}通过正则匹配为: {"mobilephone": "13017804632"}
+Mon, 03 Jun 2019 13:30:55-common.RecordLog-SendRequests.py-[line:37]-INFO-[日志信息]: 开始发送POST请求，URL为：http://test.lemonban.com:8080/futureloan/mvc/api/member/login，请求数据为:{'mobilephone': '13017804632'}
+Mon, 03 Jun 2019 13:30:55-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Actual_Column_Num信息为8
+Mon, 03 Jun 2019 13:30:55-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单login,第4行第8列写入数据{"status":0,"code":"20103","data":null,"msg":"密码不能为空"}
+Mon, 03 Jun 2019 13:30:55-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Result_Column_Num信息为9
+Mon, 03 Jun 2019 13:30:55-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析result_pass信息为PASS
+Mon, 03 Jun 2019 13:30:55-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单login,第4行第9列写入数据PASS
+Mon, 03 Jun 2019 13:30:55-common.RecordLog-test_Login_api.py-[line:71]-INFO-[日志信息]: test_login-测试[登录失败-密码缺失] :Passed
+Mon, 03 Jun 2019 13:30:55-common.RecordLog-test_Login_api.py-[line:72]-INFO-[日志信息]: 执行登录-测试用例"登录失败-密码缺失"结束
+Mon, 03 Jun 2019 13:30:55-common.RecordLog-test_Login_api.py-[line:38]-INFO-[日志信息]: 开始执行登录-"登录失败-手机号类型非string"测试用例
+Mon, 03 Jun 2019 13:30:55-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析phone_number信息为\$\{MobilePhone\}
+Mon, 03 Jun 2019 13:30:55-common.RecordLog-DataReplace.py-[line:32]-INFO-[日志信息]: 测试数据{"mobilephone": 13017804632, "pwd": "123456"}通过正则匹配为: {"mobilephone": 13017804632, "pwd": "123456"}
+Mon, 03 Jun 2019 13:30:55-common.RecordLog-SendRequests.py-[line:37]-INFO-[日志信息]: 开始发送POST请求，URL为：http://test.lemonban.com:8080/futureloan/mvc/api/member/login，请求数据为:{'mobilephone': 13017804632, 'pwd': '123456'}
+Mon, 03 Jun 2019 13:30:55-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Actual_Column_Num信息为8
+Mon, 03 Jun 2019 13:30:55-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单login,第5行第8列写入数据{"status":1,"code":"10001","data":null,"msg":"登录成功"}
+Mon, 03 Jun 2019 13:30:55-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析sheet_login信息为login
+Mon, 03 Jun 2019 13:30:55-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Result_Column_Num信息为9
+Mon, 03 Jun 2019 13:30:55-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析result_fail信息为FAIL
+Mon, 03 Jun 2019 13:30:55-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单login,第5行第9列写入数据FAIL
+Mon, 03 Jun 2019 13:30:55-common.RecordLog-test_Login_api.py-[line:62]-ERROR-[日志信息]: test_login-测试[登录失败-手机号类型非string] :Failed
+Details:
+{'status': 0, 'code': '20103', 'data': None, 'msg': '参数类型错误'} != {'status': 1, 'code': '10001', 'data': None, 'msg': '登录成功'}
+- {'code': '20103', 'data': None, 'msg': '参数类型错误', 'status': 0}
+?           ^  --                         ^^^^^^             ^
+
++ {'code': '10001', 'data': None, 'msg': '登录成功', 'status': 1}
+?           ^^^                           ^^^^             ^
+ : 期望结果与实际结果不相等
+Mon, 03 Jun 2019 13:30:55-common.RecordLog-test_Login_api.py-[line:38]-INFO-[日志信息]: 开始执行登录-"登录失败-密码类型非string"测试用例
+Mon, 03 Jun 2019 13:30:55-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析phone_number信息为\$\{MobilePhone\}
+Mon, 03 Jun 2019 13:30:55-common.RecordLog-DataReplace.py-[line:32]-INFO-[日志信息]: 测试数据{"mobilephone": "13017804632", "pwd": 123456}通过正则匹配为: {"mobilephone": "13017804632", "pwd": 123456}
+Mon, 03 Jun 2019 13:30:55-common.RecordLog-SendRequests.py-[line:37]-INFO-[日志信息]: 开始发送POST请求，URL为：http://test.lemonban.com:8080/futureloan/mvc/api/member/login，请求数据为:{'mobilephone': '13017804632', 'pwd': 123456}
+Mon, 03 Jun 2019 13:30:55-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Actual_Column_Num信息为8
+Mon, 03 Jun 2019 13:30:55-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单login,第6行第8列写入数据{"status":1,"code":"10001","data":null,"msg":"登录成功"}
+Mon, 03 Jun 2019 13:30:55-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析sheet_login信息为login
+Mon, 03 Jun 2019 13:30:55-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Result_Column_Num信息为9
+Mon, 03 Jun 2019 13:30:55-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析result_fail信息为FAIL
+Mon, 03 Jun 2019 13:30:55-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单login,第6行第9列写入数据FAIL
+Mon, 03 Jun 2019 13:30:56-common.RecordLog-test_Login_api.py-[line:62]-ERROR-[日志信息]: test_login-测试[登录失败-密码类型非string] :Failed
+Details:
+{'status': 0, 'code': '20103', 'data': None, 'msg': '参数类型错误'} != {'status': 1, 'code': '10001', 'data': None, 'msg': '登录成功'}
+- {'code': '20103', 'data': None, 'msg': '参数类型错误', 'status': 0}
+?           ^  --                         ^^^^^^             ^
+
++ {'code': '10001', 'data': None, 'msg': '登录成功', 'status': 1}
+?           ^^^                           ^^^^             ^
+ : 期望结果与实际结果不相等
+Mon, 03 Jun 2019 13:30:56-common.RecordLog-test_Login_api.py-[line:38]-INFO-[日志信息]: 开始执行登录-"登录失败-手机号错误"测试用例
+Mon, 03 Jun 2019 13:30:56-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析phone_number信息为\$\{MobilePhone\}
+Mon, 03 Jun 2019 13:30:56-common.RecordLog-DataReplace.py-[line:32]-INFO-[日志信息]: 测试数据{"mobilephone": "1369157983", "pwd": "123456"}通过正则匹配为: {"mobilephone": "1369157983", "pwd": "123456"}
+Mon, 03 Jun 2019 13:30:56-common.RecordLog-SendRequests.py-[line:37]-INFO-[日志信息]: 开始发送POST请求，URL为：http://test.lemonban.com:8080/futureloan/mvc/api/member/login，请求数据为:{'mobilephone': '1369157983', 'pwd': '123456'}
+Mon, 03 Jun 2019 13:30:56-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Actual_Column_Num信息为8
+Mon, 03 Jun 2019 13:30:56-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单login,第7行第8列写入数据{"status":0,"code":"20111","data":null,"msg":"用户名或密码错误"}
+Mon, 03 Jun 2019 13:30:56-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Result_Column_Num信息为9
+Mon, 03 Jun 2019 13:30:56-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析result_pass信息为PASS
+Mon, 03 Jun 2019 13:30:56-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单login,第7行第9列写入数据PASS
+Mon, 03 Jun 2019 13:30:56-common.RecordLog-test_Login_api.py-[line:71]-INFO-[日志信息]: test_login-测试[登录失败-手机号错误] :Passed
+Mon, 03 Jun 2019 13:30:56-common.RecordLog-test_Login_api.py-[line:72]-INFO-[日志信息]: 执行登录-测试用例"登录失败-手机号错误"结束
+Mon, 03 Jun 2019 13:30:56-common.RecordLog-test_Login_api.py-[line:38]-INFO-[日志信息]: 开始执行登录-"登录失败-密码错误"测试用例
+Mon, 03 Jun 2019 13:30:56-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析phone_number信息为\$\{MobilePhone\}
+Mon, 03 Jun 2019 13:30:56-common.RecordLog-DataReplace.py-[line:32]-INFO-[日志信息]: 测试数据{"mobilephone": "13017804632", "pwd": "12345"}通过正则匹配为: {"mobilephone": "13017804632", "pwd": "12345"}
+Mon, 03 Jun 2019 13:30:56-common.RecordLog-SendRequests.py-[line:37]-INFO-[日志信息]: 开始发送POST请求，URL为：http://test.lemonban.com:8080/futureloan/mvc/api/member/login，请求数据为:{'mobilephone': '13017804632', 'pwd': '12345'}
+Mon, 03 Jun 2019 13:30:56-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Actual_Column_Num信息为8
+Mon, 03 Jun 2019 13:30:56-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单login,第8行第8列写入数据{"status":0,"code":"20111","data":null,"msg":"用户名或密码错误"}
+Mon, 03 Jun 2019 13:30:56-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Result_Column_Num信息为9
+Mon, 03 Jun 2019 13:30:56-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析result_pass信息为PASS
+Mon, 03 Jun 2019 13:30:56-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单login,第8行第9列写入数据PASS
+Mon, 03 Jun 2019 13:30:56-common.RecordLog-test_Login_api.py-[line:71]-INFO-[日志信息]: test_login-测试[登录失败-密码错误] :Passed
+Mon, 03 Jun 2019 13:30:56-common.RecordLog-test_Login_api.py-[line:72]-INFO-[日志信息]: 执行登录-测试用例"登录失败-密码错误"结束
+Mon, 03 Jun 2019 13:30:56-common.RecordLog-test_Login_api.py-[line:38]-INFO-[日志信息]: 开始执行登录-"登录失败-手机号为空"测试用例
+Mon, 03 Jun 2019 13:30:56-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析phone_number信息为\$\{MobilePhone\}
+Mon, 03 Jun 2019 13:30:56-common.RecordLog-DataReplace.py-[line:32]-INFO-[日志信息]: 测试数据{"mobilephone": null,  "pwd": "123456"}通过正则匹配为: {"mobilephone": null,  "pwd": "123456"}
+Mon, 03 Jun 2019 13:30:56-common.RecordLog-SendRequests.py-[line:37]-INFO-[日志信息]: 开始发送POST请求，URL为：http://test.lemonban.com:8080/futureloan/mvc/api/member/login，请求数据为:{'mobilephone': None, 'pwd': '123456'}
+Mon, 03 Jun 2019 13:30:56-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Actual_Column_Num信息为8
+Mon, 03 Jun 2019 13:30:56-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单login,第9行第8列写入数据{"status":0,"code":"20103","data":null,"msg":"手机号不能为空"}
+Mon, 03 Jun 2019 13:30:56-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Result_Column_Num信息为9
+Mon, 03 Jun 2019 13:30:56-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析result_pass信息为PASS
+Mon, 03 Jun 2019 13:30:56-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单login,第9行第9列写入数据PASS
+Mon, 03 Jun 2019 13:30:56-common.RecordLog-test_Login_api.py-[line:71]-INFO-[日志信息]: test_login-测试[登录失败-手机号为空] :Passed
+Mon, 03 Jun 2019 13:30:56-common.RecordLog-test_Login_api.py-[line:72]-INFO-[日志信息]: 执行登录-测试用例"登录失败-手机号为空"结束
+Mon, 03 Jun 2019 13:30:56-common.RecordLog-test_Login_api.py-[line:38]-INFO-[日志信息]: 开始执行登录-"登录失败-密码为空"测试用例
+Mon, 03 Jun 2019 13:30:56-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析phone_number信息为\$\{MobilePhone\}
+Mon, 03 Jun 2019 13:30:56-common.RecordLog-DataReplace.py-[line:32]-INFO-[日志信息]: 测试数据{"mobilephone": "13017804632", "pwd": null}通过正则匹配为: {"mobilephone": "13017804632", "pwd": null}
+Mon, 03 Jun 2019 13:30:56-common.RecordLog-SendRequests.py-[line:37]-INFO-[日志信息]: 开始发送POST请求，URL为：http://test.lemonban.com:8080/futureloan/mvc/api/member/login，请求数据为:{'mobilephone': '13017804632', 'pwd': None}
+Mon, 03 Jun 2019 13:30:56-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Actual_Column_Num信息为8
+Mon, 03 Jun 2019 13:30:56-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单login,第10行第8列写入数据{"status":0,"code":"20103","data":null,"msg":"密码不能为空"}
+Mon, 03 Jun 2019 13:30:56-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Result_Column_Num信息为9
+Mon, 03 Jun 2019 13:30:56-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析result_pass信息为PASS
+Mon, 03 Jun 2019 13:30:56-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单login,第10行第9列写入数据PASS
+Mon, 03 Jun 2019 13:30:56-common.RecordLog-test_Login_api.py-[line:71]-INFO-[日志信息]: test_login-测试[登录失败-密码为空] :Passed
+Mon, 03 Jun 2019 13:30:56-common.RecordLog-test_Login_api.py-[line:72]-INFO-[日志信息]: 执行登录-测试用例"登录失败-密码为空"结束
+Mon, 03 Jun 2019 13:30:56-common.RecordLog-test_Login_api.py-[line:38]-INFO-[日志信息]: 开始执行登录-"登录失败-手机号未注册"测试用例
+Mon, 03 Jun 2019 13:30:56-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析phone_number信息为\$\{MobilePhone\}
+Mon, 03 Jun 2019 13:30:57-common.RecordLog-HandleMysql.py-[line:42]-INFO-[日志信息]: 执行SQL语句:select MobilePhone from member;
+Mon, 03 Jun 2019 13:30:57-common.RecordLog-HandleMysql.py-[line:47]-INFO-[日志信息]: 拉取数据库部分数据：
+{'MobilePhone': '18825046772'}
+Mon, 03 Jun 2019 13:30:57-common.RecordLog-HandleMysql.py-[line:90]-INFO-[日志信息]: 获取到未注册的手机号为:15923045971
+Mon, 03 Jun 2019 13:30:57-common.RecordLog-DataReplace.py-[line:32]-INFO-[日志信息]: 测试数据{"mobilephone": "15923045971", "pwd": "123456"}通过正则匹配为: {"mobilephone": "15923045971", "pwd": "123456"}
+Mon, 03 Jun 2019 13:30:57-common.RecordLog-SendRequests.py-[line:37]-INFO-[日志信息]: 开始发送POST请求，URL为：http://test.lemonban.com:8080/futureloan/mvc/api/member/login，请求数据为:{'mobilephone': '15923045971', 'pwd': '123456'}
+Mon, 03 Jun 2019 13:30:57-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Actual_Column_Num信息为8
+Mon, 03 Jun 2019 13:30:57-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单login,第11行第8列写入数据{"status":0,"code":"20111","data":null,"msg":"用户名或密码错误"}
+Mon, 03 Jun 2019 13:30:57-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Result_Column_Num信息为9
+Mon, 03 Jun 2019 13:30:57-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析result_pass信息为PASS
+Mon, 03 Jun 2019 13:30:57-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单login,第11行第9列写入数据PASS
+Mon, 03 Jun 2019 13:30:57-common.RecordLog-test_Login_api.py-[line:71]-INFO-[日志信息]: test_login-测试[登录失败-手机号未注册] :Passed
+Mon, 03 Jun 2019 13:30:57-common.RecordLog-test_Login_api.py-[line:72]-INFO-[日志信息]: 执行登录-测试用例"登录失败-手机号未注册"结束
+Mon, 03 Jun 2019 13:30:57-common.RecordLog-HandleMysql.py-[line:99]-INFO-[日志信息]: 关闭数据库...
+Mon, 03 Jun 2019 13:30:57-common.RecordLog-base.py-[line:31]-INFO-[日志信息]: ------登录接口测试用例执行结束------
+Mon, 03 Jun 2019 13:30:57-common.RecordLog-HandleMysql.py-[line:21]-INFO-[日志信息]: 初始化数据库...
+Mon, 03 Jun 2019 13:30:57-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析host信息为test.lemonban.com
+Mon, 03 Jun 2019 13:30:57-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析user信息为test
+Mon, 03 Jun 2019 13:30:57-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析password信息为test
+Mon, 03 Jun 2019 13:30:57-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析db信息为future
+Mon, 03 Jun 2019 13:30:57-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析port信息为3306
+Mon, 03 Jun 2019 13:30:57-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析charset信息为utf8
+Mon, 03 Jun 2019 13:30:57-common.RecordLog-HandleMysql.py-[line:35]-INFO-[日志信息]: 连接数据库成功
+Mon, 03 Jun 2019 13:30:57-common.RecordLog-base.py-[line:26]-INFO-[日志信息]: ------开始执行注册接口测试用例------
+Mon, 03 Jun 2019 13:30:57-common.RecordLog-test_Register_api.py-[line:39]-INFO-[日志信息]: 开始执行注册-"注册成功-密码长度等于6位"测试用例
+Mon, 03 Jun 2019 13:30:57-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析phone_number信息为\$\{MobilePhone\}
+Mon, 03 Jun 2019 13:30:58-common.RecordLog-HandleMysql.py-[line:42]-INFO-[日志信息]: 执行SQL语句:select MobilePhone from member;
+Mon, 03 Jun 2019 13:30:58-common.RecordLog-HandleMysql.py-[line:47]-INFO-[日志信息]: 拉取数据库部分数据：
+{'MobilePhone': '18825046772'}
+Mon, 03 Jun 2019 13:30:58-common.RecordLog-HandleMysql.py-[line:90]-INFO-[日志信息]: 获取到未注册的手机号为:15761035249
+Mon, 03 Jun 2019 13:30:58-common.RecordLog-DataReplace.py-[line:32]-INFO-[日志信息]: 测试数据{"mobilephone": "15761035249", "pwd": "123456", "regname": "投资者"}通过正则匹配为: {"mobilephone": "15761035249", "pwd": "123456", "regname": "投资者"}
+Mon, 03 Jun 2019 13:30:58-common.RecordLog-SendRequests.py-[line:37]-INFO-[日志信息]: 开始发送POST请求，URL为：http://test.lemonban.com:8080/futureloan/mvc/api/member/register，请求数据为:{'mobilephone': '15761035249', 'pwd': '123456', 'regname': '投资者'}
+Mon, 03 Jun 2019 13:30:58-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析sheet_register信息为register
+Mon, 03 Jun 2019 13:30:58-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Actual_Column_Num信息为8
+Mon, 03 Jun 2019 13:30:58-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单register,第2行第8列写入数据{"status":1,"code":"10001","data":null,"msg":"注册成功"}
+Mon, 03 Jun 2019 13:30:58-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析sheet_register信息为register
+Mon, 03 Jun 2019 13:30:58-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Result_Column_Num信息为9
+Mon, 03 Jun 2019 13:30:58-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析result_pass信息为PASS
+Mon, 03 Jun 2019 13:30:58-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单register,第2行第9列写入数据PASS
+Mon, 03 Jun 2019 13:30:58-common.RecordLog-test_Register_api.py-[line:74]-INFO-[日志信息]: test_register-测试[注册成功-密码长度等于6位] :Passed
+Mon, 03 Jun 2019 13:30:58-common.RecordLog-test_Register_api.py-[line:75]-INFO-[日志信息]: 执行注册-测试用例"注册成功-密码长度等于6位"结束
+Mon, 03 Jun 2019 13:30:58-common.RecordLog-test_Register_api.py-[line:39]-INFO-[日志信息]: 开始执行注册-"注册成功-密码长度大于6位"测试用例
+Mon, 03 Jun 2019 13:30:58-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析phone_number信息为\$\{MobilePhone\}
+Mon, 03 Jun 2019 13:30:59-common.RecordLog-HandleMysql.py-[line:42]-INFO-[日志信息]: 执行SQL语句:select MobilePhone from member;
+Mon, 03 Jun 2019 13:30:59-common.RecordLog-HandleMysql.py-[line:47]-INFO-[日志信息]: 拉取数据库部分数据：
+{'MobilePhone': '18825046772'}
+Mon, 03 Jun 2019 13:30:59-common.RecordLog-HandleMysql.py-[line:90]-INFO-[日志信息]: 获取到未注册的手机号为:18027386950
+Mon, 03 Jun 2019 13:30:59-common.RecordLog-DataReplace.py-[line:32]-INFO-[日志信息]: 测试数据{"mobilephone": "18027386950", "pwd": "12345678", "regname": "借款人"}通过正则匹配为: {"mobilephone": "18027386950", "pwd": "12345678", "regname": "借款人"}
+Mon, 03 Jun 2019 13:30:59-common.RecordLog-SendRequests.py-[line:37]-INFO-[日志信息]: 开始发送POST请求，URL为：http://test.lemonban.com:8080/futureloan/mvc/api/member/register，请求数据为:{'mobilephone': '18027386950', 'pwd': '12345678', 'regname': '借款人'}
+Mon, 03 Jun 2019 13:30:59-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析sheet_register信息为register
+Mon, 03 Jun 2019 13:30:59-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Actual_Column_Num信息为8
+Mon, 03 Jun 2019 13:30:59-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单register,第3行第8列写入数据{"status":1,"code":"10001","data":null,"msg":"注册成功"}
+Mon, 03 Jun 2019 13:30:59-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析sheet_register信息为register
+Mon, 03 Jun 2019 13:30:59-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Result_Column_Num信息为9
+Mon, 03 Jun 2019 13:30:59-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析result_pass信息为PASS
+Mon, 03 Jun 2019 13:30:59-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单register,第3行第9列写入数据PASS
+Mon, 03 Jun 2019 13:30:59-common.RecordLog-test_Register_api.py-[line:74]-INFO-[日志信息]: test_register-测试[注册成功-密码长度大于6位] :Passed
+Mon, 03 Jun 2019 13:30:59-common.RecordLog-test_Register_api.py-[line:75]-INFO-[日志信息]: 执行注册-测试用例"注册成功-密码长度大于6位"结束
+Mon, 03 Jun 2019 13:30:59-common.RecordLog-test_Register_api.py-[line:39]-INFO-[日志信息]: 开始执行注册-"注册成功-密码长度等于18位"测试用例
+Mon, 03 Jun 2019 13:30:59-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析phone_number信息为\$\{MobilePhone\}
+Mon, 03 Jun 2019 13:31:00-common.RecordLog-HandleMysql.py-[line:42]-INFO-[日志信息]: 执行SQL语句:select MobilePhone from member;
+Mon, 03 Jun 2019 13:31:00-common.RecordLog-HandleMysql.py-[line:47]-INFO-[日志信息]: 拉取数据库部分数据：
+{'MobilePhone': '18825046772'}
+Mon, 03 Jun 2019 13:31:00-common.RecordLog-HandleMysql.py-[line:90]-INFO-[日志信息]: 获取到未注册的手机号为:18697168520
+Mon, 03 Jun 2019 13:31:00-common.RecordLog-DataReplace.py-[line:32]-INFO-[日志信息]: 测试数据{"mobilephone": "18697168520", "pwd": "123456789012345678", "regname": "管理员"}通过正则匹配为: {"mobilephone": "18697168520", "pwd": "123456789012345678", "regname": "管理员"}
+Mon, 03 Jun 2019 13:31:00-common.RecordLog-SendRequests.py-[line:37]-INFO-[日志信息]: 开始发送POST请求，URL为：http://test.lemonban.com:8080/futureloan/mvc/api/member/register，请求数据为:{'mobilephone': '18697168520', 'pwd': '123456789012345678', 'regname': '管理员'}
+Mon, 03 Jun 2019 13:31:01-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析sheet_register信息为register
+Mon, 03 Jun 2019 13:31:01-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Actual_Column_Num信息为8
+Mon, 03 Jun 2019 13:31:01-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单register,第4行第8列写入数据{"status":1,"code":"10001","data":null,"msg":"注册成功"}
+Mon, 03 Jun 2019 13:31:01-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析sheet_register信息为register
+Mon, 03 Jun 2019 13:31:01-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Result_Column_Num信息为9
+Mon, 03 Jun 2019 13:31:01-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析result_pass信息为PASS
+Mon, 03 Jun 2019 13:31:01-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单register,第4行第9列写入数据PASS
+Mon, 03 Jun 2019 13:31:01-common.RecordLog-test_Register_api.py-[line:74]-INFO-[日志信息]: test_register-测试[注册成功-密码长度等于18位] :Passed
+Mon, 03 Jun 2019 13:31:01-common.RecordLog-test_Register_api.py-[line:75]-INFO-[日志信息]: 执行注册-测试用例"注册成功-密码长度等于18位"结束
+Mon, 03 Jun 2019 13:31:01-common.RecordLog-test_Register_api.py-[line:39]-INFO-[日志信息]: 开始执行注册-"注册成功-昵称缺失"测试用例
+Mon, 03 Jun 2019 13:31:01-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析phone_number信息为\$\{MobilePhone\}
+Mon, 03 Jun 2019 13:31:02-common.RecordLog-HandleMysql.py-[line:42]-INFO-[日志信息]: 执行SQL语句:select MobilePhone from member;
+Mon, 03 Jun 2019 13:31:02-common.RecordLog-HandleMysql.py-[line:47]-INFO-[日志信息]: 拉取数据库部分数据：
+{'MobilePhone': '18825046772'}
+Mon, 03 Jun 2019 13:31:02-common.RecordLog-HandleMysql.py-[line:90]-INFO-[日志信息]: 获取到未注册的手机号为:13713026584
+Mon, 03 Jun 2019 13:31:02-common.RecordLog-DataReplace.py-[line:32]-INFO-[日志信息]: 测试数据{"mobilephone": "13713026584", "pwd": "123456"}通过正则匹配为: {"mobilephone": "13713026584", "pwd": "123456"}
+Mon, 03 Jun 2019 13:31:02-common.RecordLog-SendRequests.py-[line:37]-INFO-[日志信息]: 开始发送POST请求，URL为：http://test.lemonban.com:8080/futureloan/mvc/api/member/register，请求数据为:{'mobilephone': '13713026584', 'pwd': '123456'}
+Mon, 03 Jun 2019 13:31:02-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析sheet_register信息为register
+Mon, 03 Jun 2019 13:31:02-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Actual_Column_Num信息为8
+Mon, 03 Jun 2019 13:31:02-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单register,第5行第8列写入数据{"status":1,"code":"10001","data":null,"msg":"注册成功"}
+Mon, 03 Jun 2019 13:31:02-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析sheet_register信息为register
+Mon, 03 Jun 2019 13:31:02-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Result_Column_Num信息为9
+Mon, 03 Jun 2019 13:31:02-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析result_pass信息为PASS
+Mon, 03 Jun 2019 13:31:02-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单register,第5行第9列写入数据PASS
+Mon, 03 Jun 2019 13:31:02-common.RecordLog-test_Register_api.py-[line:74]-INFO-[日志信息]: test_register-测试[注册成功-昵称缺失] :Passed
+Mon, 03 Jun 2019 13:31:02-common.RecordLog-test_Register_api.py-[line:75]-INFO-[日志信息]: 执行注册-测试用例"注册成功-昵称缺失"结束
+Mon, 03 Jun 2019 13:31:02-common.RecordLog-test_Register_api.py-[line:39]-INFO-[日志信息]: 开始执行注册-"注册成功-昵称为空"测试用例
+Mon, 03 Jun 2019 13:31:02-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析phone_number信息为\$\{MobilePhone\}
+Mon, 03 Jun 2019 13:31:03-common.RecordLog-HandleMysql.py-[line:42]-INFO-[日志信息]: 执行SQL语句:select MobilePhone from member;
+Mon, 03 Jun 2019 13:31:03-common.RecordLog-HandleMysql.py-[line:47]-INFO-[日志信息]: 拉取数据库部分数据：
+{'MobilePhone': '18825046772'}
+Mon, 03 Jun 2019 13:31:03-common.RecordLog-HandleMysql.py-[line:90]-INFO-[日志信息]: 获取到未注册的手机号为:15982936514
+Mon, 03 Jun 2019 13:31:03-common.RecordLog-DataReplace.py-[line:32]-INFO-[日志信息]: 测试数据{"mobilephone": "15982936514", "pwd": "123456", "regname": null}通过正则匹配为: {"mobilephone": "15982936514", "pwd": "123456", "regname": null}
+Mon, 03 Jun 2019 13:31:03-common.RecordLog-SendRequests.py-[line:37]-INFO-[日志信息]: 开始发送POST请求，URL为：http://test.lemonban.com:8080/futureloan/mvc/api/member/register，请求数据为:{'mobilephone': '15982936514', 'pwd': '123456', 'regname': None}
+Mon, 03 Jun 2019 13:31:03-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析sheet_register信息为register
+Mon, 03 Jun 2019 13:31:03-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Actual_Column_Num信息为8
+Mon, 03 Jun 2019 13:31:03-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单register,第6行第8列写入数据{"status":1,"code":"10001","data":null,"msg":"注册成功"}
+Mon, 03 Jun 2019 13:31:03-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析sheet_register信息为register
+Mon, 03 Jun 2019 13:31:03-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Result_Column_Num信息为9
+Mon, 03 Jun 2019 13:31:03-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析result_pass信息为PASS
+Mon, 03 Jun 2019 13:31:03-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单register,第6行第9列写入数据PASS
+Mon, 03 Jun 2019 13:31:03-common.RecordLog-test_Register_api.py-[line:74]-INFO-[日志信息]: test_register-测试[注册成功-昵称为空] :Passed
+Mon, 03 Jun 2019 13:31:03-common.RecordLog-test_Register_api.py-[line:75]-INFO-[日志信息]: 执行注册-测试用例"注册成功-昵称为空"结束
+Mon, 03 Jun 2019 13:31:03-common.RecordLog-test_Register_api.py-[line:39]-INFO-[日志信息]: 开始执行注册-"注册失败-手机号缺失"测试用例
+Mon, 03 Jun 2019 13:31:03-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析phone_number信息为\$\{MobilePhone\}
+Mon, 03 Jun 2019 13:31:04-common.RecordLog-HandleMysql.py-[line:42]-INFO-[日志信息]: 执行SQL语句:select MobilePhone from member;
+Mon, 03 Jun 2019 13:31:04-common.RecordLog-HandleMysql.py-[line:47]-INFO-[日志信息]: 拉取数据库部分数据：
+{'MobilePhone': '18825046772'}
+Mon, 03 Jun 2019 13:31:04-common.RecordLog-HandleMysql.py-[line:90]-INFO-[日志信息]: 获取到未注册的手机号为:15859413672
+Mon, 03 Jun 2019 13:31:04-common.RecordLog-DataReplace.py-[line:32]-INFO-[日志信息]: 测试数据{"pwd": "123456", "regname": "linux6"}通过正则匹配为: {"pwd": "123456", "regname": "linux6"}
+Mon, 03 Jun 2019 13:31:04-common.RecordLog-SendRequests.py-[line:37]-INFO-[日志信息]: 开始发送POST请求，URL为：http://test.lemonban.com:8080/futureloan/mvc/api/member/register，请求数据为:{'pwd': '123456', 'regname': 'linux6'}
+Mon, 03 Jun 2019 13:31:04-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析sheet_register信息为register
+Mon, 03 Jun 2019 13:31:04-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Actual_Column_Num信息为8
+Mon, 03 Jun 2019 13:31:04-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单register,第7行第8列写入数据{"status":0,"code":"20103","data":null,"msg":"手机号不能为空"}
+Mon, 03 Jun 2019 13:31:04-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析sheet_register信息为register
+Mon, 03 Jun 2019 13:31:04-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Result_Column_Num信息为9
+Mon, 03 Jun 2019 13:31:04-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析result_pass信息为PASS
+Mon, 03 Jun 2019 13:31:04-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单register,第7行第9列写入数据PASS
+Mon, 03 Jun 2019 13:31:04-common.RecordLog-test_Register_api.py-[line:74]-INFO-[日志信息]: test_register-测试[注册失败-手机号缺失] :Passed
+Mon, 03 Jun 2019 13:31:04-common.RecordLog-test_Register_api.py-[line:75]-INFO-[日志信息]: 执行注册-测试用例"注册失败-手机号缺失"结束
+Mon, 03 Jun 2019 13:31:04-common.RecordLog-test_Register_api.py-[line:39]-INFO-[日志信息]: 开始执行注册-"注册失败-密码缺失"测试用例
+Mon, 03 Jun 2019 13:31:04-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析phone_number信息为\$\{MobilePhone\}
+Mon, 03 Jun 2019 13:31:06-common.RecordLog-HandleMysql.py-[line:42]-INFO-[日志信息]: 执行SQL语句:select MobilePhone from member;
+Mon, 03 Jun 2019 13:31:06-common.RecordLog-HandleMysql.py-[line:47]-INFO-[日志信息]: 拉取数据库部分数据：
+{'MobilePhone': '18825046772'}
+Mon, 03 Jun 2019 13:31:06-common.RecordLog-HandleMysql.py-[line:90]-INFO-[日志信息]: 获取到未注册的手机号为:13872340869
+Mon, 03 Jun 2019 13:31:06-common.RecordLog-DataReplace.py-[line:32]-INFO-[日志信息]: 测试数据{"mobilephone": "13872340869", "regname": "linux7"}通过正则匹配为: {"mobilephone": "13872340869", "regname": "linux7"}
+Mon, 03 Jun 2019 13:31:06-common.RecordLog-SendRequests.py-[line:37]-INFO-[日志信息]: 开始发送POST请求，URL为：http://test.lemonban.com:8080/futureloan/mvc/api/member/register，请求数据为:{'mobilephone': '13872340869', 'regname': 'linux7'}
+Mon, 03 Jun 2019 13:31:06-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析sheet_register信息为register
+Mon, 03 Jun 2019 13:31:06-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Actual_Column_Num信息为8
+Mon, 03 Jun 2019 13:31:06-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单register,第8行第8列写入数据{"status":0,"code":"20103","data":null,"msg":"密码不能为空"}
+Mon, 03 Jun 2019 13:31:06-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析sheet_register信息为register
+Mon, 03 Jun 2019 13:31:06-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Result_Column_Num信息为9
+Mon, 03 Jun 2019 13:31:06-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析result_pass信息为PASS
+Mon, 03 Jun 2019 13:31:06-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单register,第8行第9列写入数据PASS
+Mon, 03 Jun 2019 13:31:06-common.RecordLog-test_Register_api.py-[line:74]-INFO-[日志信息]: test_register-测试[注册失败-密码缺失] :Passed
+Mon, 03 Jun 2019 13:31:06-common.RecordLog-test_Register_api.py-[line:75]-INFO-[日志信息]: 执行注册-测试用例"注册失败-密码缺失"结束
+Mon, 03 Jun 2019 13:31:06-common.RecordLog-test_Register_api.py-[line:39]-INFO-[日志信息]: 开始执行注册-"注册失败-手机号类型非string"测试用例
+Mon, 03 Jun 2019 13:31:06-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析phone_number信息为\$\{MobilePhone\}
+Mon, 03 Jun 2019 13:31:07-common.RecordLog-HandleMysql.py-[line:42]-INFO-[日志信息]: 执行SQL语句:select MobilePhone from member;
+Mon, 03 Jun 2019 13:31:07-common.RecordLog-HandleMysql.py-[line:47]-INFO-[日志信息]: 拉取数据库部分数据：
+{'MobilePhone': '18825046772'}
+Mon, 03 Jun 2019 13:31:07-common.RecordLog-HandleMysql.py-[line:90]-INFO-[日志信息]: 获取到未注册的手机号为:13743027651
+Mon, 03 Jun 2019 13:31:07-common.RecordLog-DataReplace.py-[line:32]-INFO-[日志信息]: 测试数据{"mobilephone": [13743027651], "pwd": "123456", "regname": "linux8"}通过正则匹配为: {"mobilephone": [13743027651], "pwd": "123456", "regname": "linux8"}
+Mon, 03 Jun 2019 13:31:07-common.RecordLog-SendRequests.py-[line:37]-INFO-[日志信息]: 开始发送POST请求，URL为：http://test.lemonban.com:8080/futureloan/mvc/api/member/register，请求数据为:{'mobilephone': [13743027651], 'pwd': '123456', 'regname': 'linux8'}
+Mon, 03 Jun 2019 13:31:07-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析sheet_register信息为register
+Mon, 03 Jun 2019 13:31:07-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Actual_Column_Num信息为8
+Mon, 03 Jun 2019 13:31:07-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单register,第9行第8列写入数据{"status":1,"code":"10001","data":null,"msg":"注册成功"}
+Mon, 03 Jun 2019 13:31:08-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析sheet_register信息为register
+Mon, 03 Jun 2019 13:31:08-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Result_Column_Num信息为9
+Mon, 03 Jun 2019 13:31:08-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析result_fail信息为FAIL
+Mon, 03 Jun 2019 13:31:08-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单register,第9行第9列写入数据FAIL
+Mon, 03 Jun 2019 13:31:08-common.RecordLog-test_Register_api.py-[line:65]-ERROR-[日志信息]: test_register-测试[注册失败-手机号类型非string] :Failed
+Details:
+{'status': 0, 'code': '20103', 'data': None, 'msg': '手机号类型错误'} != {'status': 1, 'code': '10001', 'data': None, 'msg': '注册成功'}
+- {'code': '20103', 'data': None, 'msg': '手机号类型错误', 'status': 0}
+?           ^  --                         ^^^^^^^             ^
+
++ {'code': '10001', 'data': None, 'msg': '注册成功', 'status': 1}
+?           ^^^                           ^^^^             ^
+ : 期望结果与实际结果不相等
+Mon, 03 Jun 2019 13:31:08-common.RecordLog-test_Register_api.py-[line:39]-INFO-[日志信息]: 开始执行注册-"注册失败-密码类型非string"测试用例
+Mon, 03 Jun 2019 13:31:08-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析phone_number信息为\$\{MobilePhone\}
+Mon, 03 Jun 2019 13:31:08-common.RecordLog-HandleMysql.py-[line:42]-INFO-[日志信息]: 执行SQL语句:select MobilePhone from member;
+Mon, 03 Jun 2019 13:31:08-common.RecordLog-HandleMysql.py-[line:47]-INFO-[日志信息]: 拉取数据库部分数据：
+{'MobilePhone': '18825046772'}
+Mon, 03 Jun 2019 13:31:08-common.RecordLog-HandleMysql.py-[line:90]-INFO-[日志信息]: 获取到未注册的手机号为:13753814926
+Mon, 03 Jun 2019 13:31:08-common.RecordLog-DataReplace.py-[line:32]-INFO-[日志信息]: 测试数据{"mobilephone": "13753814926", "pwd": 123456, "regname": "linux9"}通过正则匹配为: {"mobilephone": "13753814926", "pwd": 123456, "regname": "linux9"}
+Mon, 03 Jun 2019 13:31:08-common.RecordLog-SendRequests.py-[line:37]-INFO-[日志信息]: 开始发送POST请求，URL为：http://test.lemonban.com:8080/futureloan/mvc/api/member/register，请求数据为:{'mobilephone': '13753814926', 'pwd': 123456, 'regname': 'linux9'}
+Mon, 03 Jun 2019 13:31:08-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析sheet_register信息为register
+Mon, 03 Jun 2019 13:31:08-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Actual_Column_Num信息为8
+Mon, 03 Jun 2019 13:31:08-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单register,第10行第8列写入数据{"status":1,"code":"10001","data":null,"msg":"注册成功"}
+Mon, 03 Jun 2019 13:31:09-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析sheet_register信息为register
+Mon, 03 Jun 2019 13:31:09-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Result_Column_Num信息为9
+Mon, 03 Jun 2019 13:31:09-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析result_fail信息为FAIL
+Mon, 03 Jun 2019 13:31:09-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单register,第10行第9列写入数据FAIL
+Mon, 03 Jun 2019 13:31:09-common.RecordLog-test_Register_api.py-[line:65]-ERROR-[日志信息]: test_register-测试[注册失败-密码类型非string] :Failed
+Details:
+{'status': 0, 'code': '20103', 'data': None, 'msg': '密码类型错误'} != {'status': 1, 'code': '10001', 'data': None, 'msg': '注册成功'}
+- {'code': '20103', 'data': None, 'msg': '密码类型错误', 'status': 0}
+?           ^  --                         ^^^^^^             ^
+
++ {'code': '10001', 'data': None, 'msg': '注册成功', 'status': 1}
+?           ^^^                           ^^^^             ^
+ : 期望结果与实际结果不相等
+Mon, 03 Jun 2019 13:31:09-common.RecordLog-test_Register_api.py-[line:39]-INFO-[日志信息]: 开始执行注册-"注册失败-昵称类型非string"测试用例
+Mon, 03 Jun 2019 13:31:09-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析phone_number信息为\$\{MobilePhone\}
+Mon, 03 Jun 2019 13:31:09-common.RecordLog-HandleMysql.py-[line:42]-INFO-[日志信息]: 执行SQL语句:select MobilePhone from member;
+Mon, 03 Jun 2019 13:31:09-common.RecordLog-HandleMysql.py-[line:47]-INFO-[日志信息]: 拉取数据库部分数据：
+{'MobilePhone': '18825046772'}
+Mon, 03 Jun 2019 13:31:09-common.RecordLog-HandleMysql.py-[line:90]-INFO-[日志信息]: 获取到未注册的手机号为:13605874961
+Mon, 03 Jun 2019 13:31:09-common.RecordLog-DataReplace.py-[line:32]-INFO-[日志信息]: 测试数据{"mobilephone": "13605874961", "pwd": "123456", "regname": 10}通过正则匹配为: {"mobilephone": "13605874961", "pwd": "123456", "regname": 10}
+Mon, 03 Jun 2019 13:31:09-common.RecordLog-SendRequests.py-[line:37]-INFO-[日志信息]: 开始发送POST请求，URL为：http://test.lemonban.com:8080/futureloan/mvc/api/member/register，请求数据为:{'mobilephone': '13605874961', 'pwd': '123456', 'regname': 10}
+Mon, 03 Jun 2019 13:31:09-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析sheet_register信息为register
+Mon, 03 Jun 2019 13:31:09-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Actual_Column_Num信息为8
+Mon, 03 Jun 2019 13:31:09-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单register,第11行第8列写入数据{"status":1,"code":"10001","data":null,"msg":"注册成功"}
+Mon, 03 Jun 2019 13:31:10-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析sheet_register信息为register
+Mon, 03 Jun 2019 13:31:10-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Result_Column_Num信息为9
+Mon, 03 Jun 2019 13:31:10-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析result_fail信息为FAIL
+Mon, 03 Jun 2019 13:31:10-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单register,第11行第9列写入数据FAIL
+Mon, 03 Jun 2019 13:31:10-common.RecordLog-test_Register_api.py-[line:65]-ERROR-[日志信息]: test_register-测试[注册失败-昵称类型非string] :Failed
+Details:
+{'status': 0, 'code': '20103', 'data': None, 'msg': '用户名类型错误'} != {'status': 1, 'code': '10001', 'data': None, 'msg': '注册成功'}
+- {'code': '20103', 'data': None, 'msg': '用户名类型错误', 'status': 0}
+?           ^  --                         ^^^^^^^             ^
+
++ {'code': '10001', 'data': None, 'msg': '注册成功', 'status': 1}
+?           ^^^                           ^^^^             ^
+ : 期望结果与实际结果不相等
+Mon, 03 Jun 2019 13:31:10-common.RecordLog-test_Register_api.py-[line:39]-INFO-[日志信息]: 开始执行注册-"注册失败-手机号长度小于11位"测试用例
+Mon, 03 Jun 2019 13:31:10-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析phone_number信息为\$\{MobilePhone\}
+Mon, 03 Jun 2019 13:31:11-common.RecordLog-HandleMysql.py-[line:42]-INFO-[日志信息]: 执行SQL语句:select MobilePhone from member;
+Mon, 03 Jun 2019 13:31:11-common.RecordLog-HandleMysql.py-[line:47]-INFO-[日志信息]: 拉取数据库部分数据：
+{'MobilePhone': '18825046772'}
+Mon, 03 Jun 2019 13:31:11-common.RecordLog-HandleMysql.py-[line:90]-INFO-[日志信息]: 获取到未注册的手机号为:15640381792
+Mon, 03 Jun 2019 13:31:11-common.RecordLog-DataReplace.py-[line:32]-INFO-[日志信息]: 测试数据{"mobilephone": "1369157982", "pwd": "123456", "regname": "linux11"}通过正则匹配为: {"mobilephone": "1369157982", "pwd": "123456", "regname": "linux11"}
+Mon, 03 Jun 2019 13:31:11-common.RecordLog-SendRequests.py-[line:37]-INFO-[日志信息]: 开始发送POST请求，URL为：http://test.lemonban.com:8080/futureloan/mvc/api/member/register，请求数据为:{'mobilephone': '1369157982', 'pwd': '123456', 'regname': 'linux11'}
+Mon, 03 Jun 2019 13:31:11-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析sheet_register信息为register
+Mon, 03 Jun 2019 13:31:11-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Actual_Column_Num信息为8
+Mon, 03 Jun 2019 13:31:11-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单register,第12行第8列写入数据{"status":0,"code":"20109","data":null,"msg":"手机号码格式不正确"}
+Mon, 03 Jun 2019 13:31:11-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析sheet_register信息为register
+Mon, 03 Jun 2019 13:31:11-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Result_Column_Num信息为9
+Mon, 03 Jun 2019 13:31:11-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析result_pass信息为PASS
+Mon, 03 Jun 2019 13:31:11-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单register,第12行第9列写入数据PASS
+Mon, 03 Jun 2019 13:31:11-common.RecordLog-test_Register_api.py-[line:74]-INFO-[日志信息]: test_register-测试[注册失败-手机号长度小于11位] :Passed
+Mon, 03 Jun 2019 13:31:11-common.RecordLog-test_Register_api.py-[line:75]-INFO-[日志信息]: 执行注册-测试用例"注册失败-手机号长度小于11位"结束
+Mon, 03 Jun 2019 13:31:11-common.RecordLog-test_Register_api.py-[line:39]-INFO-[日志信息]: 开始执行注册-"注册失败-手机号长度大于11位"测试用例
+Mon, 03 Jun 2019 13:31:11-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析phone_number信息为\$\{MobilePhone\}
+Mon, 03 Jun 2019 13:31:12-common.RecordLog-HandleMysql.py-[line:42]-INFO-[日志信息]: 执行SQL语句:select MobilePhone from member;
+Mon, 03 Jun 2019 13:31:12-common.RecordLog-HandleMysql.py-[line:47]-INFO-[日志信息]: 拉取数据库部分数据：
+{'MobilePhone': '18825046772'}
+Mon, 03 Jun 2019 13:31:12-common.RecordLog-HandleMysql.py-[line:90]-INFO-[日志信息]: 获取到未注册的手机号为:15863457218
+Mon, 03 Jun 2019 13:31:12-common.RecordLog-DataReplace.py-[line:32]-INFO-[日志信息]: 测试数据{"mobilephone": "136915798211", "pwd": "123456", "regname": "linux12"}通过正则匹配为: {"mobilephone": "136915798211", "pwd": "123456", "regname": "linux12"}
+Mon, 03 Jun 2019 13:31:12-common.RecordLog-SendRequests.py-[line:37]-INFO-[日志信息]: 开始发送POST请求，URL为：http://test.lemonban.com:8080/futureloan/mvc/api/member/register，请求数据为:{'mobilephone': '136915798211', 'pwd': '123456', 'regname': 'linux12'}
+Mon, 03 Jun 2019 13:31:12-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析sheet_register信息为register
+Mon, 03 Jun 2019 13:31:12-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Actual_Column_Num信息为8
+Mon, 03 Jun 2019 13:31:12-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单register,第13行第8列写入数据{"status":0,"code":"20109","data":null,"msg":"手机号码格式不正确"}
+Mon, 03 Jun 2019 13:31:12-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析sheet_register信息为register
+Mon, 03 Jun 2019 13:31:12-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Result_Column_Num信息为9
+Mon, 03 Jun 2019 13:31:12-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析result_pass信息为PASS
+Mon, 03 Jun 2019 13:31:12-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单register,第13行第9列写入数据PASS
+Mon, 03 Jun 2019 13:31:12-common.RecordLog-test_Register_api.py-[line:74]-INFO-[日志信息]: test_register-测试[注册失败-手机号长度大于11位] :Passed
+Mon, 03 Jun 2019 13:31:12-common.RecordLog-test_Register_api.py-[line:75]-INFO-[日志信息]: 执行注册-测试用例"注册失败-手机号长度大于11位"结束
+Mon, 03 Jun 2019 13:31:12-common.RecordLog-test_Register_api.py-[line:39]-INFO-[日志信息]: 开始执行注册-"注册失败-密码长度小于6位"测试用例
+Mon, 03 Jun 2019 13:31:12-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析phone_number信息为\$\{MobilePhone\}
+Mon, 03 Jun 2019 13:31:13-common.RecordLog-HandleMysql.py-[line:42]-INFO-[日志信息]: 执行SQL语句:select MobilePhone from member;
+Mon, 03 Jun 2019 13:31:13-common.RecordLog-HandleMysql.py-[line:47]-INFO-[日志信息]: 拉取数据库部分数据：
+{'MobilePhone': '18825046772'}
+Mon, 03 Jun 2019 13:31:13-common.RecordLog-HandleMysql.py-[line:90]-INFO-[日志信息]: 获取到未注册的手机号为:15201892347
+Mon, 03 Jun 2019 13:31:13-common.RecordLog-DataReplace.py-[line:32]-INFO-[日志信息]: 测试数据{"mobilephone": "15201892347", "pwd": "12345", "regname": "linux13"}通过正则匹配为: {"mobilephone": "15201892347", "pwd": "12345", "regname": "linux13"}
+Mon, 03 Jun 2019 13:31:13-common.RecordLog-SendRequests.py-[line:37]-INFO-[日志信息]: 开始发送POST请求，URL为：http://test.lemonban.com:8080/futureloan/mvc/api/member/register，请求数据为:{'mobilephone': '15201892347', 'pwd': '12345', 'regname': 'linux13'}
+Mon, 03 Jun 2019 13:31:13-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析sheet_register信息为register
+Mon, 03 Jun 2019 13:31:13-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Actual_Column_Num信息为8
+Mon, 03 Jun 2019 13:31:13-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单register,第14行第8列写入数据{"status":0,"code":"20108","data":null,"msg":"密码长度必须为6~18"}
+Mon, 03 Jun 2019 13:31:13-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析sheet_register信息为register
+Mon, 03 Jun 2019 13:31:13-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Result_Column_Num信息为9
+Mon, 03 Jun 2019 13:31:13-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析result_pass信息为PASS
+Mon, 03 Jun 2019 13:31:13-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单register,第14行第9列写入数据PASS
+Mon, 03 Jun 2019 13:31:13-common.RecordLog-test_Register_api.py-[line:74]-INFO-[日志信息]: test_register-测试[注册失败-密码长度小于6位] :Passed
+Mon, 03 Jun 2019 13:31:13-common.RecordLog-test_Register_api.py-[line:75]-INFO-[日志信息]: 执行注册-测试用例"注册失败-密码长度小于6位"结束
+Mon, 03 Jun 2019 13:31:13-common.RecordLog-test_Register_api.py-[line:39]-INFO-[日志信息]: 开始执行注册-"注册失败-密码长度大于18位"测试用例
+Mon, 03 Jun 2019 13:31:13-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析phone_number信息为\$\{MobilePhone\}
+Mon, 03 Jun 2019 13:31:14-common.RecordLog-HandleMysql.py-[line:42]-INFO-[日志信息]: 执行SQL语句:select MobilePhone from member;
+Mon, 03 Jun 2019 13:31:14-common.RecordLog-HandleMysql.py-[line:47]-INFO-[日志信息]: 拉取数据库部分数据：
+{'MobilePhone': '18825046772'}
+Mon, 03 Jun 2019 13:31:14-common.RecordLog-HandleMysql.py-[line:90]-INFO-[日志信息]: 获取到未注册的手机号为:15810872694
+Mon, 03 Jun 2019 13:31:14-common.RecordLog-DataReplace.py-[line:32]-INFO-[日志信息]: 测试数据{"mobilephone": "15810872694", "pwd": "1234567890123456789", "regname": "linux14"}通过正则匹配为: {"mobilephone": "15810872694", "pwd": "1234567890123456789", "regname": "linux14"}
+Mon, 03 Jun 2019 13:31:14-common.RecordLog-SendRequests.py-[line:37]-INFO-[日志信息]: 开始发送POST请求，URL为：http://test.lemonban.com:8080/futureloan/mvc/api/member/register，请求数据为:{'mobilephone': '15810872694', 'pwd': '1234567890123456789', 'regname': 'linux14'}
+Mon, 03 Jun 2019 13:31:14-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析sheet_register信息为register
+Mon, 03 Jun 2019 13:31:14-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Actual_Column_Num信息为8
+Mon, 03 Jun 2019 13:31:14-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单register,第15行第8列写入数据{"status":0,"code":"20108","data":null,"msg":"密码长度必须为6~18"}
+Mon, 03 Jun 2019 13:31:14-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析sheet_register信息为register
+Mon, 03 Jun 2019 13:31:14-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Result_Column_Num信息为9
+Mon, 03 Jun 2019 13:31:14-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析result_pass信息为PASS
+Mon, 03 Jun 2019 13:31:14-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单register,第15行第9列写入数据PASS
+Mon, 03 Jun 2019 13:31:14-common.RecordLog-test_Register_api.py-[line:74]-INFO-[日志信息]: test_register-测试[注册失败-密码长度大于18位] :Passed
+Mon, 03 Jun 2019 13:31:14-common.RecordLog-test_Register_api.py-[line:75]-INFO-[日志信息]: 执行注册-测试用例"注册失败-密码长度大于18位"结束
+Mon, 03 Jun 2019 13:31:14-common.RecordLog-test_Register_api.py-[line:39]-INFO-[日志信息]: 开始执行注册-"注册失败-手机号为空"测试用例
+Mon, 03 Jun 2019 13:31:14-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析phone_number信息为\$\{MobilePhone\}
+Mon, 03 Jun 2019 13:31:15-common.RecordLog-HandleMysql.py-[line:42]-INFO-[日志信息]: 执行SQL语句:select MobilePhone from member;
+Mon, 03 Jun 2019 13:31:15-common.RecordLog-HandleMysql.py-[line:47]-INFO-[日志信息]: 拉取数据库部分数据：
+{'MobilePhone': '18825046772'}
+Mon, 03 Jun 2019 13:31:15-common.RecordLog-HandleMysql.py-[line:90]-INFO-[日志信息]: 获取到未注册的手机号为:18641758369
+Mon, 03 Jun 2019 13:31:15-common.RecordLog-DataReplace.py-[line:32]-INFO-[日志信息]: 测试数据{"mobilephone": null, "pwd": "123456", "regname": "linux15"}通过正则匹配为: {"mobilephone": null, "pwd": "123456", "regname": "linux15"}
+Mon, 03 Jun 2019 13:31:15-common.RecordLog-SendRequests.py-[line:37]-INFO-[日志信息]: 开始发送POST请求，URL为：http://test.lemonban.com:8080/futureloan/mvc/api/member/register，请求数据为:{'mobilephone': None, 'pwd': '123456', 'regname': 'linux15'}
+Mon, 03 Jun 2019 13:31:15-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析sheet_register信息为register
+Mon, 03 Jun 2019 13:31:15-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Actual_Column_Num信息为8
+Mon, 03 Jun 2019 13:31:15-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单register,第16行第8列写入数据{"status":0,"code":"20103","data":null,"msg":"手机号不能为空"}
+Mon, 03 Jun 2019 13:31:15-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析sheet_register信息为register
+Mon, 03 Jun 2019 13:31:15-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Result_Column_Num信息为9
+Mon, 03 Jun 2019 13:31:15-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析result_pass信息为PASS
+Mon, 03 Jun 2019 13:31:15-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单register,第16行第9列写入数据PASS
+Mon, 03 Jun 2019 13:31:15-common.RecordLog-test_Register_api.py-[line:74]-INFO-[日志信息]: test_register-测试[注册失败-手机号为空] :Passed
+Mon, 03 Jun 2019 13:31:15-common.RecordLog-test_Register_api.py-[line:75]-INFO-[日志信息]: 执行注册-测试用例"注册失败-手机号为空"结束
+Mon, 03 Jun 2019 13:31:15-common.RecordLog-test_Register_api.py-[line:39]-INFO-[日志信息]: 开始执行注册-"注册失败-密码为空"测试用例
+Mon, 03 Jun 2019 13:31:15-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析phone_number信息为\$\{MobilePhone\}
+Mon, 03 Jun 2019 13:31:16-common.RecordLog-HandleMysql.py-[line:42]-INFO-[日志信息]: 执行SQL语句:select MobilePhone from member;
+Mon, 03 Jun 2019 13:31:16-common.RecordLog-HandleMysql.py-[line:47]-INFO-[日志信息]: 拉取数据库部分数据：
+{'MobilePhone': '18825046772'}
+Mon, 03 Jun 2019 13:31:16-common.RecordLog-HandleMysql.py-[line:90]-INFO-[日志信息]: 获取到未注册的手机号为:13547980526
+Mon, 03 Jun 2019 13:31:16-common.RecordLog-DataReplace.py-[line:32]-INFO-[日志信息]: 测试数据{"mobilephone": "13547980526", "pwd": null, "regname": "linux16"}通过正则匹配为: {"mobilephone": "13547980526", "pwd": null, "regname": "linux16"}
+Mon, 03 Jun 2019 13:31:16-common.RecordLog-SendRequests.py-[line:37]-INFO-[日志信息]: 开始发送POST请求，URL为：http://test.lemonban.com:8080/futureloan/mvc/api/member/register，请求数据为:{'mobilephone': '13547980526', 'pwd': None, 'regname': 'linux16'}
+Mon, 03 Jun 2019 13:31:16-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析sheet_register信息为register
+Mon, 03 Jun 2019 13:31:16-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Actual_Column_Num信息为8
+Mon, 03 Jun 2019 13:31:16-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单register,第17行第8列写入数据{"status":0,"code":"20103","data":null,"msg":"密码不能为空"}
+Mon, 03 Jun 2019 13:31:16-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析sheet_register信息为register
+Mon, 03 Jun 2019 13:31:16-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Result_Column_Num信息为9
+Mon, 03 Jun 2019 13:31:16-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析result_pass信息为PASS
+Mon, 03 Jun 2019 13:31:16-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单register,第17行第9列写入数据PASS
+Mon, 03 Jun 2019 13:31:16-common.RecordLog-test_Register_api.py-[line:74]-INFO-[日志信息]: test_register-测试[注册失败-密码为空] :Passed
+Mon, 03 Jun 2019 13:31:16-common.RecordLog-test_Register_api.py-[line:75]-INFO-[日志信息]: 执行注册-测试用例"注册失败-密码为空"结束
+Mon, 03 Jun 2019 13:31:16-common.RecordLog-test_Register_api.py-[line:39]-INFO-[日志信息]: 开始执行注册-"注册失败-手机号已被注册"测试用例
+Mon, 03 Jun 2019 13:31:16-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析phone_number信息为\$\{MobilePhone\}
+Mon, 03 Jun 2019 13:31:17-common.RecordLog-HandleMysql.py-[line:42]-INFO-[日志信息]: 执行SQL语句:SELECT MobilePhone FROM member limit %s;
+Mon, 03 Jun 2019 13:31:17-common.RecordLog-HandleMysql.py-[line:50]-INFO-[日志信息]: 拉取数据库数据：
+{'MobilePhone': '18825046772'}
+Mon, 03 Jun 2019 13:31:17-common.RecordLog-DataReplace.py-[line:32]-INFO-[日志信息]: 测试数据{"mobilephone": "18825046772", "pwd": "123456", "regname": "linux17"}通过正则匹配为: {"mobilephone": "18825046772", "pwd": "123456", "regname": "linux17"}
+Mon, 03 Jun 2019 13:31:17-common.RecordLog-SendRequests.py-[line:37]-INFO-[日志信息]: 开始发送POST请求，URL为：http://test.lemonban.com:8080/futureloan/mvc/api/member/register，请求数据为:{'mobilephone': '18825046772', 'pwd': '123456', 'regname': 'linux17'}
+Mon, 03 Jun 2019 13:31:17-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析sheet_register信息为register
+Mon, 03 Jun 2019 13:31:17-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Actual_Column_Num信息为8
+Mon, 03 Jun 2019 13:31:17-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单register,第18行第8列写入数据{"status":0,"code":"20110","data":null,"msg":"手机号码已被注册"}
+Mon, 03 Jun 2019 13:31:17-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析sheet_register信息为register
+Mon, 03 Jun 2019 13:31:17-common.RecordLog-ParseConfig.py-[line:36]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析Result_Column_Num信息为9
+Mon, 03 Jun 2019 13:31:17-common.RecordLog-ParseConfig.py-[line:51]-INFO-[日志信息]: 从配置文件D:\LeMonApiAutoTest\config\config.ini解析result_pass信息为PASS
+Mon, 03 Jun 2019 13:31:17-common.RecordLog-ParseExcel.py-[line:118]-INFO-[日志信息]: D:\LeMonApiAutoTest\data\testcases.xlsx文件，表单register,第18行第9列写入数据PASS
+Mon, 03 Jun 2019 13:31:17-common.RecordLog-test_Register_api.py-[line:74]-INFO-[日志信息]: test_register-测试[注册失败-手机号已被注册] :Passed
+Mon, 03 Jun 2019 13:31:17-common.RecordLog-test_Register_api.py-[line:75]-INFO-[日志信息]: 执行注册-测试用例"注册失败-手机号已被注册"结束
+Mon, 03 Jun 2019 13:31:17-common.RecordLog-HandleMysql.py-[line:99]-INFO-[日志信息]: 关闭数据库...
+Mon, 03 Jun 2019 13:31:17-common.RecordLog-base.py-[line:31]-INFO-[日志信息]: ------注册接口测试用例执行结束------
