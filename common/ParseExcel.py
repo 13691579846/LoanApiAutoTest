@@ -22,9 +22,8 @@ class ParseExcel(object):
         try:
             self.filename = filename
             self.__wb = load_workbook(self.filename)
-            log.info("开始解析excel文件")
         except FileNotFoundError as e:
-            log.error("解析excel文件失败\n{}".format(e))
+            log.error("解析Excel文件{}失败\n{}".format(self.filename, e))
 
     def get_max_row_num(self, sheet_name):
         """获取最大行号"""
@@ -84,13 +83,13 @@ class ParseExcel(object):
             for value in row_tuple:
                 value_list.append(value)
             values.append(value_list)
-        log.info("获取excel文件，表单{}的所有数据\n{}".format(sheet_name, values))
+        log.info("读取{}文件，表单{}的所有数据\n{}".format(self.filename, sheet_name, values))
         return values
 
     def get_excel_title(self, sheet_name):
         """获取sheet表头"""
         title_key = tuple(self.__wb[sheet_name].iter_rows(max_row=1, values_only=True))[0]
-        log.info("读取excel文件，表单{}的标题:{}".format(sheet_name, title_key))
+        log.info("解析{}文件表单{}的标题:\n{}".format(self.filename, sheet_name, title_key))
         return title_key
 
     def get_list_dict_all_value(self, sheet_name):
@@ -136,7 +135,7 @@ do_excel = ParseExcel(DATA_PATH)
 if __name__ == '__main__':
     pe = ParseExcel(DATA_PATH)
     print(pe.get_all_value('login'))
-    print(pe.get_name_tuple_all_value('login'))
+    pe.get_name_tuple_all_value('login')
     column_row = pe.get_max_column_num('login')
     print('最大列号:', column_row)
     max_row = pe.get_max_row_num('login')

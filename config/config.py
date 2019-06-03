@@ -1,7 +1,12 @@
 import os
 import platform
 
+from common.CreatePath import ModelsClass
 
+"""
+create log dir
+"""
+LOG_DIR = ModelsClass.create_dir('log')
 """
 This module stores the file directories and files needed by the project
 """
@@ -9,11 +14,10 @@ PRO_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CONFIG_DIR = os.path.dirname(os.path.abspath(__file__))
 CASE_DIR = os.path.join(PRO_DIR, 'cases')
 DATA_DIR = os.path.join(PRO_DIR, 'data')
-LOG_DIR = os.path.join(PRO_DIR, 'log')
 CONFIG_PATH = os.path.join(CONFIG_DIR, 'config.ini')
 DATA_PATH = os.path.join(DATA_DIR, 'testcases.xlsx')
 LOG_PATH = os.path.join(LOG_DIR, 'test_log.log')
-USER_PATH = os.path.join(CONFIG_DIR, 'userinfo.txt')
+USER_PATH = os.path.join(DATA_DIR, 'userinfo.txt')
 """
 Test environment info
 """

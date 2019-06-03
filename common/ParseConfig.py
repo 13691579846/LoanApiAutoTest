@@ -19,7 +19,6 @@ class ParseConfigFile(ConfigParser):
         try:
             self.filename = filename
             self.read(filename, encoding='utf-8')
-            log.info("开始解析配置文件{}".format(self.filename))
         except Exception as e:
             raise e
 
@@ -34,22 +33,22 @@ class ParseConfigFile(ConfigParser):
         data = self.get(section, option)
         if data.isdigit():
             data = int(data)
-            log.info("获取配置信息为{}".format(data))
+            log.info("从配置文件{}解析{}信息为{}".format(self.filename, option, data))
             return data
         try:
             data = float(data)
-            log.info("获取配置信息为{}".format(data))
+            log.info("从配置文件{}解析{}信息为{}".format(self.filename, option, data))
             return data
         except ValueError:
             pass
         if isinstance(flag_eval, bool):
             if flag_eval:
                 data = eval(data)
-                log.info("获取配置信息为{}".format(data))
+                log.info("从配置文件{}解析{}信息为{}".format(self.filename, option, data))
                 return data
         else:
             raise ValueError('{} must be type bool'.format(flag_eval))
-        log.info("获取配置信息为{}".format(data))
+        log.info("从配置文件{}解析{}信息为{}".format(self.filename, option, data))
         return data
 
     def __call__(self, section='DEFAULT', option=None, flag_eval=False, flag_bool=False):

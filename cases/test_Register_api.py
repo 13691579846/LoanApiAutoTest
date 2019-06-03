@@ -9,6 +9,7 @@
 """
 import unittest
 import inspect
+import sys
 from openpyxl.styles.colors import RED, GREEN
 
 from config.config import BASE_URL
@@ -28,7 +29,7 @@ class TestRegisterApi(Base):
     test_data = do_excel.get_name_tuple_all_value(do_conf('SheetName', 'sheet_register'))
 
     def setUp(self):
-        log.info("开始执行测试用例")
+        pass
 
     @data(*test_data)
     def test_register(self, value):
@@ -39,6 +40,7 @@ class TestRegisterApi(Base):
         request_value = value.Data  # 请求参数
         request_method = value.Method  # 请求方法
         sql = value.Sql
+        log.info('开始执行注册-"{}"测试用例'.format(title))
         # 转json的目的是防止期望结果和实际结果的字符串形式匹配不上(excel 存储的期望结果有空格)
         expected = HandleJson.json_to_python(value.Expected)  # 期望结果
         expression_phone = do_conf('Expression', 'phone_number')  # 正则表达式
@@ -64,7 +66,7 @@ class TestRegisterApi(Base):
                 do_conf('ExcelNum', 'Result_Column_Num'),
                 do_conf('Result', 'result_fail'),
                 color=RED)
-            log.error('{}-[{}] :Failed\nDetails:\n{}'.format(inspect.stack()[0][3], title, e))
+            log.error('{}-测试[{}] :Failed\nDetails:\n{}'.format(inspect.stack()[0][3], title, e))
             raise e
         else:
             do_excel.write_cell(
@@ -73,10 +75,10 @@ class TestRegisterApi(Base):
                 do_conf('ExcelNum', 'Result_Column_Num'),
                 do_conf('Result', 'result_pass'),
                 color=GREEN)
-            log.info('[{}] :Passed'.format(title))
-
+            log.info('{}-测试[{}] :Passed'.format(inspect.stack()[0][3], title))
+            log.info('执行注册-测试用例"{}"结束'.format(title))
     def tearDown(self):
-        log.info("测试用例执行结束")
+        pass
 
 
 if __name__ == '__main__':

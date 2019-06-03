@@ -44,10 +44,10 @@ class HandleMysql(object):
                 if isinstance(is_all, bool):
                     if is_all:
                         values = self._cursor.fetchall()
-                        log.info("获取数据库数据：{}".format(values))
+                        log.info("拉取数据库部分数据：\n{}".format(values[0]))
                     else:
                         values = self._cursor.fetchone()
-                        log.info("获取数据库数据：{}".format(values))
+                        log.info("拉取数据库数据：\n{}".format(values))
                     return values
                 else:
                     log.error('got values error: default parameter "{}" must be bool'.format(is_all))

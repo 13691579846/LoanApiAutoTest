@@ -1,8 +1,6 @@
 import os
 from datetime import datetime, date
 
-from config.config import PRO_DIR
-
 
 class ModelsClass(object):
     def __init__(self):
@@ -19,12 +17,13 @@ class ModelsClass(object):
         """日志与HTML报告文件名"""
         current_time = datetime.now().strftime(str(date.today()) + '-' + '%H-%M-%S')
         file_name = current_time + '.' + file_type
+        # log.info('生成测试报告:{}'.format(file_name))
         return file_name
 
     @staticmethod
     def create_dir(path):
         """创建HTML报告与日志文件存放目录"""
-        report_dir = os.path.join(PRO_DIR, path)
+        report_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), path)
         if not os.path.exists(report_dir):
             os.makedirs(report_dir)
         return report_dir

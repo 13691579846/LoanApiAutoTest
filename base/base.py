@@ -13,25 +13,24 @@ import os
 from common.HandleMysql import HandleMysql
 from business.CreateUser import register
 from common.RecordLog import log
+from common.DataReplace import DataReplace
+from config.config import USER_PATH
 
 
 class Base(unittest.TestCase):
     """用例入口"""
-
-    phone_invest = register.register(reg_name='投资人')
-    phone_loan = register.register(reg_name='借款人')
-    phone_admin = register.register(reg_name='管理员')
-    register.close()
+    # 注册好的3个角色信息
+    uer_info = register.uer_info(USER_PATH)
 
     @classmethod
     def setUpClass(cls):
         cls.mysql = HandleMysql()
-        log.info('开始执行{}测试用例'.format(cls.__doc__))
+        log.info('------开始执行{}测试用例------'.format(cls.__doc__))
 
     @classmethod
     def tearDownClass(cls):
         cls.mysql.close()
-        log.info('{}测试用例执行结束'.format(cls.__doc__))
+        log.info('------{}测试用例执行结束------'.format(cls.__doc__))
 
 
 if __name__ == '__main__':
