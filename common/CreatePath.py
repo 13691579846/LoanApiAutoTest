@@ -16,9 +16,16 @@ class ModelsClass(object):
     def file_name(file_type):
         """日志与HTML报告文件名"""
         current_time = datetime.now().strftime(str(date.today()) + '-' + '%H-%M-%S')
-        file_name = current_time + '.' + file_type
-        # log.info('生成测试报告:{}'.format(file_name))
-        return file_name
+        if 'HTML' == file_type.upper():
+            current_time = datetime.now().strftime(str(date.today()) + '-' + '%H-%M-%S')
+            file_name = current_time + '.' + file_type
+            return file_name
+        elif 'LOG' == file_type.upper():
+            current_time = datetime.now().strftime(str(date.today()))
+            file_name = current_time + 'testing' + '.' + file_type
+            return file_name
+        else:
+            return current_time + '.' + file_type
 
     @staticmethod
     def create_dir(path):

@@ -6,7 +6,9 @@ from common.CreatePath import ModelsClass
 """
 create log dir
 """
+LOG_NAME = ModelsClass.file_name('log')
 LOG_DIR = ModelsClass.create_dir('log')
+LOG_PATH = os.path.join(LOG_DIR, LOG_NAME)
 """
 This module stores the file directories and files needed by the project
 """
@@ -16,7 +18,6 @@ CASE_DIR = os.path.join(PRO_DIR, 'cases')
 DATA_DIR = os.path.join(PRO_DIR, 'data')
 CONFIG_PATH = os.path.join(CONFIG_DIR, 'config.ini')
 DATA_PATH = os.path.join(DATA_DIR, 'testcases.xlsx')
-LOG_PATH = os.path.join(LOG_DIR, 'test_log.log')
 USER_PATH = os.path.join(DATA_DIR, 'userinfo.txt')
 """
 Test environment info
@@ -43,3 +44,4 @@ if __name__ == '__main__':
     print('日志配置文件路径', LOG_PATH)
     print('测试数据文件路径', DATA_PATH)
     print('账户信息文件路径', USER_PATH)
+    print(LOG_NAME)
