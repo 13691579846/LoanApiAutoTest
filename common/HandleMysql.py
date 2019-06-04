@@ -20,13 +20,13 @@ class HandleMysql(object):
     def __init__(self):
         log.info('初始化数据库...')
         try:
-            log.info('start connecting MySQL...')
-            self._conn = pymysql.connect(host=do_conf('MySQL', 'Host'),
-                                         user=do_conf('MySQL', 'User'),
-                                         password=do_conf('MySQL', 'PassWord'),
-                                         db=do_conf('MySQL', 'Db'),
-                                         port=do_conf('MySQL', 'Port'),
-                                         charset=do_conf('MySQL', 'Charset'),
+            # log.info('start connecting MySQL...')
+            self._conn = pymysql.connect(host=do_conf('MySQL', 'host'),
+                                         user=do_conf('MySQL', 'user'),
+                                         password=do_conf('MySQL', 'password'),
+                                         db=do_conf('MySQL', 'db'),
+                                         port=do_conf('MySQL', 'port'),
+                                         charset=do_conf('MySQL', 'charset'),
                                          cursorclass=pymysql.cursors.DictCursor
                                          )
         except Exception as e:
@@ -64,7 +64,7 @@ class HandleMysql(object):
 
     @staticmethod
     def random_phone_num():
-        """随机一个电话号码"""
+        """随机生成电话号码"""
         num_start = ['134', '135', '136', '137', '138',
                      '139', '150', '151', '152', '158',
                      '159', '157', '182', '187', '188',
@@ -76,34 +76,31 @@ class HandleMysql(object):
         phone_number = start + end
         return phone_number
 
-    def is_exist_phone(self, phone):
-        """判断电话号码是否存在数据库中"""
-        select_phone_sql = "select MobilePhone from member where MobilePhone=%s;"
-        exist = self.get_values(sql=select_phone_sql, args=(phone, ))
-        if exist:
+    def is_phone_exist(self, phone):
+        sql = "select MobilePhone from member where MobilePhone=%s;"
+        if self.get_values(sql, args=(phone, )):
             return True
         else:
             return False
 
-    def get_not_exist_phone(self):
-        """生成未注册的手机号"""
+    def get_phone(self):
         while 1:
-            phone = self.random_phone_num()
-            if not self.is_exist_phone(phone):
-                break
-        return phone
+            phone = HandleMysql.random_phone_num()
+            if not self.is_phone_exist(phone):
+                log.info("获取到未注册的手机号为:{}".format(phone))
+                return phone
 
     def close(self):
+        """自动关闭, 避免忘记关闭"""
         if self._cursor:
             self._cursor.close()
         if self._conn:
             self._conn.close()
-        log.info('关闭数据库...')
+            log.info('关闭数据库...')
 
 
 if __name__ == '__main__':
-    sql_ = "SELECT MobilePhone FROM member;"
+    sql_ = "SELECT MobilePhone FROM member limit %s;"
     mysql = HandleMysql()
-    print(mysql.get_values(sql_))
-    print('未注册的手机号', type(mysql.get_not_exist_phone()))
+    print(mysql.get_phone())
     mysql.close()
