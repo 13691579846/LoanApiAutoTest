@@ -7,12 +7,12 @@
 @Motto: Real warriors,dare to face the bleak warning,dare to face the incisive error!
 ------------------------------------
 """
+import os
+
 from common.HandleMysql import HandleMysql
 from common.ParseConfig import do_conf
-from common.DataReplace import do_replace
 from common.SendRequests import HttpRequests
 from config.config import USER_PATH
-# from common.HandleJson import HandleJson
 
 
 class CreateUser(object):
@@ -22,47 +22,42 @@ class CreateUser(object):
 
     @staticmethod
     def register(reg_name='linux超', pwd='123456'):
-        request = HttpRequests()
+        """注册帐号"""
         do_mysql = HandleMysql()
-        # phone_dic = {reg_name: None}
-        request_value = do_conf('register', 'request_value')
-        expression_phone = do_conf('Expression', 'phone_number')
-        expression_name = do_conf('Expression', 'reg_name')
-        expression_pwd = do_conf('Expression', 'pwd')
-        phone = do_mysql.get_phone()
-        request_value = do_replace(expression_phone, phone, request_value)
-        request_value = do_replace(expression_name, reg_name, request_value)
-        request_value = do_replace(expression_pwd, pwd, request_value)
-        request(do_conf('register', 'request_method'), url=do_conf('register', 'register_url'), data=request_value)
-        sql = "select Id from member where MobilePhone=%s"
-        result = do_mysql(sql=sql, args=(phone, ))
-        if result:
-            user_id = result['Id']
-            user_dic = {
-                    'regname': reg_name,
-                    'id': user_id,
-                    'phone': phone
+        request = HttpRequests()
+        register_url = do_conf('URL', 'Host_Url') + '/member/register'
+        while 1:
+            phone = do_mysql.get_not_exist_phone()
+            request_data = {"mobilephone": phone, "pwd": pwd, "regname": reg_name}
+            request(method='post',
+                    url=register_url,
+                    data=request_data
+                    )
+            sql = 'select Id from member where MobilePhone=%s;'
+            member = do_mysql(sql=sql, args=(phone,))
+            if member:
+                member_id = member['Id']
+                break
+        user_dic = {
+            reg_name: {
+                'MemberId': member_id,
+                'MobilePhone': phone,
+                'RegName': reg_name
             }
-            # phone_dic[reg_name] = phone
-            do_mysql.close()
-            request.close_session()
-            return user_dic
+        }
+        do_mysql.close()
+        request.close_session()
+        return user_dic
 
     @staticmethod
-    def uer_info(path):
-        import os
-        if not os.path.exists(path):
-            phone_invest = CreateUser.register('投资人')
-            phone_loan = CreateUser.register('借款人')
-            phone_admin = CreateUser.register('管理人')
-
-            with open(USER_PATH, 'w', encoding='utf-8') as f:
-                f.write('投资人:'+phone_invest+'\n'+'借款人:'+phone_loan+'\n'+'管理人:'+phone_admin)
-        phone_list = []
-        with open(path, encoding='utf-8') as f:
-            for line in f:
-                phone_list.append(tuple(line.strip().split(':')))
-        return dict(phone_list)
+    def create_uer_info():
+        """创建3个角色的帐号"""
+        user_dict = {}
+        user_dict.update(CreateUser.register('Invest', '123456'))
+        user_dict.update(CreateUser.register('Loan', '123457'))
+        user_dict.update(CreateUser.register('Admin', '123458'))
+        do_conf.write_config(user_dict, USER_PATH)
+        return user_dict
 
 
 register = CreateUser()
@@ -74,4 +69,4 @@ if __name__ == '__main__':
     loan = user.register(reg_name='借款人')['借款人']
     admin = user.register(reg_name='管理员')['管理员']
     print(invest, loan, admin)
-    print(user.uer_info(USER_PATH))
+    print(user.create_uer_info())
