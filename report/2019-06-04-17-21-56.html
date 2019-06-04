@@ -116,8 +116,8 @@ function html_escape(s) {
 <div class='heading'>
 <h1 style="font-family: Microsoft YaHei">前程贷项目接口自动化测试报告</h1>
 <p class='attribute'><strong>测试人员 : </strong> linux超</p>
-<p class='attribute'><strong>开始时间 : </strong> 2019-06-03 13:30:47</p>
-<p class='attribute'><strong>合计耗时 : </strong> 0:00:29.486113</p>
+<p class='attribute'><strong>开始时间 : </strong> 2019-06-04 17:21:56</p>
+<p class='attribute'><strong>合计耗时 : </strong> 0:00:20.827329</p>
 <p class='attribute'><strong>测试结果 : </strong> 共 27，通过 22，失败 5，通过率= 81.48%</p>
 
 <p class='description'>Windows Version:Windows10.0.1713410Python Versionv3.6.4:d48eceb</p>
@@ -186,17 +186,17 @@ function html_escape(s) {
 ft1_4: Traceback (most recent call last):
   File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
     return func(self, *args, **kwargs)
-  File "D:\LeMonApiAutoTest\cases\test_Login_api.py", line 63, in test_login
+  File "D:\LeMonApiAutoTest\cases\test_Login_api.py", line 57, in test_login
     raise e
-  File "D:\LeMonApiAutoTest\cases\test_Login_api.py", line 54, in test_login
-    self.assertEqual(expected, actual_result, msg='期望结果与实际结果不相等')
+  File "D:\LeMonApiAutoTest\cases\test_Login_api.py", line 48, in test_login
+    self.assertEqual(expected, actual_result, msg='测试{}失败'.format(title))
 AssertionError: {'status': 0, 'code': '20103', 'data': None, 'msg': '参数类型错误'} != {'status': 1, 'code': '10001', 'data': None, 'msg': '登录成功'}
 - {'code': '20103', 'data': None, 'msg': '参数类型错误', 'status': 0}
 ?           ^  --                         ^^^^^^             ^
 
 + {'code': '10001', 'data': None, 'msg': '登录成功', 'status': 1}
 ?           ^^^                           ^^^^             ^
- : 期望结果与实际结果不相等
+ : 测试登录失败-手机号类型非string失败
 
 
     </pre>
@@ -218,17 +218,17 @@ AssertionError: {'status': 0, 'code': '20103', 'data': None, 'msg': '参数类�
 ft1_5: Traceback (most recent call last):
   File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
     return func(self, *args, **kwargs)
-  File "D:\LeMonApiAutoTest\cases\test_Login_api.py", line 63, in test_login
+  File "D:\LeMonApiAutoTest\cases\test_Login_api.py", line 57, in test_login
     raise e
-  File "D:\LeMonApiAutoTest\cases\test_Login_api.py", line 54, in test_login
-    self.assertEqual(expected, actual_result, msg='期望结果与实际结果不相等')
+  File "D:\LeMonApiAutoTest\cases\test_Login_api.py", line 48, in test_login
+    self.assertEqual(expected, actual_result, msg='测试{}失败'.format(title))
 AssertionError: {'status': 0, 'code': '20103', 'data': None, 'msg': '参数类型错误'} != {'status': 1, 'code': '10001', 'data': None, 'msg': '登录成功'}
 - {'code': '20103', 'data': None, 'msg': '参数类型错误', 'status': 0}
 ?           ^  --                         ^^^^^^             ^
 
 + {'code': '10001', 'data': None, 'msg': '登录成功', 'status': 1}
 ?           ^^^                           ^^^^             ^
- : 期望结果与实际结果不相等
+ : 测试登录失败-密码类型非string失败
 
 
     </pre>
@@ -319,17 +319,17 @@ AssertionError: {'status': 0, 'code': '20103', 'data': None, 'msg': '参数类�
 ft2_8: Traceback (most recent call last):
   File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
     return func(self, *args, **kwargs)
-  File "D:\LeMonApiAutoTest\cases\test_Register_api.py", line 66, in test_register
+  File "D:\LeMonApiAutoTest\cases\test_Register_api.py", line 58, in test_register
     raise e
-  File "D:\LeMonApiAutoTest\cases\test_Register_api.py", line 57, in test_register
-    self.assertEqual(expected, actual_result, msg='期望结果与实际结果不相等')
+  File "D:\LeMonApiAutoTest\cases\test_Register_api.py", line 49, in test_register
+    self.assertEqual(expected, actual_result, msg='测试{}失败'.format(title))
 AssertionError: {'status': 0, 'code': '20103', 'data': None, 'msg': '手机号类型错误'} != {'status': 1, 'code': '10001', 'data': None, 'msg': '注册成功'}
 - {'code': '20103', 'data': None, 'msg': '手机号类型错误', 'status': 0}
 ?           ^  --                         ^^^^^^^             ^
 
 + {'code': '10001', 'data': None, 'msg': '注册成功', 'status': 1}
 ?           ^^^                           ^^^^             ^
- : 期望结果与实际结果不相等
+ : 测试注册失败-手机号类型非string失败
 
 
     </pre>
@@ -351,17 +351,17 @@ AssertionError: {'status': 0, 'code': '20103', 'data': None, 'msg': '手机号�
 ft2_9: Traceback (most recent call last):
   File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
     return func(self, *args, **kwargs)
-  File "D:\LeMonApiAutoTest\cases\test_Register_api.py", line 66, in test_register
+  File "D:\LeMonApiAutoTest\cases\test_Register_api.py", line 58, in test_register
     raise e
-  File "D:\LeMonApiAutoTest\cases\test_Register_api.py", line 57, in test_register
-    self.assertEqual(expected, actual_result, msg='期望结果与实际结果不相等')
+  File "D:\LeMonApiAutoTest\cases\test_Register_api.py", line 49, in test_register
+    self.assertEqual(expected, actual_result, msg='测试{}失败'.format(title))
 AssertionError: {'status': 0, 'code': '20103', 'data': None, 'msg': '密码类型错误'} != {'status': 1, 'code': '10001', 'data': None, 'msg': '注册成功'}
 - {'code': '20103', 'data': None, 'msg': '密码类型错误', 'status': 0}
 ?           ^  --                         ^^^^^^             ^
 
 + {'code': '10001', 'data': None, 'msg': '注册成功', 'status': 1}
 ?           ^^^                           ^^^^             ^
- : 期望结果与实际结果不相等
+ : 测试注册失败-密码类型非string失败
 
 
     </pre>
@@ -383,17 +383,17 @@ AssertionError: {'status': 0, 'code': '20103', 'data': None, 'msg': '密码类�
 ft2_10: Traceback (most recent call last):
   File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
     return func(self, *args, **kwargs)
-  File "D:\LeMonApiAutoTest\cases\test_Register_api.py", line 66, in test_register
+  File "D:\LeMonApiAutoTest\cases\test_Register_api.py", line 58, in test_register
     raise e
-  File "D:\LeMonApiAutoTest\cases\test_Register_api.py", line 57, in test_register
-    self.assertEqual(expected, actual_result, msg='期望结果与实际结果不相等')
+  File "D:\LeMonApiAutoTest\cases\test_Register_api.py", line 49, in test_register
+    self.assertEqual(expected, actual_result, msg='测试{}失败'.format(title))
 AssertionError: {'status': 0, 'code': '20103', 'data': None, 'msg': '用户名类型错误'} != {'status': 1, 'code': '10001', 'data': None, 'msg': '注册成功'}
 - {'code': '20103', 'data': None, 'msg': '用户名类型错误', 'status': 0}
 ?           ^  --                         ^^^^^^^             ^
 
 + {'code': '10001', 'data': None, 'msg': '注册成功', 'status': 1}
 ?           ^^^                           ^^^^             ^
- : 期望结果与实际结果不相等
+ : 测试注册失败-昵称类型非string失败
 
 
     </pre>

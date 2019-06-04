@@ -4,13 +4,16 @@ import platform
 from common.CreatePath import ModelsClass
 
 """
-create log dir
+This module stores the file directories and files needed by the project
+"""
+"""
+log name and dir
 """
 LOG_NAME = ModelsClass.file_name('log')
 LOG_DIR = ModelsClass.create_dir('log')
 LOG_PATH = os.path.join(LOG_DIR, LOG_NAME)
 """
-This module stores the file directories and files needed by the project
+All dirs of the project
 """
 PRO_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CONFIG_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -18,7 +21,7 @@ CASE_DIR = os.path.join(PRO_DIR, 'cases')
 DATA_DIR = os.path.join(PRO_DIR, 'data')
 CONFIG_PATH = os.path.join(CONFIG_DIR, 'config.ini')
 DATA_PATH = os.path.join(DATA_DIR, 'testcases.xlsx')
-USER_PATH = os.path.join(DATA_DIR, 'userinfo.txt')
+USER_PATH = os.path.join(CONFIG_DIR, 'userinfo.ini')
 """
 Test environment info
 """
@@ -29,10 +32,6 @@ ENVIRONMENT = \
     platform.release() + \
     "Python Version" + \
     platform.python_build()[0]
-"""
-request base url
-"""
-BASE_URL = r'http://test.lemonban.com:8080/futureloan/mvc/api'
 
 
 if __name__ == '__main__':

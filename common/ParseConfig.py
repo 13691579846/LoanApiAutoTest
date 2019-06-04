@@ -9,20 +9,18 @@
 """
 from configparser import ConfigParser
 
-from config.config import CONFIG_PATH
+from config.config import CONFIG_PATH, USER_PATH
 from common.RecordLog import log
 
 
 class ParseConfigFile(ConfigParser):
     def __init__(self, filename):
         super().__init__()
-        try:
-            self.filename = filename
-            self.read(filename, encoding='utf-8')
-        except Exception as e:
-            raise e
+        self.filename = filename
 
     def get_option_value(self, section='DEFAULT', option=None, flag_eval=False, flag_bool=False):
+        """获取配置文件指定section的option对应的value"""
+        self.read(self.filename, encoding='utf-8')
         if option is None:
             return dict(self[section])
         if isinstance(flag_bool, bool):
@@ -51,17 +49,30 @@ class ParseConfigFile(ConfigParser):
         log.info("从配置文件{}解析{}信息为{}".format(self.filename, option, data))
         return data
 
+    @classmethod
+    def write_config(cls, data, path):
+        """写配置文件"""
+        conf_obj = cls(path)
+        for value in data:
+            conf_obj[value] = data[value]
+        with open(path, 'w', encoding='utf-8') as f:
+            conf_obj.write(f)
+
     def __call__(self, section='DEFAULT', option=None, flag_eval=False, flag_bool=False):
         return self.get_option_value(section=section, option=option, flag_eval=flag_eval, flag_bool=flag_bool)
 
 
 do_conf = ParseConfigFile(CONFIG_PATH)
+do_user = ParseConfigFile(USER_PATH)
 
 
 if __name__ == '__main__':
     conf = ParseConfigFile(CONFIG_PATH)
-    print(conf('FilePath', 'TestCase'))
-    print(conf('FilePath', 'LogPath'))
-    print(conf('ExcelNum', 'actual_column_num'))
-    print(conf('ExcelNum', 'result_column_num'))
-    print(conf('Result', 'result_pass'))
+    user_dic = {
+        'user': {
+            'memberId': 1,
+            'mobile_phone': '12345678901',
+            'reg_name': 'linux'
+        }
+    }
+    conf.write_config(user_dic, r'D:\LeMonApiAutoTest\config\userinf.ini')

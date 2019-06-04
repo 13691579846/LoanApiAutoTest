@@ -10,16 +10,11 @@
 import unittest
 
 from common.HandleMysql import HandleMysql
-from business.CreateUser import register
 from common.RecordLog import log
-from config.config import USER_PATH
 
 
 class Base(unittest.TestCase):
     """用例入口"""
-    # 注册好的3个角色信息
-    uer_info = register.uer_info(USER_PATH)
-
     @classmethod
     def setUpClass(cls):
         cls.mysql = HandleMysql()
