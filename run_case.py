@@ -12,10 +12,9 @@ import unittest
 
 from libs import HTMLTestRunnerNew
 from common.CreatePath import ModelsClass
-from common.ParseConfig import do_conf
 from config.config import ENVIRONMENT
 from business.CreateUser import register
-from config.config import USER_PATH
+from config.config import (USER_PATH, REPORT_DIR)
 
 
 def create_user_info_config_file(filename):
@@ -26,13 +25,13 @@ def create_user_info_config_file(filename):
 
 def tc_suite():
     """测试套件"""
-    discover = unittest.defaultTestLoader.discover('.', do_conf('FilePath', 'testcase'))
+    discover = unittest.defaultTestLoader.discover('.', 'test_*.py')
     return discover
 
 
 if __name__ == '__main__':
     create_user_info_config_file(USER_PATH)
-    report_dir = ModelsClass.create_dir(do_conf('FilePath', 'HtmlPathName'))
+    report_dir = ModelsClass.create_dir(REPORT_DIR)
     report_file_name = ModelsClass.file_name('html')
     with open(report_dir + '/' + report_file_name, 'wb') as f:
         runner = HTMLTestRunnerNew.HTMLTestRunner(stream=f,

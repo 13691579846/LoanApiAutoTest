@@ -14,7 +14,7 @@ from openpyxl.styles.colors import RED, GREEN
 from libs.ddt import (data, ddt)
 from base.base import Base
 from common.ParseExcel import do_excel
-from common.SendRequests import request
+# from common.SendRequests import request
 from common.DataReplace import do_replace
 from common.HandleJson import HandleJson
 from common.ParseConfig import do_conf
@@ -35,9 +35,9 @@ class TestLoginApi(Base):
         request_method = value.Method  # 请求方法
         log.info('开始执行登录-"{}"测试用例'.format(title))
         expected = HandleJson.json_to_python(value.Expected)  # 期望结果
-        not_exist_phone = self.mysql.get_not_exist_phone()
-        request_value = do_replace.parameters_data(not_exist_phone, request_value)
-        response = request(request_method, url=url, data=request_value)
+        not_exist_phone = self.mysql.get_not_exist_phone()  # 逆向用例登录账号
+        request_value = do_replace.register_login_parameters_data(not_exist_phone, request_value)
+        response = self.request(request_method, url=url, data=request_value)
         actual_result = response.json()
         do_excel.write_cell(
             do_conf('SheetName', 'Login'),

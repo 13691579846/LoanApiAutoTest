@@ -7,12 +7,6 @@ from common.CreatePath import ModelsClass
 This module stores the file directories and files needed by the project
 """
 """
-log name and dir
-"""
-LOG_NAME = ModelsClass.file_name('log')
-LOG_DIR = ModelsClass.create_dir('log')
-LOG_PATH = os.path.join(LOG_DIR, LOG_NAME)
-"""
 All dirs of the project
 """
 PRO_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -22,6 +16,14 @@ DATA_DIR = os.path.join(PRO_DIR, 'data')
 CONFIG_PATH = os.path.join(CONFIG_DIR, 'config.ini')
 DATA_PATH = os.path.join(DATA_DIR, 'testcases.xlsx')
 USER_PATH = os.path.join(CONFIG_DIR, 'userinfo.ini')
+"""
+log & Report name and dir
+"""
+LOG_NAME = ModelsClass.file_name('log')
+LOG_DIR = os.path.join(PRO_DIR, 'log')#ModelsClass.create_dir('log')
+CREATE_LOG_DIR = ModelsClass.create_dir(LOG_DIR)
+LOG_PATH = os.path.join(LOG_DIR, LOG_NAME)
+REPORT_DIR = os.path.join(PRO_DIR, 'report')
 """
 Test environment info
 """
