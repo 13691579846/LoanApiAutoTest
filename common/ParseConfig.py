@@ -17,6 +17,7 @@ class ParseConfigFile(ConfigParser):
     def __init__(self, filename):
         super().__init__()
         self.filename = filename
+        log.info('开始解析配置文件...')
 
     def get_option_value(self, section='DEFAULT', option=None, flag_eval=False, flag_bool=False):
         """获取配置文件指定section的option对应的value"""
@@ -55,6 +56,7 @@ class ParseConfigFile(ConfigParser):
         conf_obj = cls(path)
         for value in data:
             conf_obj[value] = data[value]
+            log.info('{}文件写入数据\n{}'.format(path, data))
         with open(path, 'w', encoding='utf-8') as f:
             conf_obj.write(f)
 

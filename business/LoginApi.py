@@ -9,6 +9,7 @@
 """
 from common.SendRequests import request
 from common.ParseConfig import do_conf
+from common.RecordLog import log
 
 # 登录
 
@@ -21,8 +22,10 @@ class LoginApi(object):
                      url=url,
                      data=data
                      )
+        log.info('{}登录接口'.format(data['mobilephone']))
 
     def close(self):
+        log.info('关闭登录请求...')
         self.request.close_session()
 
 

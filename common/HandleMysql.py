@@ -74,6 +74,7 @@ class HandleMysql(object):
         start = random.choice(num_start)
         end = ''.join(random.sample(string.digits, 8))
         phone_number = start + end
+        log.info('生成的随机手机号码：{}'.format(phone_number))
         return phone_number
 
     def is_exist_phone(self, phone):
@@ -91,6 +92,7 @@ class HandleMysql(object):
             phone = self.random_phone_num()
             if not self.is_exist_phone(phone):
                 break
+        log.info('已获得未注册的手机号码为:{}'.format(phone))
         return phone
 
     def close(self):

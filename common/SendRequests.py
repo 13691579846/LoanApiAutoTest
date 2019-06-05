@@ -16,7 +16,7 @@ from common.RecordLog import log
 class HttpRequests(object):
     def __init__(self):
         self.session = requests.Session()
-
+        log.info('建立请求...')
     def send_request(self, method, url,
                      params_type='form', data=None,
                      headers=None, files=None, **kwargs):
@@ -57,6 +57,7 @@ class HttpRequests(object):
     def close_session(self):
         self.session.close()
         try:
+            log.info('关闭请求...')
             del self.session.cookies['JSESSIONID']
         except Exception:
             pass

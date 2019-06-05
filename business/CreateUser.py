@@ -7,8 +7,7 @@
 @Motto: Real warriors,dare to face the bleak warning,dare to face the incisive error!
 ------------------------------------
 """
-import os
-
+from common.RecordLog import log
 from common.HandleMysql import HandleMysql
 from common.ParseConfig import do_conf
 from common.SendRequests import HttpRequests
@@ -47,6 +46,8 @@ class CreateUser(object):
         }
         do_mysql.close()
         request.close_session()
+        log.info('注册{}帐号成功\n帐号信息-userId{},userName{},mobilePhone{}'.
+                 format(reg_name, member_id, reg_name, phone))
         return user_dic
 
     @staticmethod

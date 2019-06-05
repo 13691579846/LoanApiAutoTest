@@ -18,6 +18,7 @@ class DataReplace(object):
     pattern_not_exist_phone = re.compile(do_conf('Expression', 'Non_exist_phone'))
     pattern_exist_phone = re.compile(do_conf('Expression', 'Existed_phone'))
     pattern_invest_phone = re.compile(do_conf('Expression', 'Invest_phone'))
+    pattern_no_login_phone = re.compile(do_conf('Expression', 'NoLogin_phone'))
 
     def __init__(self):
         pass
@@ -53,8 +54,15 @@ class DataReplace(object):
         return data
 
     def replace_invest_phone(self, data):
-        exist_phone = str(do_user('Loan', 'MobilePhone'))
-        data = self.re_replace(self.pattern_invest_phone, exist_phone, data)
+        """充值接口替换登录的角色帐号"""
+        login_phone = str(do_user('Loan', 'MobilePhone'))
+        data = self.re_replace(self.pattern_invest_phone, login_phone, data)
+        return data
+
+    def replace_no_login_phone(self, data):
+        """充值接口替换未登录的角色帐号"""
+        no_login_phone = str(do_user('Loan', 'MobilePhone'))
+        data = self.re_replace(self.pattern_no_login_phone, no_login_phone, data)
         return data
 
     def register_login_parameters_data(self, not_exist_phone, data):
@@ -66,10 +74,14 @@ class DataReplace(object):
     def recharge_parameters_data(self, data):
         """充值的参数化"""
         data = self.replace_invest_phone(data)
+        data = self.replace_no_login_phone(data)
         return data
 
-do_replace = DataReplace()
 
+do_replace = DataReplace()
+# 注册参数化
+register_login_parameters = getattr(do_replace, 'register_login_parameters_data')
+recharge_parameters = getattr(do_replace, 'recharge_parameters_data')
 
 if __name__ == '__main__':
     source_str_phone = '{"mobilephone": ${not_exist_phone}, "pwd": "123456"}'

@@ -14,7 +14,7 @@ from openpyxl.styles.colors import RED, GREEN
 from libs.ddt import (data, ddt)
 from base.base import Base
 from common.ParseExcel import do_excel
-from common.DataReplace import do_replace
+from common.DataReplace import register_login_parameters
 from common.HandleJson import HandleJson
 from common.ParseConfig import do_conf
 from common.RecordLog import log
@@ -36,7 +36,7 @@ class TestRegisterApi(Base):
         # 转json的目的是防止期望结果和实际结果的字符串形式匹配不上(excel 存储的期望结果有空格)
         expected = HandleJson.json_to_python(value.Expected)  # 期望结果
         not_exist_phone = self.mysql.get_not_exist_phone()  # 正向用例的注册账号
-        request_value = do_replace.register_login_parameters_data(not_exist_phone, request_value)
+        request_value = register_login_parameters(not_exist_phone, request_value)
         response = self.request(request_method, url=url, data=request_value)
         actual_result = response.json()
         do_excel.write_cell(
@@ -63,7 +63,7 @@ class TestRegisterApi(Base):
                 do_conf('Result', 'Pass'),
                 color=GREEN)
             log.info('{}-测试[{}] :Passed'.format(inspect.stack()[0][3], title))
-            log.info('执行注册-测试用例"{}"结束'.format(title))
+        log.info('执行注册-测试用例"{}"结束'.format(title))
 
 
 if __name__ == '__main__':

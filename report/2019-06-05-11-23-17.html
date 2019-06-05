@@ -116,18 +116,18 @@ function html_escape(s) {
 <div class='heading'>
 <h1 style="font-family: Microsoft YaHei">前程贷项目接口自动化测试报告</h1>
 <p class='attribute'><strong>测试人员 : </strong> linux超</p>
-<p class='attribute'><strong>开始时间 : </strong> 2019-06-04 22:46:58</p>
-<p class='attribute'><strong>合计耗时 : </strong> 0:00:18.324048</p>
-<p class='attribute'><strong>测试结果 : </strong> 共 41，通过 33，失败 8，通过率= 80.49%</p>
+<p class='attribute'><strong>开始时间 : </strong> 2019-06-05 11:23:17</p>
+<p class='attribute'><strong>合计耗时 : </strong> 0:01:23.573612</p>
+<p class='attribute'><strong>测试结果 : </strong> 共 41，通过 34，失败 7，通过率= 82.93%</p>
 
-<p class='description'>Windows Version:Windows6.1.76017Python Versiontags/v3.7.2:9a3ffc0492</p>
+<p class='description'>Windows Version:Windows10.0.1713410Python Versionv3.6.4:d48eceb</p>
 </div>
 
 
 <p id='show_detail_line'>
-<a class="btn btn-primary" href='javascript:showCase(0)'>概要{ 80.49% }</a>
-<a class="btn btn-danger" href='javascript:showCase(1)'>失败{ 8 }</a>
-<a class="btn btn-success" href='javascript:showCase(2)'>通过{ 33 }</a>
+<a class="btn btn-primary" href='javascript:showCase(0)'>概要{ 82.93% }</a>
+<a class="btn btn-danger" href='javascript:showCase(1)'>失败{ 7 }</a>
+<a class="btn btn-success" href='javascript:showCase(2)'>通过{ 34 }</a>
 <a class="btn btn-info" href='javascript:showCase(3)'>所有{ 41 }</a>
 </p>
 <table id='result_table' class="table table-condensed table-bordered table-hover">
@@ -186,9 +186,9 @@ function html_escape(s) {
 ft1_4: Traceback (most recent call last):
   File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
     return func(self, *args, **kwargs)
-  File "D:\LeMonApiAutoTest\cases\test_Login_api.py", line 57, in test_login
+  File "D:\LeMonApiAutoTest\cases\test_Login_api.py", line 56, in test_login
     raise e
-  File "D:\LeMonApiAutoTest\cases\test_Login_api.py", line 48, in test_login
+  File "D:\LeMonApiAutoTest\cases\test_Login_api.py", line 47, in test_login
     self.assertEqual(expected, actual_result, msg='测试{}失败'.format(title))
 AssertionError: {'status': 0, 'code': '20103', 'data': None, 'msg': '参数类型错误'} != {'status': 1, 'code': '10001', 'data': None, 'msg': '登录成功'}
 - {'code': '20103', 'data': None, 'msg': '参数类型错误', 'status': 0}
@@ -218,9 +218,9 @@ AssertionError: {'status': 0, 'code': '20103', 'data': None, 'msg': '参数类�
 ft1_5: Traceback (most recent call last):
   File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
     return func(self, *args, **kwargs)
-  File "D:\LeMonApiAutoTest\cases\test_Login_api.py", line 57, in test_login
+  File "D:\LeMonApiAutoTest\cases\test_Login_api.py", line 56, in test_login
     raise e
-  File "D:\LeMonApiAutoTest\cases\test_Login_api.py", line 48, in test_login
+  File "D:\LeMonApiAutoTest\cases\test_Login_api.py", line 47, in test_login
     self.assertEqual(expected, actual_result, msg='测试{}失败'.format(title))
 AssertionError: {'status': 0, 'code': '20103', 'data': None, 'msg': '参数类型错误'} != {'status': 1, 'code': '10001', 'data': None, 'msg': '登录成功'}
 - {'code': '20103', 'data': None, 'msg': '参数类型错误', 'status': 0}
@@ -264,8 +264,8 @@ AssertionError: {'status': 0, 'code': '20103', 'data': None, 'msg': '参数类�
 <tr class='failClass warning'>
     <td>cases.test_Recharge_api.TestRechargeApi: 充值接口</td>
     <td class="text-center">14</td>
-    <td class="text-center">11</td>
-    <td class="text-center">3</td>
+    <td class="text-center">12</td>
+    <td class="text-center">2</td>
     <td class="text-center">0</td>
     <td class="text-center"><a href="javascript:showClassDetail('c2',14)" class="detail" id='c2'>详细</a></td>
 </tr>
@@ -309,14 +309,16 @@ AssertionError: {'status': 0, 'code': '20103', 'data': None, 'msg': '参数类�
 ft2_6: Traceback (most recent call last):
   File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
     return func(self, *args, **kwargs)
-  File "D:\LeMonApiAutoTest\cases\test_Recharge_api.py", line 66, in test_recharge
+  File "D:\LeMonApiAutoTest\cases\test_Recharge_api.py", line 75, in test_recharge
     raise e
-  File "D:\LeMonApiAutoTest\cases\test_Recharge_api.py", line 57, in test_recharge
+  File "D:\LeMonApiAutoTest\cases\test_Recharge_api.py", line 66, in test_recharge
     self.assertEqual(recharge_expected, actual_result, msg='测试{}失败'.format(title))
-AssertionError: {'leaveamount': '0.00', 'code': '1001'} != {'leaveamount': '10000.00', 'code': '10001'}
-- {'code': '1001', 'leaveamount': '0.00'}
+AssertionError: {'leaveamount': '0.00', 'code': '20119'} != {'leaveamount': '10000.00', 'code': '10001'}
+- {'code': '20119', 'leaveamount': '0.00'}
+?           ^  --
+
 + {'code': '10001', 'leaveamount': '10000.00'}
-?            +                      ++++
+?           ^^^                     ++++
  : 测试充值失败-充值金额类型非double失败
 
 
@@ -339,9 +341,9 @@ AssertionError: {'leaveamount': '0.00', 'code': '1001'} != {'leaveamount': '1000
 ft2_7: Traceback (most recent call last):
   File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
     return func(self, *args, **kwargs)
-  File "D:\LeMonApiAutoTest\cases\test_Recharge_api.py", line 66, in test_recharge
+  File "D:\LeMonApiAutoTest\cases\test_Recharge_api.py", line 75, in test_recharge
     raise e
-  File "D:\LeMonApiAutoTest\cases\test_Recharge_api.py", line 57, in test_recharge
+  File "D:\LeMonApiAutoTest\cases\test_Recharge_api.py", line 66, in test_recharge
     self.assertEqual(recharge_expected, actual_result, msg='测试{}失败'.format(title))
 AssertionError: {'leaveamount': '0.00', 'code': '20117'} != {'leaveamount': '123462.00', 'code': '10001'}
 - {'code': '20117', 'leaveamount': '0.00'}
@@ -387,34 +389,9 @@ AssertionError: {'leaveamount': '0.00', 'code': '20117'} != {'leaveamount': '123
     <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
 </tr>
 
-<tr id='ft2_14' class='none'>
-    <td class='failCase'><div class='testcase'>test_recharge_14_充值失败_参数正确</div></td>
-    <td colspan='5' align='center'>
-    <!--默认收起错误信息 -Findyou
-    <button id='btn_ft2_14' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft2_14'>失败</button>
-    <div id='div_ft2_14' class="collapse">  -->
-    <!-- 默认展开错误信息 -Findyou -->
-    <button id='btn_ft2_14' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft2_14'>失败</button>
-    <div id='div_ft2_14' class="collapse in" align="left">
-    <pre>
-    
-ft2_14: Traceback (most recent call last):
-  File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
-    return func(self, *args, **kwargs)
-  File "D:\LeMonApiAutoTest\cases\test_Recharge_api.py", line 66, in test_recharge
-    raise e
-  File "D:\LeMonApiAutoTest\cases\test_Recharge_api.py", line 57, in test_recharge
-    self.assertEqual(recharge_expected, actual_result, msg='测试{}失败'.format(title))
-AssertionError: {'leaveamount': '0.00', 'code': '1001'} != {'leaveamount': '10000.00', 'code': '10001'}
-- {'code': '1001', 'leaveamount': '0.00'}
-+ {'code': '10001', 'leaveamount': '10000.00'}
-?            +                      ++++
- : 测试充值失败-参数正确失败
-
-
-    </pre>
-    </div>
-    </td>
+<tr id='pt2_14' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_recharge_14_充值失败_参数正确</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
 </tr>
 
 <tr class='failClass warning'>
@@ -595,10 +572,10 @@ AssertionError: {'status': 0, 'code': '20103', 'data': None, 'msg': '用户名�
 <tr id='total_row' class="text-center active">
     <td>总计</td>
     <td>41</td>
-    <td>33</td>
-    <td>8</td>
+    <td>34</td>
+    <td>7</td>
     <td>0</td>
-    <td>通过率：80.49%</td>
+    <td>通过率：82.93%</td>
 </tr>
 </table>
 
