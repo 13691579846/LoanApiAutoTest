@@ -40,6 +40,7 @@ class CreateUser(object):
         user_dic = {
             reg_name: {
                 'MemberId': member_id,
+                'pwd': pwd,
                 'MobilePhone': phone,
                 'RegName': reg_name
             }
