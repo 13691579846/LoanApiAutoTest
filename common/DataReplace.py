@@ -42,46 +42,51 @@ class DataReplace(object):
             log.error("正则匹配测试数据失败: data '{}' must be string".format(data))
             raise TypeError("data '{}' must be string".format(data))
 
-    def replace_not_exist_phone(self, not_exist_phone, data):
+    @classmethod
+    def replace_not_exist_phone(cls, not_exist_phone, data):
         """替换未注册的手机号"""
-        data = self.re_replace(self.pattern_not_exist_phone, not_exist_phone, data)
+        data = cls.re_replace(cls.pattern_not_exist_phone, not_exist_phone, data)
         return data
 
-    def replace_exist_phone(self, data):
+    @classmethod
+    def replace_exist_phone(cls, data):
         """替换已经注册的手机号码"""
         exist_phone = str(do_user('Invest', 'MobilePhone'))
-        data = self.re_replace(self.pattern_exist_phone, exist_phone, data)
+        data = cls.re_replace(cls.pattern_exist_phone, exist_phone, data)
         return data
 
-    def replace_invest_phone(self, data):
+    @classmethod
+    def replace_invest_phone(cls, data):
         """充值接口替换登录的角色帐号"""
         login_phone = str(do_user('Loan', 'MobilePhone'))
-        data = self.re_replace(self.pattern_invest_phone, login_phone, data)
+        data = cls.re_replace(cls.pattern_invest_phone, login_phone, data)
         return data
 
-    def replace_no_login_phone(self, data):
+    @classmethod
+    def replace_no_login_phone(cls, data):
         """充值接口替换未登录的角色帐号"""
         no_login_phone = str(do_user('Loan', 'MobilePhone'))
-        data = self.re_replace(self.pattern_no_login_phone, no_login_phone, data)
+        data = cls.re_replace(cls.pattern_no_login_phone, no_login_phone, data)
         return data
 
-    def register_login_parameters_data(self, not_exist_phone, data):
+    @classmethod
+    def register_login_parameters_data(cls, not_exist_phone, data):
         """注册与登录参数化"""
-        data = self.replace_not_exist_phone(not_exist_phone, data)
-        data = self.replace_exist_phone(data)
+        data = cls.replace_not_exist_phone(not_exist_phone, data)
+        data = cls.replace_exist_phone(data)
         return data
 
-    def recharge_parameters_data(self, data):
+    @classmethod
+    def recharge_parameters_data(cls, data):
         """充值的参数化"""
-        data = self.replace_invest_phone(data)
-        data = self.replace_no_login_phone(data)
+        data = cls.replace_invest_phone(data)
+        data = cls.replace_no_login_phone(data)
         return data
 
 
-do_replace = DataReplace()
-# 注册参数化
-register_login_parameters = getattr(do_replace, 'register_login_parameters_data')
-recharge_parameters = getattr(do_replace, 'recharge_parameters_data')
+register_login_parameters = getattr(DataReplace, 'register_login_parameters_data')
+recharge_parameters = getattr(DataReplace, 'recharge_parameters_data')
+
 
 if __name__ == '__main__':
     source_str_phone = '{"mobilephone": ${not_exist_phone}, "pwd": "123456"}'
