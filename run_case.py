@@ -14,7 +14,7 @@ from libs import HTMLTestRunnerNew
 from common.CreatePath import ModelsClass
 from config.config import ENVIRONMENT
 from business.CreateUser import register
-from config.config import (USER_PATH, REPORT_DIR)
+from config.config import (USER_PATH, REPORT_DIR, CASE_DIR)
 
 
 def create_user_info_config_file(filename):
@@ -25,7 +25,7 @@ def create_user_info_config_file(filename):
 
 def tc_suite():
     """测试套件"""
-    discover = unittest.defaultTestLoader.discover('.', 'test_*.py')
+    discover = unittest.defaultTestLoader.discover(CASE_DIR, 'test_*.py')
     return discover
 
 
