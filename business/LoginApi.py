@@ -15,14 +15,15 @@ from common.RecordLog import log
 
 
 class LoginApi(object):
-    request = request
+    request = request  # 登录时的会话
 
     def login_api(self, method, url, data):
-        self.request(method=method,
+        response = self.request(method=method,
                      url=url,
                      data=data
                      )
-        log.info('{}登录接口'.format(data['mobilephone']))
+        log.info('投资人：{}登录接口'.format(data['mobilephone']))
+        print(response.text)
 
     def close(self):
         log.info('关闭登录请求...')
@@ -30,7 +31,6 @@ class LoginApi(object):
 
 
 login = LoginApi()
-
 
 if __name__ == '__main__':
     login = LoginApi()
