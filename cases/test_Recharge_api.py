@@ -28,6 +28,7 @@ class TestRechargeApi(Base):
     test_data = do_excel.get_name_tuple_all_value(do_conf('SheetName', 'Recharge'))
 
     def setUp(self):
+        # 投资人登录充值
         login.login_api(method='post',
                         url=do_conf('URL', 'Host_Url') + '/member/login',
                         data={"mobilephone": str(do_user('Invest', 'mobilephone')),
