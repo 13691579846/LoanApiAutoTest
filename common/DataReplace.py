@@ -14,11 +14,19 @@ from common.ParseConfig import (do_conf, do_user)
 
 
 class DataReplace(object):
-
     pattern_not_exist_phone = re.compile(do_conf('Expression', 'Non_exist_phone'))
     pattern_exist_phone = re.compile(do_conf('Expression', 'Existed_phone'))
     pattern_invest_phone = re.compile(do_conf('Expression', 'Invest_phone'))
     pattern_no_login_phone = re.compile(do_conf('Expression', 'NoLogin_phone'))
+    # add by linux超 at 2019.06.06
+    pattern_exist_loan_member_id = re.compile(do_conf('Expression', 'Existed_member_id'))
+    pattern_not_exist_loan_member_id = re.compile(do_conf('Expression', 'Non_existed_member_id'))
+    # add by linux超 at 2019.06.06
+    pattern_exist_invest_member_id = re.compile(do_conf('Expression', 'Exist_invest_member_id'))
+    pattern_not_exist_invest_member_id = re.compile(do_conf('Expression', 'Non_exist_invest_member_id'))
+    pattern_exist_loan_id = re.compile(do_conf('Expression', 'Exist_loan_id'))
+    pattern_not_exist_loan_id = re.compile(do_conf('Expression', 'Non_exist_loan_id'))
+    pattern_amount = re.compile(do_conf('Expression', 'Amount'))
 
     def __init__(self):
         pass
@@ -42,6 +50,7 @@ class DataReplace(object):
             log.error("正则匹配测试数据失败: data '{}' must be string".format(data))
             raise TypeError("data '{}' must be string".format(data))
 
+    # --------注册与登录接口参数化--------
     @classmethod
     def replace_not_exist_phone(cls, not_exist_phone, data):
         """替换未注册的手机号"""
@@ -55,6 +64,7 @@ class DataReplace(object):
         data = cls.re_replace(cls.pattern_exist_phone, exist_phone, data)
         return data
 
+    # -----------充值接口参数化-----------
     @classmethod
     def replace_invest_phone(cls, data):
         """充值接口替换登录的角色帐号"""
@@ -67,6 +77,53 @@ class DataReplace(object):
         """充值接口替换未登录的角色帐号"""
         no_login_phone = str(do_user('Loan', 'MobilePhone'))
         data = cls.re_replace(cls.pattern_no_login_phone, no_login_phone, data)
+        return data
+
+    # ----------加标接口参数化-------------
+    # add by linux超 at 2019.06.06
+    @classmethod
+    def replace_loan_member_id(cls, data):
+        """替换借款人的member id"""
+        loan_member_id = str(do_user('Loan', 'memberid'))
+        data = cls.re_replace(cls.pattern_exist_loan_member_id, loan_member_id, data)
+        return data
+
+    # add by linux超 at 2019.06.06
+    @classmethod
+    def replace_no_exist_loan_member_id(cls, not_exist_loan_member_id, data):
+        """替换不存在的loan member id"""
+        data = cls.re_replace(cls.pattern_not_exist_loan_member_id, not_exist_loan_member_id, data)
+        return data
+
+    # -----------竞标接口参数化-----------
+    @classmethod
+    def replace_exist_invest_id(cls, data):
+        invest_member_id = str(do_user('Invest', 'memberid'))
+        data = cls.re_replace(cls.pattern_exist_invest_member_id, invest_member_id, data)
+        return data
+
+    @classmethod
+    def replace_exist_loan_id(cls, data):
+        exist_loan_id = getattr(DataReplace, 'loan_id')
+        data = cls.re_replace(cls.pattern_exist_loan_id, exist_loan_id, data)
+        return data
+
+    @classmethod
+    def replace_not_exist_invest_id(cls, data):
+        not_exist_invest_id = getattr(DataReplace, 'non_exist_member_id')
+        data = cls.re_replace(cls.pattern_not_exist_invest_member_id, not_exist_invest_id, data)
+        return data
+
+    @classmethod
+    def replace_not_exist_loan_id(cls, data):
+        not_exist_loan_id = getattr(DataReplace, 'not_exist_loan_id')
+        data = cls.re_replace(cls.pattern_not_exist_loan_id, not_exist_loan_id, data)
+        return data
+
+    @classmethod
+    def replace_amount(cls, data):
+        amount = '2000'
+        data = cls.re_replace(cls.pattern_amount, amount, data)
         return data
 
     @classmethod
@@ -83,14 +140,37 @@ class DataReplace(object):
         data = cls.replace_no_login_phone(data)
         return data
 
+    # add by linux超 at 2019.06.06
+    @classmethod
+    def add_parameters_data(cls, not_exist_loan_member_id, data):
+        """加标的参数化"""
+        data = cls.replace_loan_member_id(data)
+        data = cls.replace_no_exist_loan_member_id(not_exist_loan_member_id, data)
+        return data
+
+    @classmethod
+    def invest_parameters_data(cls, data):
+        """竞标接口的参数化"""
+        data = cls.replace_exist_invest_id(data)
+        data = cls.replace_exist_loan_id(data)
+        data = cls.replace_not_exist_invest_id(data)
+        data = cls.replace_not_exist_loan_id(data)
+        data = cls.replace_amount(data)
+        return data
+
 
 register_login_parameters = getattr(DataReplace, 'register_login_parameters_data')
 recharge_parameters = getattr(DataReplace, 'recharge_parameters_data')
-
+add_parameters = getattr(DataReplace, 'add_parameters_data')
 
 if __name__ == '__main__':
     source_str_phone = '{"mobilephone": ${not_exist_phone}, "pwd": "123456"}'
     data_phone = '{"mobilephone": ${exist_phone}, "pwd": "123456"}'
     invest_phone = '{"mobilephone": ${Invest}, "pwd": "123456"}'
-    data_replace = DataReplace()
-    print(data_replace.register_login_parameters_data('1391111111', invest_phone))
+    print(DataReplace.register_login_parameters_data('1391111111', invest_phone))
+    setattr(DataReplace, 'loan_id', '123456')
+    setattr(DataReplace, 'non_exist_member_id', '654321')
+    setattr(DataReplace, 'not_exist_loan_id', '242434')
+    value = '{"memberId":"${invest_memberID}", "pwd": [123456], "loanId": "${loanID}","amount":"${amount}"}'
+    new_value = DataReplace.invest_parameters_data(value)
+    print(new_value)
