@@ -27,6 +27,7 @@ class DataReplace(object):
     pattern_exist_loan_id = re.compile(do_conf('Expression', 'Exist_loan_id'))
     pattern_not_exist_loan_id = re.compile(do_conf('Expression', 'Non_exist_loan_id'))
     pattern_amount = re.compile(do_conf('Expression', 'Amount'))
+    pattern_password = re.compile(do_conf('Expression', 'Password'))
 
     def __init__(self):
         pass
@@ -110,14 +111,23 @@ class DataReplace(object):
 
     @classmethod
     def replace_not_exist_invest_id(cls, data):
-        not_exist_invest_id = getattr(DataReplace, 'non_exist_member_id')
-        data = cls.re_replace(cls.pattern_not_exist_invest_member_id, not_exist_invest_id, data)
+        if hasattr(DataReplace, 'non_exist_member_id'):
+            not_exist_invest_id = getattr(DataReplace, 'non_exist_member_id')
+            data = cls.re_replace(cls.pattern_not_exist_invest_member_id, not_exist_invest_id, data)
+        else:
+            data = cls.re_replace(cls.pattern_not_exist_invest_member_id, '', data)
         return data
 
+    # @classmethod
+    # def replace_not_exist_loan_id(cls, data):
+    #     not_exist_loan_id = getattr(DataReplace, 'not_exist_loan_id')
+    #     data = cls.re_replace(cls.pattern_not_exist_loan_id, not_exist_loan_id, data)
+    #     return data
+
     @classmethod
-    def replace_not_exist_loan_id(cls, data):
-        not_exist_loan_id = getattr(DataReplace, 'not_exist_loan_id')
-        data = cls.re_replace(cls.pattern_not_exist_loan_id, not_exist_loan_id, data)
+    def replace_password(cls, data):
+        pwd = str(do_user('Invest', 'pwd'))
+        data = cls.re_replace(cls.pattern_password, pwd, data)
         return data
 
     @classmethod
@@ -154,7 +164,8 @@ class DataReplace(object):
         data = cls.replace_exist_invest_id(data)
         data = cls.replace_exist_loan_id(data)
         data = cls.replace_not_exist_invest_id(data)
-        data = cls.replace_not_exist_loan_id(data)
+        data = cls.replace_password(data)
+        # data = cls.replace_not_exist_loan_id(data)
         data = cls.replace_amount(data)
         return data
 
@@ -162,6 +173,7 @@ class DataReplace(object):
 register_login_parameters = getattr(DataReplace, 'register_login_parameters_data')
 recharge_parameters = getattr(DataReplace, 'recharge_parameters_data')
 add_parameters = getattr(DataReplace, 'add_parameters_data')
+invest_parameters = getattr(DataReplace, 'invest_parameters_data')
 
 if __name__ == '__main__':
     source_str_phone = '{"mobilephone": ${not_exist_phone}, "pwd": "123456"}'

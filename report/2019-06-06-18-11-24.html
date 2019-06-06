@@ -1,0 +1,2447 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>前程贷项目接口自动化测试报告</title>
+    <meta name="generator" content="HTMLTestRunner 0.8.2.2"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    
+<style type="text/css" media="screen">
+body        { font-family: Microsoft YaHei,Tahoma,arial,helvetica,sans-serif;padding: 20px; font-size: 120%; }
+table       { font-size: 100%; }
+/* -- heading ---------------------------------------------------------------------- */
+.heading {
+    margin-top: 0ex;
+    margin-bottom: 1ex;
+}
+.heading .description {
+    margin-top: 4ex;
+    margin-bottom: 6ex;
+}
+/* -- report ------------------------------------------------------------------------ */
+#total_row  { font-weight: bold; }
+.passCase   { color: #5cb85c; }
+.failCase   { color: #d9534f; font-weight: bold; }
+.errorCase  { color: #f0ad4e; font-weight: bold; }
+.hiddenRow  { display: none; }
+.testcase   { margin-left: 2em; }
+</style>
+
+</head>
+<body >
+<script language="javascript" type="text/javascript">
+output_list = Array();
+/*level 调整增加只显示通过用例的分类 --Findyou
+0:Summary //all hiddenRow
+1:Failed  //pt hiddenRow, ft none
+2:Pass    //pt none, ft hiddenRow
+3:All     //pt none, ft none
+*/
+function showCase(level) {
+    trs = document.getElementsByTagName("tr");
+    for (var i = 0; i < trs.length; i++) {
+        tr = trs[i];
+        id = tr.id;
+        if (id.substr(0,2) == 'ft') {
+            if (level == 2 || level == 0 ) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+        if (id.substr(0,2) == 'pt') {
+            if (level < 2) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+    }
+    //加入【详细】切换文字变化 --Findyou
+    detail_class=document.getElementsByClassName('detail');
+	//console.log(detail_class.length)
+	if (level == 3) {
+		for (var i = 0; i < detail_class.length; i++){
+			detail_class[i].innerHTML="收起"
+		}
+	}
+	else{
+			for (var i = 0; i < detail_class.length; i++){
+			detail_class[i].innerHTML="详细"
+		}
+	}
+}
+function showClassDetail(cid, count) {
+    var id_list = Array(count);
+    var toHide = 1;
+    for (var i = 0; i < count; i++) {
+        //ID修改 点 为 下划线 -Findyou
+        tid0 = 't' + cid.substr(1) + '_' + (i+1);
+        tid = 'f' + tid0;
+        tr = document.getElementById(tid);
+        if (!tr) {
+            tid = 'p' + tid0;
+            tr = document.getElementById(tid);
+        }
+        id_list[i] = tid;
+        if (tr.className) {
+            toHide = 0;
+        }
+    }
+    for (var i = 0; i < count; i++) {
+        tid = id_list[i];
+        //修改点击无法收起的BUG，加入【详细】切换文字变化 --Findyou
+        if (toHide) {
+            document.getElementById(tid).className = 'hiddenRow';
+            document.getElementById(cid).innerText = "详细"
+        }
+        else {
+            document.getElementById(tid).className = '';
+            document.getElementById(cid).innerText = "收起"
+        }
+    }
+}
+function html_escape(s) {
+    s = s.replace(/&/g,'&amp;');
+    s = s.replace(/</g,'&lt;');
+    s = s.replace(/>/g,'&gt;');
+    return s;
+}
+</script>
+<div class='heading'>
+<h1 style="font-family: Microsoft YaHei">前程贷项目接口自动化测试报告</h1>
+<p class='attribute'><strong>测试人员 : </strong> linux超</p>
+<p class='attribute'><strong>开始时间 : </strong> 2019-06-06 18:11:24</p>
+<p class='attribute'><strong>合计耗时 : </strong> 0:01:15.337581</p>
+<p class='attribute'><strong>测试结果 : </strong> 共 111，通过 76，失败 35，通过率= 68.47%</p>
+
+<p class='description'>Windows Version:Windows10.0.1713410Python Versionv3.6.4:d48eceb</p>
+</div>
+
+
+<p id='show_detail_line'>
+<a class="btn btn-primary" href='javascript:showCase(0)'>概要{ 68.47% }</a>
+<a class="btn btn-danger" href='javascript:showCase(1)'>失败{ 35 }</a>
+<a class="btn btn-success" href='javascript:showCase(2)'>通过{ 76 }</a>
+<a class="btn btn-info" href='javascript:showCase(3)'>所有{ 111 }</a>
+</p>
+<table id='result_table' class="table table-condensed table-bordered table-hover">
+<colgroup>
+<col align='left' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+</colgroup>
+<tr id='header_row' class="text-center success" style="font-weight: bold;font-size: 16px;">
+    <td>用例集/测试用例</td>
+    <td>总计</td>
+    <td>通过</td>
+    <td>失败</td>
+    <td>错误</td>
+    <td>详细</td>
+</tr>
+
+<tr class='failClass warning'>
+    <td>test_AddLoan_api.TestAddApi: 加标接口</td>
+    <td class="text-center">49</td>
+    <td class="text-center">42</td>
+    <td class="text-center">7</td>
+    <td class="text-center">0</td>
+    <td class="text-center"><a href="javascript:showClassDetail('c1',49)" class="detail" id='c1'>详细</a></td>
+</tr>
+
+<tr id='pt1_1' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_add_01_加标成功_借款金额大于1000且能被100整除</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_1' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_1'>通过</button>
+    <div id='div_pt1_1' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_1' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_1'>通过</button>
+    <div id='div_pt1_1' class="collapse in" align="left">
+    <pre>
+    
+pt1_1: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_2' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_add_02_加标成功_年利率大于0小于24</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_2' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_2'>通过</button>
+    <div id='div_pt1_2' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_2' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_2'>通过</button>
+    <div id='div_pt1_2' class="collapse in" align="left">
+    <pre>
+    
+pt1_2: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_3' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_add_03_加标成功_年利率等于24</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_3' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_3'>通过</button>
+    <div id='div_pt1_3' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_3' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_3'>通过</button>
+    <div id='div_pt1_3' class="collapse in" align="left">
+    <pre>
+    
+pt1_3: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_4' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_add_04_加标成功_借款期限类型为0</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_4' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_4'>通过</button>
+    <div id='div_pt1_4' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_4' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_4'>通过</button>
+    <div id='div_pt1_4' class="collapse in" align="left">
+    <pre>
+    
+pt1_4: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_5' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_add_05_加标成功_借款期限类型为2</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_5' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_5'>通过</button>
+    <div id='div_pt1_5' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_5' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_5'>通过</button>
+    <div id='div_pt1_5' class="collapse in" align="left">
+    <pre>
+    
+pt1_5: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_6' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_add_06_加标成功_借款期限类型值为4</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_6' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_6'>通过</button>
+    <div id='div_pt1_6' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_6' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_6'>通过</button>
+    <div id='div_pt1_6' class="collapse in" align="left">
+    <pre>
+    
+pt1_6: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_7' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_add_07_加标成功_还款方式为4</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_7' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_7'>通过</button>
+    <div id='div_pt1_7' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_7' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_7'>通过</button>
+    <div id='div_pt1_7' class="collapse in" align="left">
+    <pre>
+    
+pt1_7: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_8' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_add_08_加标成功_还款方式为5</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_8' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_8'>通过</button>
+    <div id='div_pt1_8' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_8' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_8'>通过</button>
+    <div id='div_pt1_8' class="collapse in" align="left">
+    <pre>
+    
+pt1_8: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_9' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_add_09_加标成功_还款方式为10</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_9' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_9'>通过</button>
+    <div id='div_pt1_9' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_9' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_9'>通过</button>
+    <div id='div_pt1_9' class="collapse in" align="left">
+    <pre>
+    
+pt1_9: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_10' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_add_10_加标成功_还款方式为11</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_10' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_10'>通过</button>
+    <div id='div_pt1_10' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_10' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_10'>通过</button>
+    <div id='div_pt1_10' class="collapse in" align="left">
+    <pre>
+    
+pt1_10: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_11' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_add_11_加标成功_竞标天数为1</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_11' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_11'>通过</button>
+    <div id='div_pt1_11' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_11' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_11'>通过</button>
+    <div id='div_pt1_11' class="collapse in" align="left">
+    <pre>
+    
+pt1_11: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_12' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_add_12_加标成功_竞标天数为10</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_12' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_12'>通过</button>
+    <div id='div_pt1_12' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_12' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_12'>通过</button>
+    <div id='div_pt1_12' class="collapse in" align="left">
+    <pre>
+    
+pt1_12: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_13' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_add_13_加标成功_竞标天数为大于1小于10</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_13' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_13'>通过</button>
+    <div id='div_pt1_13' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_13' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_13'>通过</button>
+    <div id='div_pt1_13' class="collapse in" align="left">
+    <pre>
+    
+pt1_13: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_14' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_add_14_加标失败_年利率小于0</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_14' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_14'>通过</button>
+    <div id='div_pt1_14' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_14' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_14'>通过</button>
+    <div id='div_pt1_14' class="collapse in" align="left">
+    <pre>
+    
+pt1_14: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_15' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_add_15_加标失败_年利率为null</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_15' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_15'>通过</button>
+    <div id='div_pt1_15' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_15' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_15'>通过</button>
+    <div id='div_pt1_15' class="collapse in" align="left">
+    <pre>
+    
+pt1_15: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_16' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_add_16_加标失败_年利率大于24</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_16' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_16'>通过</button>
+    <div id='div_pt1_16' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_16' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_16'>通过</button>
+    <div id='div_pt1_16' class="collapse in" align="left">
+    <pre>
+    
+pt1_16: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_17' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_add_17_加标失败_年利率等于0</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_17' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_17'>通过</button>
+    <div id='div_pt1_17' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_17' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_17'>通过</button>
+    <div id='div_pt1_17' class="collapse in" align="left">
+    <pre>
+    
+pt1_17: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_18' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_add_18_加标失败_借款期限类型非_0_2_4_</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_18' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_18'>通过</button>
+    <div id='div_pt1_18' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_18' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_18'>通过</button>
+    <div id='div_pt1_18' class="collapse in" align="left">
+    <pre>
+    
+pt1_18: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_19' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_add_19_加标失败_借款期限类型为null</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_19' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_19'>通过</button>
+    <div id='div_pt1_19' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_19' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_19'>通过</button>
+    <div id='div_pt1_19' class="collapse in" align="left">
+    <pre>
+    
+pt1_19: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_20' class='none'>
+    <td class='failCase'><div class='testcase'>test_add_20_加标失败_还款方式非_4_5_10_11_</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_20' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_20'>失败</button>
+    <div id='div_ft1_20' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_20' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_20'>失败</button>
+    <div id='div_ft1_20' class="collapse in" align="left">
+    <pre>
+    
+ft1_20: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+Traceback (most recent call last):
+  File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
+    return func(self, *args, **kwargs)
+  File "D:\LeMonApiAutoTest\cases\test_AddLoan_api.py", line 72, in test_add
+    raise e
+  File "D:\LeMonApiAutoTest\cases\test_AddLoan_api.py", line 63, in test_add
+    self.assertEqual(add_expected, actual_result, msg='测试{}失败'.format(title))
+AssertionError: {'status': 0, 'code': '20109', 'data': None, 'msg': [33 chars],11'} != {'status': 1, 'code': '10001', 'data': None, 'msg': '加标成功'}
++ {'code': '10001', 'data': None, 'msg': '加标成功', 'status': 1}
+- {'code': '20109',
+-  'data': None,
+-  'msg': '参数错误：还款方式类型repaymemtWay只能为4,5,10,11',
+-  'status': 0} : 测试加标失败-还款方式非(4,5,10,11)失败
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_21' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_add_21_加标失败_还款方式为null</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_21' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_21'>通过</button>
+    <div id='div_pt1_21' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_21' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_21'>通过</button>
+    <div id='div_pt1_21' class="collapse in" align="left">
+    <pre>
+    
+pt1_21: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_22' class='none'>
+    <td class='failCase'><div class='testcase'>test_add_22_加标失败_竞标天数小于1</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_22' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_22'>失败</button>
+    <div id='div_ft1_22' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_22' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_22'>失败</button>
+    <div id='div_ft1_22' class="collapse in" align="left">
+    <pre>
+    
+ft1_22: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+Traceback (most recent call last):
+  File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
+    return func(self, *args, **kwargs)
+  File "D:\LeMonApiAutoTest\cases\test_AddLoan_api.py", line 72, in test_add
+    raise e
+  File "D:\LeMonApiAutoTest\cases\test_AddLoan_api.py", line 63, in test_add
+    self.assertEqual(add_expected, actual_result, msg='测试{}失败'.format(title))
+AssertionError: {'status': 0, 'code': '20109', 'data': None, 'msg': '参数错误'} != {'status': 1, 'code': '10001', 'data': None, 'msg': '加标成功'}
+- {'code': '20109', 'data': None, 'msg': '参数错误', 'status': 0}
+?           ^  --                         ^^^^             ^
+
++ {'code': '10001', 'data': None, 'msg': '加标成功', 'status': 1}
+?           ^^^                           ^^^^             ^
+ : 测试加标失败-竞标天数小于1失败
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_23' class='none'>
+    <td class='failCase'><div class='testcase'>test_add_23_加标失败_竞标天数大于10</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_23' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_23'>失败</button>
+    <div id='div_ft1_23' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_23' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_23'>失败</button>
+    <div id='div_ft1_23' class="collapse in" align="left">
+    <pre>
+    
+ft1_23: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+Traceback (most recent call last):
+  File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
+    return func(self, *args, **kwargs)
+  File "D:\LeMonApiAutoTest\cases\test_AddLoan_api.py", line 72, in test_add
+    raise e
+  File "D:\LeMonApiAutoTest\cases\test_AddLoan_api.py", line 63, in test_add
+    self.assertEqual(add_expected, actual_result, msg='测试{}失败'.format(title))
+AssertionError: {'status': 0, 'code': '20109', 'data': None, 'msg': '参数错误'} != {'status': 1, 'code': '10001', 'data': None, 'msg': '加标成功'}
+- {'code': '20109', 'data': None, 'msg': '参数错误', 'status': 0}
+?           ^  --                         ^^^^             ^
+
++ {'code': '10001', 'data': None, 'msg': '加标成功', 'status': 1}
+?           ^^^                           ^^^^             ^
+ : 测试加标失败-竞标天数大于10失败
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_24' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_add_24_加标失败_竞标天数为null</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_24' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_24'>通过</button>
+    <div id='div_pt1_24' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_24' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_24'>通过</button>
+    <div id='div_pt1_24' class="collapse in" align="left">
+    <pre>
+    
+pt1_24: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_25' class='none'>
+    <td class='failCase'><div class='testcase'>test_add_25_加标失败_借款金额等于1000</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_25' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_25'>失败</button>
+    <div id='div_ft1_25' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_25' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_25'>失败</button>
+    <div id='div_ft1_25' class="collapse in" align="left">
+    <pre>
+    
+ft1_25: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+Traceback (most recent call last):
+  File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
+    return func(self, *args, **kwargs)
+  File "D:\LeMonApiAutoTest\cases\test_AddLoan_api.py", line 72, in test_add
+    raise e
+  File "D:\LeMonApiAutoTest\cases\test_AddLoan_api.py", line 63, in test_add
+    self.assertEqual(add_expected, actual_result, msg='测试{}失败'.format(title))
+AssertionError: {'status': 0, 'code': '20106', 'data': None, 'msg': [34 chars]正整数'} != {'status': 1, 'code': '10001', 'data': None, 'msg': '加标成功'}
++ {'code': '10001', 'data': None, 'msg': '加标成功', 'status': 1}
+- {'code': '20106',
+-  'data': None,
+-  'msg': '参数错误：借款金额amount必须为大于1000并能被100整除的正整数',
+-  'status': 0} : 测试加标失败-借款金额等于1000失败
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_26' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_add_26_加标失败_借款金额大于1000但不能被100整除</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_26' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_26'>通过</button>
+    <div id='div_pt1_26' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_26' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_26'>通过</button>
+    <div id='div_pt1_26' class="collapse in" align="left">
+    <pre>
+    
+pt1_26: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_27' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_add_27_加标失败_借款金额为空</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_27' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_27'>通过</button>
+    <div id='div_pt1_27' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_27' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_27'>通过</button>
+    <div id='div_pt1_27' class="collapse in" align="left">
+    <pre>
+    
+pt1_27: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_28' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_add_28_加标失败_用户ID缺失</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_28' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_28'>通过</button>
+    <div id='div_pt1_28' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_28' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_28'>通过</button>
+    <div id='div_pt1_28' class="collapse in" align="left">
+    <pre>
+    
+pt1_28: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_29' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_add_29_加标失败_标题缺失</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_29' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_29'>通过</button>
+    <div id='div_pt1_29' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_29' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_29'>通过</button>
+    <div id='div_pt1_29' class="collapse in" align="left">
+    <pre>
+    
+pt1_29: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_30' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_add_30_加标失败_借款金额缺失</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_30' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_30'>通过</button>
+    <div id='div_pt1_30' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_30' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_30'>通过</button>
+    <div id='div_pt1_30' class="collapse in" align="left">
+    <pre>
+    
+pt1_30: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_31' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_add_31_加标失败_年利率缺失</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_31' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_31'>通过</button>
+    <div id='div_pt1_31' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_31' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_31'>通过</button>
+    <div id='div_pt1_31' class="collapse in" align="left">
+    <pre>
+    
+pt1_31: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_32' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_add_32_加标失败_借款期限缺失</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_32' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_32'>通过</button>
+    <div id='div_pt1_32' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_32' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_32'>通过</button>
+    <div id='div_pt1_32' class="collapse in" align="left">
+    <pre>
+    
+pt1_32: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_33' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_add_33_加标失败_借款期限类型缺失</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_33' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_33'>通过</button>
+    <div id='div_pt1_33' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_33' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_33'>通过</button>
+    <div id='div_pt1_33' class="collapse in" align="left">
+    <pre>
+    
+pt1_33: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_34' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_add_34_加标失败_还款方式缺失</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_34' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_34'>通过</button>
+    <div id='div_pt1_34' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_34' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_34'>通过</button>
+    <div id='div_pt1_34' class="collapse in" align="left">
+    <pre>
+    
+pt1_34: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_35' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_add_35_加标失败_竞标天数缺失</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_35' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_35'>通过</button>
+    <div id='div_pt1_35' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_35' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_35'>通过</button>
+    <div id='div_pt1_35' class="collapse in" align="left">
+    <pre>
+    
+pt1_35: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_36' class='none'>
+    <td class='failCase'><div class='testcase'>test_add_36_加标失败_用户ID类型非int</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_36' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_36'>失败</button>
+    <div id='div_ft1_36' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_36' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_36'>失败</button>
+    <div id='div_ft1_36' class="collapse in" align="left">
+    <pre>
+    
+ft1_36: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+Traceback (most recent call last):
+  File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
+    return func(self, *args, **kwargs)
+  File "D:\LeMonApiAutoTest\cases\test_AddLoan_api.py", line 72, in test_add
+    raise e
+  File "D:\LeMonApiAutoTest\cases\test_AddLoan_api.py", line 63, in test_add
+    self.assertEqual(add_expected, actual_result, msg='测试{}失败'.format(title))
+AssertionError: {'sta[14 chars]': '20109', 'data': None, 'msg': '参数错误:请根据参数类型对应输入，数值类型只能输入数字'} != {'sta[14 chars]': '20109', 'data': None, 'msg': '请根据数值参数的类型对应输入合法的数字'}
++ {'code': '20109', 'data': None, 'msg': '请根据数值参数的类型对应输入合法的数字', 'status': 0}
+- {'code': '20109',
+-  'data': None,
+-  'msg': '参数错误:请根据参数类型对应输入，数值类型只能输入数字',
+-  'status': 0} : 测试加标失败-用户ID类型非int失败
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_37' class='none'>
+    <td class='failCase'><div class='testcase'>test_add_37_加标失败_标题类型非string</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_37' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_37'>失败</button>
+    <div id='div_ft1_37' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_37' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_37'>失败</button>
+    <div id='div_ft1_37' class="collapse in" align="left">
+    <pre>
+    
+ft1_37: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+Traceback (most recent call last):
+  File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
+    return func(self, *args, **kwargs)
+  File "D:\LeMonApiAutoTest\cases\test_AddLoan_api.py", line 72, in test_add
+    raise e
+  File "D:\LeMonApiAutoTest\cases\test_AddLoan_api.py", line 63, in test_add
+    self.assertEqual(add_expected, actual_result, msg='测试{}失败'.format(title))
+AssertionError: {'status': 0, 'code': '20109', 'data': None, 'msg': [25 chars]入数字'} != {'status': 1, 'code': '10001', 'data': None, 'msg': '加标成功'}
++ {'code': '10001', 'data': None, 'msg': '加标成功', 'status': 1}
+- {'code': '20109',
+-  'data': None,
+-  'msg': '参数错误:请根据参数类型对应输入，数值类型只能输入数字',
+-  'status': 0} : 测试加标失败-标题类型非string失败
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_38' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_add_38_加标失败_借款金额类型非double</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_38' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_38'>通过</button>
+    <div id='div_pt1_38' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_38' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_38'>通过</button>
+    <div id='div_pt1_38' class="collapse in" align="left">
+    <pre>
+    
+pt1_38: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_39' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_add_39_加标失败_年利率类型非double</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_39' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_39'>通过</button>
+    <div id='div_pt1_39' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_39' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_39'>通过</button>
+    <div id='div_pt1_39' class="collapse in" align="left">
+    <pre>
+    
+pt1_39: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_40' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_add_40_加标失败_借款期限非int</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_40' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_40'>通过</button>
+    <div id='div_pt1_40' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_40' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_40'>通过</button>
+    <div id='div_pt1_40' class="collapse in" align="left">
+    <pre>
+    
+pt1_40: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_41' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_add_41_加标失败_借款期限类型非int</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_41' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_41'>通过</button>
+    <div id='div_pt1_41' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_41' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_41'>通过</button>
+    <div id='div_pt1_41' class="collapse in" align="left">
+    <pre>
+    
+pt1_41: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_42' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_add_42_加标失败_还款方式类型非int</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_42' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_42'>通过</button>
+    <div id='div_pt1_42' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_42' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_42'>通过</button>
+    <div id='div_pt1_42' class="collapse in" align="left">
+    <pre>
+    
+pt1_42: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_43' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_add_43_加标失败_竞标天数类型非int</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_43' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_43'>通过</button>
+    <div id='div_pt1_43' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_43' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_43'>通过</button>
+    <div id='div_pt1_43' class="collapse in" align="left">
+    <pre>
+    
+pt1_43: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_44' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_add_44_加标失败_用户ID为空</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_44' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_44'>通过</button>
+    <div id='div_pt1_44' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_44' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_44'>通过</button>
+    <div id='div_pt1_44' class="collapse in" align="left">
+    <pre>
+    
+pt1_44: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_45' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_add_45_加标失败_标题为空</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_45' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_45'>通过</button>
+    <div id='div_pt1_45' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_45' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_45'>通过</button>
+    <div id='div_pt1_45' class="collapse in" align="left">
+    <pre>
+    
+pt1_45: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_46' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_add_46_加标失败_借款期限为小数</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_46' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_46'>通过</button>
+    <div id='div_pt1_46' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_46' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_46'>通过</button>
+    <div id='div_pt1_46' class="collapse in" align="left">
+    <pre>
+    
+pt1_46: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_47' class='none'>
+    <td class='failCase'><div class='testcase'>test_add_47_加标失败_借款期限为0</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_47' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_47'>失败</button>
+    <div id='div_ft1_47' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_47' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_47'>失败</button>
+    <div id='div_ft1_47' class="collapse in" align="left">
+    <pre>
+    
+ft1_47: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+Traceback (most recent call last):
+  File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
+    return func(self, *args, **kwargs)
+  File "D:\LeMonApiAutoTest\cases\test_AddLoan_api.py", line 72, in test_add
+    raise e
+  File "D:\LeMonApiAutoTest\cases\test_AddLoan_api.py", line 63, in test_add
+    self.assertEqual(add_expected, actual_result, msg='测试{}失败'.format(title))
+AssertionError: {'status': 0, 'code': '20109', 'data': None, 'msg': '请根据数值参数的类型对应输入合法的数字'} != {'status': 1, 'code': '10001', 'data': None, 'msg': '加标成功'}
+- {'code': '20109', 'data': None, 'msg': '请根据数值参数的类型对应输入合法的数字', 'status': 0}
+?           ^  --                         ^^^^^^^^^^^^^^^^^^^             ^
+
++ {'code': '10001', 'data': None, 'msg': '加标成功', 'status': 1}
+?           ^^^                           ^^^^             ^
+ : 测试加标失败-借款期限为0失败
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_48' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_add_48_加标失败_借款期限为null</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_48' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_48'>通过</button>
+    <div id='div_pt1_48' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_48' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_48'>通过</button>
+    <div id='div_pt1_48' class="collapse in" align="left">
+    <pre>
+    
+pt1_48: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_49' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_add_49_加标失败_用户ID不存在</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_49' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_49'>通过</button>
+    <div id='div_pt1_49' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_49' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_49'>通过</button>
+    <div id='div_pt1_49' class="collapse in" align="left">
+    <pre>
+    
+pt1_49: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr class='failClass warning'>
+    <td>test_BidLoan_api.TestBidLoanApi: 竞标接口</td>
+    <td class="text-center">21</td>
+    <td class="text-center">0</td>
+    <td class="text-center">21</td>
+    <td class="text-center">0</td>
+    <td class="text-center"><a href="javascript:showClassDetail('c2',21)" class="detail" id='c2'>详细</a></td>
+</tr>
+
+<tr id='ft2_1' class='none'>
+    <td class='failCase'><div class='testcase'>test_bid_loan_01_竞标成功_所有参数正确</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft2_1' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft2_1'>失败</button>
+    <div id='div_ft2_1' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft2_1' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft2_1'>失败</button>
+    <div id='div_ft2_1' class="collapse in" align="left">
+    <pre>
+    
+ft2_1: {"memberId":"58122", "password": "123456", "loanId": "5199","amount":10000}
+Traceback (most recent call last):
+  File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
+    return func(self, *args, **kwargs)
+  File "D:\LeMonApiAutoTest\cases\test_BidLoan_api.py", line 98, in test_bid_loan
+    raise e
+  File "D:\LeMonApiAutoTest\cases\test_BidLoan_api.py", line 89, in test_bid_loan
+    self.assertEqual(audit_expected, actual_result, msg='测试{}失败'.format(title))
+AssertionError: {'status': 1, 'code': '10001', 'data': None, 'msg': '竞标成功'} != {'status': 0, 'code': None, 'data': None, 'msg': '抱歉，请先登录。'}
+- {'code': '10001', 'data': None, 'msg': '竞标成功', 'status': 1}
+?          ^^^^^^^                        ^^^^             ^
+
++ {'code': None, 'data': None, 'msg': '抱歉，请先登录。', 'status': 0}
+?          ^^^^                        ^^^^^^^^             ^
+ : 测试竞标成功-所有参数正确失败
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft2_2' class='none'>
+    <td class='failCase'><div class='testcase'>test_bid_loan_02_竞标成功_投资金额等于标余额</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft2_2' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft2_2'>失败</button>
+    <div id='div_ft2_2' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft2_2' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft2_2'>失败</button>
+    <div id='div_ft2_2' class="collapse in" align="left">
+    <pre>
+    
+ft2_2: {"memberId":"58122", "password": "123456", "loanId": "5199","amount":"2000"}
+Traceback (most recent call last):
+  File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
+    return func(self, *args, **kwargs)
+  File "D:\LeMonApiAutoTest\cases\test_BidLoan_api.py", line 98, in test_bid_loan
+    raise e
+  File "D:\LeMonApiAutoTest\cases\test_BidLoan_api.py", line 89, in test_bid_loan
+    self.assertEqual(audit_expected, actual_result, msg='测试{}失败'.format(title))
+AssertionError: {'status': 1, 'code': '10001', 'data': None, 'msg': '竞标成功'} != {'status': 0, 'code': None, 'data': None, 'msg': '抱歉，请先登录。'}
+- {'code': '10001', 'data': None, 'msg': '竞标成功', 'status': 1}
+?          ^^^^^^^                        ^^^^             ^
+
++ {'code': None, 'data': None, 'msg': '抱歉，请先登录。', 'status': 0}
+?          ^^^^                        ^^^^^^^^             ^
+ : 测试竞标成功-投资金额等于标余额失败
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft2_3' class='none'>
+    <td class='failCase'><div class='testcase'>test_bid_loan_03_竞标成功_投资金额小于标余额</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft2_3' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft2_3'>失败</button>
+    <div id='div_ft2_3' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft2_3' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft2_3'>失败</button>
+    <div id='div_ft2_3' class="collapse in" align="left">
+    <pre>
+    
+ft2_3: {"memberId":"58122", "password": "123456", "loanId": "5199","amount":"2000"}
+Traceback (most recent call last):
+  File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
+    return func(self, *args, **kwargs)
+  File "D:\LeMonApiAutoTest\cases\test_BidLoan_api.py", line 98, in test_bid_loan
+    raise e
+  File "D:\LeMonApiAutoTest\cases\test_BidLoan_api.py", line 89, in test_bid_loan
+    self.assertEqual(audit_expected, actual_result, msg='测试{}失败'.format(title))
+AssertionError: {'status': 1, 'code': '10001', 'data': None, 'msg': '竞标成功'} != {'status': 0, 'code': None, 'data': None, 'msg': '抱歉，请先登录。'}
+- {'code': '10001', 'data': None, 'msg': '竞标成功', 'status': 1}
+?          ^^^^^^^                        ^^^^             ^
+
++ {'code': None, 'data': None, 'msg': '抱歉，请先登录。', 'status': 0}
+?          ^^^^                        ^^^^^^^^             ^
+ : 测试竞标成功-投资金额小于标余额失败
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft2_4' class='none'>
+    <td class='failCase'><div class='testcase'>test_bid_loan_04_竞标失败_帐号不传</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft2_4' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft2_4'>失败</button>
+    <div id='div_ft2_4' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft2_4' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft2_4'>失败</button>
+    <div id='div_ft2_4' class="collapse in" align="left">
+    <pre>
+    
+ft2_4: {"password":"123456", "loanId": "5199","amount":"2000"}
+Traceback (most recent call last):
+  File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
+    return func(self, *args, **kwargs)
+  File "D:\LeMonApiAutoTest\cases\test_BidLoan_api.py", line 98, in test_bid_loan
+    raise e
+  File "D:\LeMonApiAutoTest\cases\test_BidLoan_api.py", line 89, in test_bid_loan
+    self.assertEqual(audit_expected, actual_result, msg='测试{}失败'.format(title))
+AssertionError: {'status': 0, 'code': '11003', 'data': None, 'msg': '参数错误:所有参数都不能为空'} != {'status': 0, 'code': None, 'data': None, 'msg': '抱歉，请先登录。'}
+- {'code': '11003', 'data': None, 'msg': '参数错误:所有参数都不能为空', 'status': 0}
++ {'code': None, 'data': None, 'msg': '抱歉，请先登录。', 'status': 0} : 测试竞标失败-帐号不传失败
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft2_5' class='none'>
+    <td class='failCase'><div class='testcase'>test_bid_loan_05_竞标失败_密码不传</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft2_5' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft2_5'>失败</button>
+    <div id='div_ft2_5' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft2_5' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft2_5'>失败</button>
+    <div id='div_ft2_5' class="collapse in" align="left">
+    <pre>
+    
+ft2_5: {"memberId":"58122","loanId": "5199","amount":"2000"}
+Traceback (most recent call last):
+  File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
+    return func(self, *args, **kwargs)
+  File "D:\LeMonApiAutoTest\cases\test_BidLoan_api.py", line 98, in test_bid_loan
+    raise e
+  File "D:\LeMonApiAutoTest\cases\test_BidLoan_api.py", line 89, in test_bid_loan
+    self.assertEqual(audit_expected, actual_result, msg='测试{}失败'.format(title))
+AssertionError: {'status': 0, 'code': '11003', 'data': None, 'msg': '参数错误:所有参数都不能为空'} != {'status': 0, 'code': None, 'data': None, 'msg': '抱歉，请先登录。'}
+- {'code': '11003', 'data': None, 'msg': '参数错误:所有参数都不能为空', 'status': 0}
++ {'code': None, 'data': None, 'msg': '抱歉，请先登录。', 'status': 0} : 测试竞标失败-密码不传失败
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft2_6' class='none'>
+    <td class='failCase'><div class='testcase'>test_bid_loan_06_竞标失败_标id不传</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft2_6' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft2_6'>失败</button>
+    <div id='div_ft2_6' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft2_6' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft2_6'>失败</button>
+    <div id='div_ft2_6' class="collapse in" align="left">
+    <pre>
+    
+ft2_6: {"memberId":"58122","password": "123456","amount":"2000"}
+Traceback (most recent call last):
+  File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
+    return func(self, *args, **kwargs)
+  File "D:\LeMonApiAutoTest\cases\test_BidLoan_api.py", line 98, in test_bid_loan
+    raise e
+  File "D:\LeMonApiAutoTest\cases\test_BidLoan_api.py", line 89, in test_bid_loan
+    self.assertEqual(audit_expected, actual_result, msg='测试{}失败'.format(title))
+AssertionError: {'status': 0, 'code': '11003', 'data': None, 'msg': '参数错误:所有参数都不能为空'} != {'status': 0, 'code': None, 'data': None, 'msg': '抱歉，请先登录。'}
+- {'code': '11003', 'data': None, 'msg': '参数错误:所有参数都不能为空', 'status': 0}
++ {'code': None, 'data': None, 'msg': '抱歉，请先登录。', 'status': 0} : 测试竞标失败-标id不传失败
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft2_7' class='none'>
+    <td class='failCase'><div class='testcase'>test_bid_loan_07_竞标失败_投资金额不传</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft2_7' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft2_7'>失败</button>
+    <div id='div_ft2_7' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft2_7' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft2_7'>失败</button>
+    <div id='div_ft2_7' class="collapse in" align="left">
+    <pre>
+    
+ft2_7: {"memberId":"58122", "password": "123456", "loanId": "5199"}
+Traceback (most recent call last):
+  File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
+    return func(self, *args, **kwargs)
+  File "D:\LeMonApiAutoTest\cases\test_BidLoan_api.py", line 98, in test_bid_loan
+    raise e
+  File "D:\LeMonApiAutoTest\cases\test_BidLoan_api.py", line 89, in test_bid_loan
+    self.assertEqual(audit_expected, actual_result, msg='测试{}失败'.format(title))
+AssertionError: {'status': 0, 'code': '11003', 'data': None, 'msg': '参数错误:所有参数都不能为空'} != {'status': 0, 'code': None, 'data': None, 'msg': '抱歉，请先登录。'}
+- {'code': '11003', 'data': None, 'msg': '参数错误:所有参数都不能为空', 'status': 0}
++ {'code': None, 'data': None, 'msg': '抱歉，请先登录。', 'status': 0} : 测试竞标失败-投资金额不传失败
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft2_8' class='none'>
+    <td class='failCase'><div class='testcase'>test_bid_loan_08_竞标失败_帐号非int类型</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft2_8' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft2_8'>失败</button>
+    <div id='div_ft2_8' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft2_8' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft2_8'>失败</button>
+    <div id='div_ft2_8' class="collapse in" align="left">
+    <pre>
+    
+ft2_8: {"memberId":"58122", "password": "123456", "loanId": "5199","amount":"2000"}
+Traceback (most recent call last):
+  File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
+    return func(self, *args, **kwargs)
+  File "D:\LeMonApiAutoTest\cases\test_BidLoan_api.py", line 98, in test_bid_loan
+    raise e
+  File "D:\LeMonApiAutoTest\cases\test_BidLoan_api.py", line 89, in test_bid_loan
+    self.assertEqual(audit_expected, actual_result, msg='测试{}失败'.format(title))
+AssertionError: {'status': 0, 'code': '11013', 'data': None, 'msg': '请根据数值参数的类型对应输入合法的数字'} != {'status': 0, 'code': None, 'data': None, 'msg': '抱歉，请先登录。'}
+- {'code': '11013', 'data': None, 'msg': '请根据数值参数的类型对应输入合法的数字', 'status': 0}
++ {'code': None, 'data': None, 'msg': '抱歉，请先登录。', 'status': 0} : 测试竞标失败-帐号非int类型失败
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft2_9' class='none'>
+    <td class='failCase'><div class='testcase'>test_bid_loan_09_竞标失败_密码非string类型</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft2_9' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft2_9'>失败</button>
+    <div id='div_ft2_9' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft2_9' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft2_9'>失败</button>
+    <div id='div_ft2_9' class="collapse in" align="left">
+    <pre>
+    
+ft2_9: {"memberId":"58122", "password": [123456], "loanId": "5199","amount":"2000"}
+Traceback (most recent call last):
+  File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
+    return func(self, *args, **kwargs)
+  File "D:\LeMonApiAutoTest\cases\test_BidLoan_api.py", line 98, in test_bid_loan
+    raise e
+  File "D:\LeMonApiAutoTest\cases\test_BidLoan_api.py", line 89, in test_bid_loan
+    self.assertEqual(audit_expected, actual_result, msg='测试{}失败'.format(title))
+AssertionError: {'status': 0, 'code': '11006', 'data': None, 'msg': '参数错误，passw[14 chars]18位'} != {'status': 0, 'code': None, 'data': None, 'msg': '抱歉，请先登录。'}
++ {'code': None, 'data': None, 'msg': '抱歉，请先登录。', 'status': 0}
+- {'code': '11006',
+-  'data': None,
+-  'msg': '参数错误，password长度必须大于6位且小于18位',
+-  'status': 0} : 测试竞标失败-密码非string类型失败
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft2_10' class='none'>
+    <td class='failCase'><div class='testcase'>test_bid_loan_10_竞标失败_标id非double类型</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft2_10' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft2_10'>失败</button>
+    <div id='div_ft2_10' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft2_10' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft2_10'>失败</button>
+    <div id='div_ft2_10' class="collapse in" align="left">
+    <pre>
+    
+ft2_10: {"memberId":"58122", "password": "123456", "loanId": "5199","amount":"2000"}
+Traceback (most recent call last):
+  File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
+    return func(self, *args, **kwargs)
+  File "D:\LeMonApiAutoTest\cases\test_BidLoan_api.py", line 98, in test_bid_loan
+    raise e
+  File "D:\LeMonApiAutoTest\cases\test_BidLoan_api.py", line 89, in test_bid_loan
+    self.assertEqual(audit_expected, actual_result, msg='测试{}失败'.format(title))
+AssertionError: {'status': 0, 'code': '11009', 'data': None, 'msg': '不存在该标的'} != {'status': 0, 'code': None, 'data': None, 'msg': '抱歉，请先登录。'}
+- {'code': '11009', 'data': None, 'msg': '不存在该标的', 'status': 0}
+?          ^^^^^^^                        ^^^^^^
+
++ {'code': None, 'data': None, 'msg': '抱歉，请先登录。', 'status': 0}
+?          ^^^^                        ^^^^^^^^
+ : 测试竞标失败-标id非double类型失败
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft2_11' class='none'>
+    <td class='failCase'><div class='testcase'>test_bid_loan_11_竞标失败_投资金额非double类型</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft2_11' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft2_11'>失败</button>
+    <div id='div_ft2_11' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft2_11' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft2_11'>失败</button>
+    <div id='div_ft2_11' class="collapse in" align="left">
+    <pre>
+    
+ft2_11: {"memberId":"58122", "password": "123456", "loanId": "5199","amount":"2000"}
+Traceback (most recent call last):
+  File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
+    return func(self, *args, **kwargs)
+  File "D:\LeMonApiAutoTest\cases\test_BidLoan_api.py", line 98, in test_bid_loan
+    raise e
+  File "D:\LeMonApiAutoTest\cases\test_BidLoan_api.py", line 89, in test_bid_loan
+    self.assertEqual(audit_expected, actual_result, msg='测试{}失败'.format(title))
+AssertionError: {'status': 0, 'code': '11013', 'data': None, 'msg': '请根据数值参数的类型对应输入合法的数字'} != {'status': 0, 'code': None, 'data': None, 'msg': '抱歉，请先登录。'}
+- {'code': '11013', 'data': None, 'msg': '请根据数值参数的类型对应输入合法的数字', 'status': 0}
++ {'code': None, 'data': None, 'msg': '抱歉，请先登录。', 'status': 0} : 测试竞标失败-投资金额非double类型失败
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft2_12' class='none'>
+    <td class='failCase'><div class='testcase'>test_bid_loan_12_竞标失败_标的为null</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft2_12' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft2_12'>失败</button>
+    <div id='div_ft2_12' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft2_12' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft2_12'>失败</button>
+    <div id='div_ft2_12' class="collapse in" align="left">
+    <pre>
+    
+ft2_12: {"memberId":"58122", "password": "123456", "loanId": null,"amount":"2000"}
+Traceback (most recent call last):
+  File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
+    return func(self, *args, **kwargs)
+  File "D:\LeMonApiAutoTest\cases\test_BidLoan_api.py", line 98, in test_bid_loan
+    raise e
+  File "D:\LeMonApiAutoTest\cases\test_BidLoan_api.py", line 89, in test_bid_loan
+    self.assertEqual(audit_expected, actual_result, msg='测试{}失败'.format(title))
+AssertionError: {'status': 0, 'code': '11003', 'data': None, 'msg': '参数错误:所有参数都不能为空'} != {'status': 0, 'code': None, 'data': None, 'msg': '抱歉，请先登录。'}
+- {'code': '11003', 'data': None, 'msg': '参数错误:所有参数都不能为空', 'status': 0}
++ {'code': None, 'data': None, 'msg': '抱歉，请先登录。', 'status': 0} : 测试竞标失败-标的为null失败
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft2_13' class='none'>
+    <td class='failCase'><div class='testcase'>test_bid_loan_13_竞标失败_标的为0</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft2_13' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft2_13'>失败</button>
+    <div id='div_ft2_13' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft2_13' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft2_13'>失败</button>
+    <div id='div_ft2_13' class="collapse in" align="left">
+    <pre>
+    
+ft2_13: {"memberId":"58122", "password": "123456", "loanId": 0,"amount":"2000"}
+Traceback (most recent call last):
+  File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
+    return func(self, *args, **kwargs)
+  File "D:\LeMonApiAutoTest\cases\test_BidLoan_api.py", line 98, in test_bid_loan
+    raise e
+  File "D:\LeMonApiAutoTest\cases\test_BidLoan_api.py", line 89, in test_bid_loan
+    self.assertEqual(audit_expected, actual_result, msg='测试{}失败'.format(title))
+AssertionError: {'status': 0, 'code': '11009', 'data': None, 'msg': '不存在该标的'} != {'status': 0, 'code': None, 'data': None, 'msg': '抱歉，请先登录。'}
+- {'code': '11009', 'data': None, 'msg': '不存在该标的', 'status': 0}
+?          ^^^^^^^                        ^^^^^^
+
++ {'code': None, 'data': None, 'msg': '抱歉，请先登录。', 'status': 0}
+?          ^^^^                        ^^^^^^^^
+ : 测试竞标失败-标的为0失败
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft2_14' class='none'>
+    <td class='failCase'><div class='testcase'>test_bid_loan_14_竞标失败_标的小于0</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft2_14' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft2_14'>失败</button>
+    <div id='div_ft2_14' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft2_14' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft2_14'>失败</button>
+    <div id='div_ft2_14' class="collapse in" align="left">
+    <pre>
+    
+ft2_14: {"memberId":"58122", "password": "123456", "loanId": -1,"amount":"2000"}
+Traceback (most recent call last):
+  File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
+    return func(self, *args, **kwargs)
+  File "D:\LeMonApiAutoTest\cases\test_BidLoan_api.py", line 98, in test_bid_loan
+    raise e
+  File "D:\LeMonApiAutoTest\cases\test_BidLoan_api.py", line 89, in test_bid_loan
+    self.assertEqual(audit_expected, actual_result, msg='测试{}失败'.format(title))
+AssertionError: {'status': 0, 'code': '11009', 'data': None, 'msg': '不存在该标的'} != {'status': 0, 'code': None, 'data': None, 'msg': '抱歉，请先登录。'}
+- {'code': '11009', 'data': None, 'msg': '不存在该标的', 'status': 0}
+?          ^^^^^^^                        ^^^^^^
+
++ {'code': None, 'data': None, 'msg': '抱歉，请先登录。', 'status': 0}
+?          ^^^^                        ^^^^^^^^
+ : 测试竞标失败-标的小于0失败
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft2_15' class='none'>
+    <td class='failCase'><div class='testcase'>test_bid_loan_15_竞标失败_用户id为null</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft2_15' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft2_15'>失败</button>
+    <div id='div_ft2_15' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft2_15' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft2_15'>失败</button>
+    <div id='div_ft2_15' class="collapse in" align="left">
+    <pre>
+    
+ft2_15: {"memberId":null, "password": "123456", "loanId": "5199","amount":"2000"}
+Traceback (most recent call last):
+  File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
+    return func(self, *args, **kwargs)
+  File "D:\LeMonApiAutoTest\cases\test_BidLoan_api.py", line 98, in test_bid_loan
+    raise e
+  File "D:\LeMonApiAutoTest\cases\test_BidLoan_api.py", line 89, in test_bid_loan
+    self.assertEqual(audit_expected, actual_result, msg='测试{}失败'.format(title))
+AssertionError: {'status': 0, 'code': '11003', 'data': None, 'msg': '参数错误:所有参数都不能为空'} != {'status': 0, 'code': None, 'data': None, 'msg': '抱歉，请先登录。'}
+- {'code': '11003', 'data': None, 'msg': '参数错误:所有参数都不能为空', 'status': 0}
++ {'code': None, 'data': None, 'msg': '抱歉，请先登录。', 'status': 0} : 测试竞标失败-用户id为null失败
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft2_16' class='none'>
+    <td class='failCase'><div class='testcase'>test_bid_loan_16_竞标失败_用户id小于0</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft2_16' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft2_16'>失败</button>
+    <div id='div_ft2_16' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft2_16' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft2_16'>失败</button>
+    <div id='div_ft2_16' class="collapse in" align="left">
+    <pre>
+    
+ft2_16: {"memberId":-1, "password": "123456", "loanId": "5199","amount":"2000"}
+Traceback (most recent call last):
+  File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
+    return func(self, *args, **kwargs)
+  File "D:\LeMonApiAutoTest\cases\test_BidLoan_api.py", line 98, in test_bid_loan
+    raise e
+  File "D:\LeMonApiAutoTest\cases\test_BidLoan_api.py", line 89, in test_bid_loan
+    self.assertEqual(audit_expected, actual_result, msg='测试{}失败'.format(title))
+AssertionError: {'status': 0, 'code': '11004', 'data': None, 'msg': '参数错误，memberId必须是大于0的正整数'} != {'status': 0, 'code': None, 'data': None, 'msg': '抱歉，请先登录。'}
+- {'code': '11004', 'data': None, 'msg': '参数错误，memberId必须是大于0的正整数', 'status': 0}
++ {'code': None, 'data': None, 'msg': '抱歉，请先登录。', 'status': 0} : 测试竞标失败-用户id小于0失败
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft2_17' class='none'>
+    <td class='failCase'><div class='testcase'>test_bid_loan_17_竞标失败_用户id为0</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft2_17' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft2_17'>失败</button>
+    <div id='div_ft2_17' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft2_17' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft2_17'>失败</button>
+    <div id='div_ft2_17' class="collapse in" align="left">
+    <pre>
+    
+ft2_17: {"memberId":0, "password": "123456", "loanId": "5199","amount":"2000"}
+Traceback (most recent call last):
+  File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
+    return func(self, *args, **kwargs)
+  File "D:\LeMonApiAutoTest\cases\test_BidLoan_api.py", line 98, in test_bid_loan
+    raise e
+  File "D:\LeMonApiAutoTest\cases\test_BidLoan_api.py", line 89, in test_bid_loan
+    self.assertEqual(audit_expected, actual_result, msg='测试{}失败'.format(title))
+AssertionError: {'status': 0, 'code': '11004', 'data': None, 'msg': '参数错误，memberId必须是大于0的正整数'} != {'status': 0, 'code': None, 'data': None, 'msg': '抱歉，请先登录。'}
+- {'code': '11004', 'data': None, 'msg': '参数错误，memberId必须是大于0的正整数', 'status': 0}
++ {'code': None, 'data': None, 'msg': '抱歉，请先登录。', 'status': 0} : 测试竞标失败-用户id为0失败
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft2_18' class='none'>
+    <td class='failCase'><div class='testcase'>test_bid_loan_18_竞标失败_密码为null</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft2_18' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft2_18'>失败</button>
+    <div id='div_ft2_18' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft2_18' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft2_18'>失败</button>
+    <div id='div_ft2_18' class="collapse in" align="left">
+    <pre>
+    
+ft2_18: {"memberId": "58122", "password": null, "loanId": "5199","amount":"2000"}
+Traceback (most recent call last):
+  File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
+    return func(self, *args, **kwargs)
+  File "D:\LeMonApiAutoTest\cases\test_BidLoan_api.py", line 98, in test_bid_loan
+    raise e
+  File "D:\LeMonApiAutoTest\cases\test_BidLoan_api.py", line 89, in test_bid_loan
+    self.assertEqual(audit_expected, actual_result, msg='测试{}失败'.format(title))
+AssertionError: {'status': 0, 'code': '11003', 'data': None, 'msg': '参数错误:所有参数都不能为空'} != {'status': 0, 'code': None, 'data': None, 'msg': '抱歉，请先登录。'}
+- {'code': '11003', 'data': None, 'msg': '参数错误:所有参数都不能为空', 'status': 0}
++ {'code': None, 'data': None, 'msg': '抱歉，请先登录。', 'status': 0} : 测试竞标失败-密码为null失败
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft2_19' class='none'>
+    <td class='failCase'><div class='testcase'>test_bid_loan_19_竞标失败_密码长度小于6位</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft2_19' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft2_19'>失败</button>
+    <div id='div_ft2_19' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft2_19' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft2_19'>失败</button>
+    <div id='div_ft2_19' class="collapse in" align="left">
+    <pre>
+    
+ft2_19: {"memberId": "58122", "password": "12345", "loanId": "5199","amount":"2000"}
+Traceback (most recent call last):
+  File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
+    return func(self, *args, **kwargs)
+  File "D:\LeMonApiAutoTest\cases\test_BidLoan_api.py", line 98, in test_bid_loan
+    raise e
+  File "D:\LeMonApiAutoTest\cases\test_BidLoan_api.py", line 89, in test_bid_loan
+    self.assertEqual(audit_expected, actual_result, msg='测试{}失败'.format(title))
+AssertionError: {'status': 0, 'code': '11006', 'data': None, 'msg': '参数错误，passw[14 chars]18位'} != {'status': 0, 'code': None, 'data': None, 'msg': '抱歉，请先登录。'}
++ {'code': None, 'data': None, 'msg': '抱歉，请先登录。', 'status': 0}
+- {'code': '11006',
+-  'data': None,
+-  'msg': '参数错误，password长度必须大于6位且小于18位',
+-  'status': 0} : 测试竞标失败-密码长度小于6位失败
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft2_20' class='none'>
+    <td class='failCase'><div class='testcase'>test_bid_loan_20_竞标失败_密码长度大于18位</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft2_20' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft2_20'>失败</button>
+    <div id='div_ft2_20' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft2_20' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft2_20'>失败</button>
+    <div id='div_ft2_20' class="collapse in" align="left">
+    <pre>
+    
+ft2_20: {"memberId": "58122", "password": "1234567890123456789", "loanId": "5199","amount":"2000"}
+Traceback (most recent call last):
+  File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
+    return func(self, *args, **kwargs)
+  File "D:\LeMonApiAutoTest\cases\test_BidLoan_api.py", line 98, in test_bid_loan
+    raise e
+  File "D:\LeMonApiAutoTest\cases\test_BidLoan_api.py", line 89, in test_bid_loan
+    self.assertEqual(audit_expected, actual_result, msg='测试{}失败'.format(title))
+AssertionError: {'status': 0, 'code': '11006', 'data': None, 'msg': '参数错误，passw[14 chars]18位'} != {'status': 0, 'code': None, 'data': None, 'msg': '抱歉，请先登录。'}
++ {'code': None, 'data': None, 'msg': '抱歉，请先登录。', 'status': 0}
+- {'code': '11006',
+-  'data': None,
+-  'msg': '参数错误，password长度必须大于6位且小于18位',
+-  'status': 0} : 测试竞标失败-密码长度大于18位失败
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft2_21' class='none'>
+    <td class='failCase'><div class='testcase'>test_bid_loan_21_竞标失败_用户id不存在</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft2_21' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft2_21'>失败</button>
+    <div id='div_ft2_21' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft2_21' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft2_21'>失败</button>
+    <div id='div_ft2_21' class="collapse in" align="left">
+    <pre>
+    
+ft2_21: {"memberId": "79", "password": "123456", "loanId": "5199","amount":"2000"}
+Traceback (most recent call last):
+  File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
+    return func(self, *args, **kwargs)
+  File "D:\LeMonApiAutoTest\cases\test_BidLoan_api.py", line 98, in test_bid_loan
+    raise e
+  File "D:\LeMonApiAutoTest\cases\test_BidLoan_api.py", line 89, in test_bid_loan
+    self.assertEqual(audit_expected, actual_result, msg='测试{}失败'.format(title))
+AssertionError: {'status': 0, 'code': '11008', 'data': None, 'msg': '不存在该用户'} != {'status': 0, 'code': None, 'data': None, 'msg': '抱歉，请先登录。'}
+- {'code': '11008', 'data': None, 'msg': '不存在该用户', 'status': 0}
+?          ^^^^^^^                        ^^^^^^
+
++ {'code': None, 'data': None, 'msg': '抱歉，请先登录。', 'status': 0}
+?          ^^^^                        ^^^^^^^^
+ : 测试竞标失败-用户id不存在失败
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr class='failClass warning'>
+    <td>test_Login_api.TestLoginApi: 登录接口</td>
+    <td class="text-center">10</td>
+    <td class="text-center">8</td>
+    <td class="text-center">2</td>
+    <td class="text-center">0</td>
+    <td class="text-center"><a href="javascript:showClassDetail('c3',10)" class="detail" id='c3'>详细</a></td>
+</tr>
+
+<tr id='pt3_1' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_login_01_登录成功_手机号密码正确</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+
+<tr id='pt3_2' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_login_02_登录失败_手机号缺失</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+
+<tr id='pt3_3' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_login_03_登录失败_密码缺失</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+
+<tr id='ft3_4' class='none'>
+    <td class='failCase'><div class='testcase'>test_login_04_登录失败_手机号类型非string</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft3_4' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft3_4'>失败</button>
+    <div id='div_ft3_4' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft3_4' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft3_4'>失败</button>
+    <div id='div_ft3_4' class="collapse in" align="left">
+    <pre>
+    
+ft3_4: Traceback (most recent call last):
+  File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
+    return func(self, *args, **kwargs)
+  File "D:\LeMonApiAutoTest\cases\test_Login_api.py", line 56, in test_login
+    raise e
+  File "D:\LeMonApiAutoTest\cases\test_Login_api.py", line 47, in test_login
+    self.assertEqual(expected, actual_result, msg='测试{}失败'.format(title))
+AssertionError: {'status': 0, 'code': '20103', 'data': None, 'msg': '参数类型错误'} != {'status': 1, 'code': '10001', 'data': None, 'msg': '登录成功'}
+- {'code': '20103', 'data': None, 'msg': '参数类型错误', 'status': 0}
+?           ^  --                         ^^^^^^             ^
+
++ {'code': '10001', 'data': None, 'msg': '登录成功', 'status': 1}
+?           ^^^                           ^^^^             ^
+ : 测试登录失败-手机号类型非string失败
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft3_5' class='none'>
+    <td class='failCase'><div class='testcase'>test_login_05_登录失败_密码类型非string</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft3_5' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft3_5'>失败</button>
+    <div id='div_ft3_5' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft3_5' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft3_5'>失败</button>
+    <div id='div_ft3_5' class="collapse in" align="left">
+    <pre>
+    
+ft3_5: Traceback (most recent call last):
+  File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
+    return func(self, *args, **kwargs)
+  File "D:\LeMonApiAutoTest\cases\test_Login_api.py", line 56, in test_login
+    raise e
+  File "D:\LeMonApiAutoTest\cases\test_Login_api.py", line 47, in test_login
+    self.assertEqual(expected, actual_result, msg='测试{}失败'.format(title))
+AssertionError: {'status': 0, 'code': '20103', 'data': None, 'msg': '参数类型错误'} != {'status': 1, 'code': '10001', 'data': None, 'msg': '登录成功'}
+- {'code': '20103', 'data': None, 'msg': '参数类型错误', 'status': 0}
+?           ^  --                         ^^^^^^             ^
+
++ {'code': '10001', 'data': None, 'msg': '登录成功', 'status': 1}
+?           ^^^                           ^^^^             ^
+ : 测试登录失败-密码类型非string失败
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt3_6' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_login_06_登录失败_手机号错误</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+
+<tr id='pt3_7' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_login_07_登录失败_密码错误</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+
+<tr id='pt3_8' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_login_08_登录失败_手机号为空</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+
+<tr id='pt3_9' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_login_09_登录失败_密码为空</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+
+<tr id='pt3_10' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_login_10_登录失败_手机号未注册</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+
+<tr class='failClass warning'>
+    <td>test_Recharge_api.TestRechargeApi: 充值接口</td>
+    <td class="text-center">14</td>
+    <td class="text-center">12</td>
+    <td class="text-center">2</td>
+    <td class="text-center">0</td>
+    <td class="text-center"><a href="javascript:showClassDetail('c4',14)" class="detail" id='c4'>详细</a></td>
+</tr>
+
+<tr id='pt4_1' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_recharge_01_充值成功_充值金额大于0</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt4_1' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt4_1'>通过</button>
+    <div id='div_pt4_1' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt4_1' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt4_1'>通过</button>
+    <div id='div_pt4_1' class="collapse in" align="left">
+    <pre>
+    
+pt4_1: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt4_2' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_recharge_02_充值成功_充值金额为500000</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt4_2' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt4_2'>通过</button>
+    <div id='div_pt4_2' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt4_2' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt4_2'>通过</button>
+    <div id='div_pt4_2' class="collapse in" align="left">
+    <pre>
+    
+pt4_2: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt4_3' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_recharge_03_充值成功_充值金额精度等于2</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt4_3' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt4_3'>通过</button>
+    <div id='div_pt4_3' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt4_3' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt4_3'>通过</button>
+    <div id='div_pt4_3' class="collapse in" align="left">
+    <pre>
+    
+pt4_3: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt4_4' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_recharge_04_充值失败_充值金额缺失</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt4_4' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt4_4'>通过</button>
+    <div id='div_pt4_4' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt4_4' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt4_4'>通过</button>
+    <div id='div_pt4_4' class="collapse in" align="left">
+    <pre>
+    
+pt4_4: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt4_5' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_recharge_05_充值失败_手机号缺失</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt4_5' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt4_5'>通过</button>
+    <div id='div_pt4_5' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt4_5' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt4_5'>通过</button>
+    <div id='div_pt4_5' class="collapse in" align="left">
+    <pre>
+    
+pt4_5: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft4_6' class='none'>
+    <td class='failCase'><div class='testcase'>test_recharge_06_充值失败_充值金额类型非double</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft4_6' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft4_6'>失败</button>
+    <div id='div_ft4_6' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft4_6' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft4_6'>失败</button>
+    <div id='div_ft4_6' class="collapse in" align="left">
+    <pre>
+    
+ft4_6: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+Traceback (most recent call last):
+  File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
+    return func(self, *args, **kwargs)
+  File "D:\LeMonApiAutoTest\cases\test_Recharge_api.py", line 78, in test_recharge
+    raise e
+  File "D:\LeMonApiAutoTest\cases\test_Recharge_api.py", line 69, in test_recharge
+    self.assertEqual(recharge_expected, actual_result, msg='测试{}失败'.format(title))
+AssertionError: {'leaveamount': '0.00', 'code': '20119'} != {'leaveamount': '10000.00', 'code': '10001'}
+- {'code': '20119', 'leaveamount': '0.00'}
+?           ^  --
+
++ {'code': '10001', 'leaveamount': '10000.00'}
+?           ^^^                     ++++
+ : 测试充值失败-充值金额类型非double失败
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft4_7' class='none'>
+    <td class='failCase'><div class='testcase'>test_recharge_07_充值失败_手机号类型非string</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft4_7' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft4_7'>失败</button>
+    <div id='div_ft4_7' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft4_7' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft4_7'>失败</button>
+    <div id='div_ft4_7' class="collapse in" align="left">
+    <pre>
+    
+ft4_7: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+Traceback (most recent call last):
+  File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
+    return func(self, *args, **kwargs)
+  File "D:\LeMonApiAutoTest\cases\test_Recharge_api.py", line 78, in test_recharge
+    raise e
+  File "D:\LeMonApiAutoTest\cases\test_Recharge_api.py", line 69, in test_recharge
+    self.assertEqual(recharge_expected, actual_result, msg='测试{}失败'.format(title))
+AssertionError: {'leaveamount': '0.00', 'code': '20117'} != {'leaveamount': '123462.00', 'code': '10001'}
+- {'code': '20117', 'leaveamount': '0.00'}
+?           ^  --                   ^
+
++ {'code': '10001', 'leaveamount': '123462.00'}
+?           ^^^                     ^^^^^^
+ : 测试充值失败-手机号类型非string失败
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt4_8' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_recharge_08_充值失败_充值金额小于0</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt4_8' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt4_8'>通过</button>
+    <div id='div_pt4_8' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt4_8' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt4_8'>通过</button>
+    <div id='div_pt4_8' class="collapse in" align="left">
+    <pre>
+    
+pt4_8: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt4_9' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_recharge_09_充值失败_充值金额等于0</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt4_9' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt4_9'>通过</button>
+    <div id='div_pt4_9' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt4_9' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt4_9'>通过</button>
+    <div id='div_pt4_9' class="collapse in" align="left">
+    <pre>
+    
+pt4_9: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt4_10' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_recharge_10_充值失败_充值金额大于500000</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt4_10' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt4_10'>通过</button>
+    <div id='div_pt4_10' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt4_10' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt4_10'>通过</button>
+    <div id='div_pt4_10' class="collapse in" align="left">
+    <pre>
+    
+pt4_10: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt4_11' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_recharge_11_充值失败_充值金额精度大于2</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt4_11' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt4_11'>通过</button>
+    <div id='div_pt4_11' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt4_11' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt4_11'>通过</button>
+    <div id='div_pt4_11' class="collapse in" align="left">
+    <pre>
+    
+pt4_11: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt4_12' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_recharge_12_充值失败_手机号为空</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt4_12' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt4_12'>通过</button>
+    <div id='div_pt4_12' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt4_12' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt4_12'>通过</button>
+    <div id='div_pt4_12' class="collapse in" align="left">
+    <pre>
+    
+pt4_12: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt4_13' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_recharge_13_充值失败_充值金额为空</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt4_13' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt4_13'>通过</button>
+    <div id='div_pt4_13' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt4_13' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt4_13'>通过</button>
+    <div id='div_pt4_13' class="collapse in" align="left">
+    <pre>
+    
+pt4_13: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt4_14' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_recharge_14_充值失败_参数正确</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt4_14' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt4_14'>通过</button>
+    <div id='div_pt4_14' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt4_14' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt4_14'>通过</button>
+    <div id='div_pt4_14' class="collapse in" align="left">
+    <pre>
+    
+pt4_14: {"status":1,"code":"10001","data":null,"msg":"登录成功"}
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr class='failClass warning'>
+    <td>test_Register_api.TestRegisterApi: 注册接口</td>
+    <td class="text-center">17</td>
+    <td class="text-center">14</td>
+    <td class="text-center">3</td>
+    <td class="text-center">0</td>
+    <td class="text-center"><a href="javascript:showClassDetail('c5',17)" class="detail" id='c5'>详细</a></td>
+</tr>
+
+<tr id='pt5_1' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_register_01_注册成功_密码长度等于6位</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+
+<tr id='pt5_2' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_register_02_注册成功_密码长度大于6位</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+
+<tr id='pt5_3' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_register_03_注册成功_密码长度等于18位</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+
+<tr id='pt5_4' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_register_04_注册成功_昵称缺失</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+
+<tr id='pt5_5' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_register_05_注册成功_昵称为空</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+
+<tr id='pt5_6' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_register_06_注册失败_手机号缺失</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+
+<tr id='pt5_7' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_register_07_注册失败_密码缺失</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+
+<tr id='ft5_8' class='none'>
+    <td class='failCase'><div class='testcase'>test_register_08_注册失败_手机号类型非string</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft5_8' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft5_8'>失败</button>
+    <div id='div_ft5_8' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft5_8' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft5_8'>失败</button>
+    <div id='div_ft5_8' class="collapse in" align="left">
+    <pre>
+    
+ft5_8: Traceback (most recent call last):
+  File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
+    return func(self, *args, **kwargs)
+  File "D:\LeMonApiAutoTest\cases\test_Register_api.py", line 57, in test_register
+    raise e
+  File "D:\LeMonApiAutoTest\cases\test_Register_api.py", line 48, in test_register
+    self.assertEqual(expected, actual_result, msg='测试{}失败'.format(title))
+AssertionError: {'status': 0, 'code': '20103', 'data': None, 'msg': '手机号类型错误'} != {'status': 1, 'code': '10001', 'data': None, 'msg': '注册成功'}
+- {'code': '20103', 'data': None, 'msg': '手机号类型错误', 'status': 0}
+?           ^  --                         ^^^^^^^             ^
+
++ {'code': '10001', 'data': None, 'msg': '注册成功', 'status': 1}
+?           ^^^                           ^^^^             ^
+ : 测试注册失败-手机号类型非string失败
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft5_9' class='none'>
+    <td class='failCase'><div class='testcase'>test_register_09_注册失败_密码类型非string</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft5_9' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft5_9'>失败</button>
+    <div id='div_ft5_9' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft5_9' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft5_9'>失败</button>
+    <div id='div_ft5_9' class="collapse in" align="left">
+    <pre>
+    
+ft5_9: Traceback (most recent call last):
+  File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
+    return func(self, *args, **kwargs)
+  File "D:\LeMonApiAutoTest\cases\test_Register_api.py", line 57, in test_register
+    raise e
+  File "D:\LeMonApiAutoTest\cases\test_Register_api.py", line 48, in test_register
+    self.assertEqual(expected, actual_result, msg='测试{}失败'.format(title))
+AssertionError: {'status': 0, 'code': '20103', 'data': None, 'msg': '密码类型错误'} != {'status': 1, 'code': '10001', 'data': None, 'msg': '注册成功'}
+- {'code': '20103', 'data': None, 'msg': '密码类型错误', 'status': 0}
+?           ^  --                         ^^^^^^             ^
+
++ {'code': '10001', 'data': None, 'msg': '注册成功', 'status': 1}
+?           ^^^                           ^^^^             ^
+ : 测试注册失败-密码类型非string失败
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft5_10' class='none'>
+    <td class='failCase'><div class='testcase'>test_register_10_注册失败_昵称类型非string</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft5_10' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft5_10'>失败</button>
+    <div id='div_ft5_10' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft5_10' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft5_10'>失败</button>
+    <div id='div_ft5_10' class="collapse in" align="left">
+    <pre>
+    
+ft5_10: Traceback (most recent call last):
+  File "D:\LeMonApiAutoTest\libs\ddt.py", line 165, in wrapper
+    return func(self, *args, **kwargs)
+  File "D:\LeMonApiAutoTest\cases\test_Register_api.py", line 57, in test_register
+    raise e
+  File "D:\LeMonApiAutoTest\cases\test_Register_api.py", line 48, in test_register
+    self.assertEqual(expected, actual_result, msg='测试{}失败'.format(title))
+AssertionError: {'status': 0, 'code': '20103', 'data': None, 'msg': '用户名类型错误'} != {'status': 1, 'code': '10001', 'data': None, 'msg': '注册成功'}
+- {'code': '20103', 'data': None, 'msg': '用户名类型错误', 'status': 0}
+?           ^  --                         ^^^^^^^             ^
+
++ {'code': '10001', 'data': None, 'msg': '注册成功', 'status': 1}
+?           ^^^                           ^^^^             ^
+ : 测试注册失败-昵称类型非string失败
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt5_11' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_register_11_注册失败_手机号长度小于11位</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+
+<tr id='pt5_12' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_register_12_注册失败_手机号长度大于11位</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+
+<tr id='pt5_13' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_register_13_注册失败_密码长度小于6位</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+
+<tr id='pt5_14' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_register_14_注册失败_密码长度大于18位</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+
+<tr id='pt5_15' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_register_15_注册失败_手机号为空</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+
+<tr id='pt5_16' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_register_16_注册失败_密码为空</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+
+<tr id='pt5_17' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test_register_17_注册失败_手机号已被注册</div></td>
+    <td colspan='5' align='center'><span class="label label-success success">通过</span></td>
+</tr>
+
+<tr id='total_row' class="text-center active">
+    <td>总计</td>
+    <td>111</td>
+    <td>76</td>
+    <td>35</td>
+    <td>0</td>
+    <td>通过率：68.47%</td>
+</tr>
+</table>
+
+<div id='ending'>&nbsp;</div>
+    <div style=" position:fixed;right:50px; bottom:30px; width:20px; height:20px;cursor:pointer">
+    <a href="#"><span class="glyphicon glyphicon-eject" style = "font-size:30px;" aria-hidden="true">
+    </span></a></div>
+    
+</body>
+</html>
