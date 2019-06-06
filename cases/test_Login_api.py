@@ -32,9 +32,9 @@ class TestLoginApi(Base):
         url = do_conf('URL', 'Host_Url') + value.URL  # 用例url
         request_value = value.Data  # 请求参数
         request_method = value.Method  # 请求方法
-        log.info('开始执行登录-"{}"测试用例'.format(title))
         expected = HandleJson.json_to_python(value.Expected)  # 期望结果
         not_exist_phone = self.mysql.get_not_exist_phone()  # 逆向用例登录账号
+        log.info('开始执行登录-"{}"测试用例'.format(title))
         request_value = register_login_parameters(not_exist_phone, request_value)
         response = self.request(request_method, url=url, data=request_value)
         actual_result = response.json()

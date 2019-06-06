@@ -16,7 +16,8 @@ from common.SendRequests import HttpRequests
 
 class Base(unittest.TestCase):
     """用例入口"""
-    mysql = HandleMysql()
+    # mysql = HandleMysql()
+
     @classmethod
     def setUpClass(cls):
         cls.request = HttpRequests()

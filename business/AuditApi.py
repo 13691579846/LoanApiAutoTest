@@ -20,10 +20,10 @@ class AuditLoanApi(object):
 
     def audit_loan_api(self, method, url, data):
         response = self.request(method=method,
-                     url=url,
-                     data=data
-                     )
-        print(response.text)
+                                url=url,
+                                data=data
+                                )
+        return response
 
     def close(self):
         log.info('关闭添加标的请求...')

@@ -13,12 +13,12 @@ from openpyxl.styles.colors import RED, GREEN
 
 from libs.ddt import (data, ddt)
 from base.base import Base
+from business.LoginApi import login
 from common.ParseExcel import do_excel
 from common.DataReplace import add_parameters
 from common.HandleJson import HandleJson
 from common.ParseConfig import (do_conf, do_user)
 from common.RecordLog import log
-from business.LoginApi import login
 from common.SendRequests import request
 
 

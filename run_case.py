@@ -11,10 +11,10 @@ import os
 import unittest
 
 from libs import HTMLTestRunnerNew
-from common.CreatePath import ModelsClass
-from config.config import ENVIRONMENT
+from config.config import (ENVIRONMENT, USER_PATH, REPORT_DIR, CASE_DIR)
 from business.CreateUser import register
-from config.config import (USER_PATH, REPORT_DIR, CASE_DIR)
+from common.ParseConfig import do_conf
+from common.CreatePath import ModelsClass
 
 
 def create_user_info_config_file(filename):
@@ -36,7 +36,7 @@ if __name__ == '__main__':
     with open(report_dir + '/' + report_file_name, 'wb') as f:
         runner = HTMLTestRunnerNew.HTMLTestRunner(stream=f,
                                                   description=ENVIRONMENT,
-                                                  title='前程贷项目接口自动化测试报告',
-                                                  tester='linux超',
+                                                  title=do_conf('Project', 'PRO_NAME'),
+                                                  tester=do_conf('Project', 'Tester'),
                                                   verbosity=2)
         runner.run(tc_suite())

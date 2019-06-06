@@ -18,8 +18,8 @@ from common.DataReplace import recharge_parameters
 from common.HandleJson import HandleJson
 from common.ParseConfig import (do_conf, do_user)
 from common.RecordLog import log
-from business.LoginApi import login
 from common.SendRequests import request
+from business.LoginApi import login
 
 
 @ddt

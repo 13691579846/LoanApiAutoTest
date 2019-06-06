@@ -28,6 +28,8 @@ class DataReplace(object):
     pattern_not_exist_loan_id = re.compile(do_conf('Expression', 'Non_exist_loan_id'))
     pattern_amount = re.compile(do_conf('Expression', 'Amount'))
     pattern_password = re.compile(do_conf('Expression', 'Password'))
+    pattern_amount_not_enough = re.compile(do_conf('Expression', 'Amount_not_enough'))  # 标的金额不足
+    pattern_amount_remain_amount = re.compile(do_conf('Expression', 'Remain_amount'))  # 标的剩余金额(用来测试满标)
 
     def __init__(self):
         pass
@@ -118,11 +120,14 @@ class DataReplace(object):
             data = cls.re_replace(cls.pattern_not_exist_invest_member_id, '', data)
         return data
 
-    # @classmethod
-    # def replace_not_exist_loan_id(cls, data):
-    #     not_exist_loan_id = getattr(DataReplace, 'not_exist_loan_id')
-    #     data = cls.re_replace(cls.pattern_not_exist_loan_id, not_exist_loan_id, data)
-    #     return data
+    @classmethod
+    def replace_not_exist_loan_id(cls, data):
+        if hasattr(DataReplace, 'non_exist_loan_id'):
+            not_exist_loan_id = getattr(DataReplace, 'non_exist_loan_id')
+            data = cls.re_replace(cls.pattern_not_exist_loan_id, not_exist_loan_id, data)
+        else:
+            data = cls.re_replace(cls.pattern_not_exist_loan_id, '', data)
+        return data
 
     @classmethod
     def replace_password(cls, data):
@@ -134,6 +139,22 @@ class DataReplace(object):
     def replace_amount(cls, data):
         amount = '2000'
         data = cls.re_replace(cls.pattern_amount, amount, data)
+        return data
+
+    @classmethod
+    def replace_amount_not_enough(cls, data):
+        amount = str(do_conf('add_loan_api', 'amount'))
+        data = cls.re_replace(cls.pattern_amount_not_enough, amount, data)
+        return data
+
+    @classmethod
+    def replace_remain_amount(cls, data):
+        if hasattr(DataReplace, 'remain_amount'):
+            # 总金额-已投金额 = 需要满标时的投资金额
+            amount = str(float(do_conf('add_loan_api', 'amount')) - getattr(DataReplace, 'remain_amount'))
+            data = cls.re_replace(cls.pattern_amount_remain_amount, amount, data)
+        else:
+            data = cls.re_replace(cls.pattern_amount_remain_amount, '', data)
         return data
 
     @classmethod
@@ -160,13 +181,15 @@ class DataReplace(object):
 
     @classmethod
     def invest_parameters_data(cls, data):
-        """竞标接口的参数化"""
+        """竞标接口的参数化（投资人已经登录标的存在且为竞标状态）"""
         data = cls.replace_exist_invest_id(data)
         data = cls.replace_exist_loan_id(data)
         data = cls.replace_not_exist_invest_id(data)
         data = cls.replace_password(data)
-        # data = cls.replace_not_exist_loan_id(data)
         data = cls.replace_amount(data)
+        data = cls.replace_not_exist_loan_id(data)
+        data = cls.replace_amount_not_enough(data)
+        data = cls.replace_remain_amount(data)
         return data
 
 
