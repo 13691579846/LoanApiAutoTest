@@ -60,16 +60,4 @@ request = HttpRequests()
 
 
 if __name__ == '__main__':
-    request = HttpRequests()
-    request2 = HttpRequests()
-    login_url = r'http://test.lemonban.com:8080/futureloan/mvc/api/member/login'
-    login_data = {"mobilephone": "13691579822", "pwd": "123456"}
-    recharge_url = r'http://test.lemonban.com:8080/futureloan/mvc/api/member/recharge'
-    recharge_data = {"mobilephone": "13691579822", "amount": 10000}
-    login = request('post', url=login_url, data=login_data)
-    print(login.json())
-    recharge = request('post', url=recharge_url, data=recharge_data)
-    print(recharge.json())
-    request.close_session()
-    recharge = request('post', url=recharge_url, data=recharge_data)
-    print(recharge.json())
+    pass
